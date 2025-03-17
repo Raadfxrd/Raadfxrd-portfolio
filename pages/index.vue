@@ -1,11 +1,11 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  $END$
+  <div>
+    <h1>Welcome to the homepage</h1>
+    <AppAlert>
+      This is an auto-imported component
+    </AppAlert>
+  </div>
 </template>
-
-<style scoped>
-
-</style>
+<script setup lang="ts">
+import AppAlert from "~/components/AppAlert.vue";
+</script>
