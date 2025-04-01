@@ -7,14 +7,8 @@
 	--color-secondary-light: #6eb1e7;
 	--button-disabled: #645151;
 	--grayscale: rgba(255, 255, 255, 0.5);
-	--font: 'Iosevka', monospace;
+	--font-default: 'Iosevka', monospace;
 	--duration: 0.3s;
-}
-
-body {
-	font-family: var(--font), sans-serif;
-	background-color: var(--color-primary-dark);
-	color: var(--color-primary-light);
 }
 
 .page-enter-active,

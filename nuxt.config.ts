@@ -19,4 +19,17 @@ export default defineNuxtConfig({
             tailwindcss(),
         ],
     },
+
+    head: {
+        link: [
+            {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css'
+            }
+        ],
+        script: [
+            {src: '@/assets/js/main.js', type: 'module'}
+        ]
+    },
 });
