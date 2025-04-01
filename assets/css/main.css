@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+	--color-primary-dark: #132534;
+	--color-secondary-dark: #1d3351;
+	--color-primary-light: #faa2a2;
+	--color-secondary-light: #6eb1e7;
+	--button-disabled: #645151;
+	--grayscale: rgba(255, 255, 255, 0.5);
+	--font: 'Iosevka', monospace;
+	--duration: 0.3s;
+}
+
+body {
+	font-family: var(--font), sans-serif;
+	background-color: var(--color-primary-dark);
+	color: var(--color-primary-light);
+}
+
+.page-enter-active,
+.page-leave-active {
+	transition: all 0.4s;
+}
+
+.page-enter-from,
+.page-leave-to {
+	opacity: 0;
+	filter: blur(1rem);
+}
