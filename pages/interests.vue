@@ -1,23 +1,13 @@
-<
 <template>
-  <ClientOnly>
-    <Renderer>
-      <Scene>
-        <PointLight :position="{ y: 50, z: 50 }"/>
-        <Box>
-          <LambertMaterial/>
-        </Box>
-      </Scene>
-    </Renderer>
-  </ClientOnly>
+  <TresCanvas window-size>
+    <TresPerspectiveCamera/>
+    <TresMesh>
+      <TresTorusGeometry :args="[1, 0.5, 16, 32]"/>
+      <TresMeshBasicMaterial color="orange"/>
+    </TresMesh>
+  </TresCanvas>
 </template>
 
 <script setup>
-import {
-  Renderer,
-  Scene,
-  PointLight,
-  Box,
-  LambertMaterial
-} from 'troisjs';
+
 </script>

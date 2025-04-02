@@ -31,4 +31,9 @@ export default defineNuxtConfig({
             tailwindcss(),
         ],
     },
+
+    modules: ['@tresjs/nuxt'],
+    tres: {
+        devtools: true,
+    },
 });
