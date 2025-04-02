@@ -1,5 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
@@ -7,29 +5,31 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
 
     app: {
-        pageTransition: {name: 'page', mode: 'out-in'}
+        pageTransition: {name: 'page', mode: 'out-in'},
+        head: {
+            title: 'Raadfxrd',
+            meta: [
+                {name: 'description', content: 'Raadfxrd\'s next gen portfolio'},
+                {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+            ],
+            link: [
+                {rel: 'icon', type: 'image/x-icon', href: '/public/favicon.ico'},
+                {
+                    rel: 'stylesheet',
+                    type: 'text/css',
+                    href: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+                },
+            ],
+        },
     },
 
     css: [
-        '@/assets/css/main.css',
+        '/assets/css/main.css',
     ],
 
     vite: {
         plugins: [
             tailwindcss(),
         ],
-    },
-
-    head: {
-        link: [
-            {
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css'
-            }
-        ],
-        script: [
-            {src: '@/assets/js/main.js', type: 'module'}
-        ]
     },
 });

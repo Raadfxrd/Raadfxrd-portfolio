@@ -4,7 +4,7 @@
       <NuxtLink href="/" class="text-xl font-bold">Borys.dev</NuxtLink>
       <ul class="flex space-x-4">
         <li>
-          <NuxtLink href="/projects" class="hover:text-gray-300">Projects</NuxtLink>
+          <NuxtLink href="/interests" class="hover:text-gray-300">Interests</NuxtLink>
         </li>
         <li>
           <NuxtLink href="/services" class="hover:text-gray-300">Services</NuxtLink>

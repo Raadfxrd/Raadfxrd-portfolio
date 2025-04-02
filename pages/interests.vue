@@ -1,17 +1,23 @@
+<
 <template>
-  <section class="interests py-16 bg-[#132534] text-white">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-8">My Interests</h2>
-      <div class="w-full h-[400px] relative">
-        <!-- Three.js component with rotating 3D model -->
-        <Canvas>
-          <GltfModel></GltfModel>
-        </Canvas>
-      </div>
-    </div>
-  </section>
+  <ClientOnly>
+    <Renderer>
+      <Scene>
+        <PointLight :position="{ y: 50, z: 50 }"/>
+        <Box>
+          <LambertMaterial/>
+        </Box>
+      </Scene>
+    </Renderer>
+  </ClientOnly>
 </template>
 
 <script setup>
-import {GltfModel} from "troisjs";
+import {
+  Renderer,
+  Scene,
+  PointLight,
+  Box,
+  LambertMaterial
+} from 'troisjs';
 </script>

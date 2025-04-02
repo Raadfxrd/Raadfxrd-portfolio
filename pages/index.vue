@@ -3,7 +3,7 @@
     <h1 class="text-4xl font-bold mb-4">Hey, I'm Borys!</h1>
     <p class="text-lg mb-8">I'm a passionate frontend developer.</p>
     <img class="w-40 h-40 rounded-full border-4 border-[#faa2a2] object-cover mb-8"
-         src="/assets/img/raadfxrd.jpeg" alt="Borys"/>
+         src="/public/img/raadfxrd.jpeg" alt="Borys"/>
     <TechStack></TechStack>
   </section>
 </template>
