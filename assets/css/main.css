@@ -7,8 +7,24 @@
 	--color-secondary-light: #6eb1e7;
 	--button-disabled: #645151;
 	--grayscale: rgba(255, 255, 255, 0.5);
-	--font-default: 'Iosevka', monospace;
+	--font-default: 'Pearl', monospace;
 	--duration: 0.3s;
+}
+
+@font-face {
+	font-family: 'Pearl';
+	src: url('/public/fonts/Pearl.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: var(--font-default), monospace;
 }
 
 .page-enter-active,

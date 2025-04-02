@@ -33,7 +33,4 @@ export default defineNuxtConfig({
     },
 
     modules: ['@tresjs/nuxt'],
-    tres: {
-        devtools: true,
-    },
 });
