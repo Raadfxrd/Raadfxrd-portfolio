@@ -25,6 +25,8 @@ body {
 	height: 100%;
 	width: 100%;
 	font-family: var(--font-default), monospace;
+	background-color: var(--color-primary-dark);
+	color: var(--color-primary-light);
 }
 
 .page-enter-active,
