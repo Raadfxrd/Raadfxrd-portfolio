@@ -8,13 +8,13 @@ import {OrbitControls, GLTFModel} from '@tresjs/cientos'
       preset="realistic"
   >
     <TresPerspectiveCamera
-        :position="[3, 3, 3]"
+        :position="[0.2, 0.5, 0.5]"
         :look-at="[0, 0, 0]"
     />
     <OrbitControls/>
     <Suspense>
       <GLTFModel path="/models/ibm_model_m_keyboard/scene.gltf" draco/>
     </Suspense>
-    <TresAmbientLight :intensity="0.4"/>
+    <TresAmbientLight :intensity="0.6"/>
   </TresCanvas>
 </template>

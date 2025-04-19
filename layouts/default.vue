@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-primary-dark text-primary-light">
+  <div class="min-h-screen flex flex-col">
     <Navbar/>
     <main class="flex-1 container mx-auto p-6">
       <slot/>
