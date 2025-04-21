@@ -1,18 +1,22 @@
 <template>
-  <nav class="bg-[#1d3351] p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <NuxtLink href="/" class="text-xl font-bold">Borys.dev</NuxtLink>
-      <ul class="flex space-x-4">
-        <li>
-          <NuxtLink href="/interests" class="hover:text-gray-300">Interests</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink href="/services" class="hover:text-gray-300">Services</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink href="/contact" class="hover:text-gray-300">Contact</NuxtLink>
-        </li>
-      </ul>
+  <nav
+      v-if="showContent"
+      class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 animate-navbarFadeIn"
+  >
+    <div
+        class="flex items-center gap-10 px-8 py-3 rounded-full
+             bg-white/10 border border-white/20 backdrop-blur-lg shadow-xl
+             text-white/90 transition duration-300 hover:shadow-2xl"
+    >
+      <NavLinks/>
     </div>
   </nav>
 </template>
+
+<script setup>
+import NavLinks from './NavLinks.vue';
+
+const props = defineProps({
+  showContent: Boolean
+});
+</script>

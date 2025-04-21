@@ -24,9 +24,22 @@ body {
 	padding: 0;
 	height: 100%;
 	width: 100%;
-	font-family: var(--font-default), monospace;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 0;
+	font-family: var(--font-default), sans-serif;
 	background-color: var(--color-primary-dark);
 	color: var(--color-primary-light);
+}
+
+/* Portrait Image Styling */
+img {
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+	transform: scale(1) rotate(0deg);
+}
+
+img:hover {
+	transform: scale(1.07) rotate(1deg);
 }
 
 .page-enter-active,
@@ -38,4 +51,13 @@ body {
 .page-leave-to {
 	opacity: 0;
 	filter: blur(1rem);
+}
+
+.btn-primary {
+	background-color: var(--color-primary-light);
+	color: var(--color-primary-dark);
+	font-weight: bold;
+	border-radius: 0.375rem;
+	padding: 1rem 1.5rem;
+	transition: background-color var(--duration) ease, transform var(--duration) ease;
 }

@@ -1,4 +1,49 @@
-/* Intro Animation */
+/* Intro animations */
+.animate-introFadeOut {
+	animation: introFadeOut 2s ease forwards;
+}
+
+.animate-scaleIn {
+	animation: scaleIn 1s ease-out;
+}
+
+/* Content Entrance */
+.animate-contentEnter {
+	animation: contentEnter 1s ease-out forwards;
+}
+
+/* Letter Reveal Animation */
+.animate-letterReveal {
+	animation: letterReveal 0.6s ease-out forwards;
+}
+
+/* Word Reveal for Greeting & Text Sections */
+.animate-wordDelay {
+	animation: wordDelay 0s linear forwards;
+	animation-fill-mode: forwards;
+}
+
+/* Fade-In for Texts (Like Button) */
+.animate-fadeIn {
+	animation: fadeIn 1s ease-out forwards;
+}
+
+/* Button Shine Effect */
+.group-hover\:animate-shine {
+	animation: shine 0.8s ease-in-out forwards;
+}
+
+/* Image Rotate In */
+.animate-rotateIn {
+	animation: rotateIn 0.8s ease-out;
+}
+
+/* Navbar fade-in*/
+.animate-navbarFadeIn {
+	animation: navbarFadeIn 0.6s ease-out forwards;
+}
+
+/* Intro animations */
 @keyframes introFadeOut {
 	0% {
 		opacity: 1;
@@ -23,14 +68,6 @@
 	}
 }
 
-.animate-introFadeOut {
-	animation: introFadeOut 2s ease forwards;
-}
-
-.animate-scaleIn {
-	animation: scaleIn 1s ease-out;
-}
-
 /* Content Entrance */
 @keyframes contentEnter {
 	0% {
@@ -41,10 +78,6 @@
 		opacity: 1;
 		transform: translateY(0);
 	}
-}
-
-.animate-contentEnter {
-	animation: contentEnter 1s ease-out forwards;
 }
 
 /* Letter Reveal Animation */
@@ -59,10 +92,6 @@
 	}
 }
 
-.animate-letterReveal {
-	animation: letterReveal 0.6s ease-out forwards;
-}
-
 /* Word Reveal for Greeting & Text Sections */
 @keyframes wordDelay {
 	0% {
@@ -73,10 +102,6 @@
 	}
 }
 
-.animate-wordDelay {
-	animation: wordDelay 0s linear forwards;
-	animation-fill-mode: forwards;
-}
 
 /* Fade-In for Texts (Like Button) */
 @keyframes fadeIn {
@@ -88,10 +113,6 @@
 	}
 }
 
-.animate-fadeIn {
-	animation: fadeIn 1s ease-out forwards;
-}
-
 /* Button Shine Effect */
 @keyframes shine {
 	0% {
@@ -100,10 +121,6 @@
 	100% {
 		transform: translateX(100%);
 	}
-}
-
-.group-hover\:animate-shine {
-	animation: shine 0.8s ease-in-out forwards;
 }
 
 /* Image Rotate In */
@@ -118,48 +135,6 @@
 	}
 }
 
-.animate-rotateIn {
-	animation: rotateIn 0.8s ease-out;
-}
-
-/* Styling for Text Blocks */
-h1, h3 {
-	margin-bottom: 16px;
-}
-
-/* Flex Layout Adjustments */
-.flex-wrap {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.gap-2 {
-	gap: 0.5rem;
-}
-
-.leading-tight {
-	line-height: 1.25;
-}
-
-/* Portrait Image Styling */
-img {
-	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Smooth and springy */
-	transform: scale(1) rotate(0deg); /* Define the "from" state explicitly */
-}
-
-img:hover {
-	transform: scale(1.07) rotate(1deg); /* subtle = elegant */
-}
-
-/* Scroll Indicator Styling */
-.text-white\/60 {
-	color: rgba(255, 255, 255, 0.6);
-}
-
-.animate-bounce {
-	animation: bounce 1s infinite;
-}
-
 @keyframes bounce {
 	0% {
 		transform: translateY(0);
@@ -172,29 +147,13 @@ img:hover {
 	}
 }
 
-/* Button Styles */
-button {
-	background-color: #faa2a2;
-	color: white;
-	font-weight: bold;
-	border-radius: 0.375rem;
-	padding: 1rem 1.5rem;
-	transition: background-color 0.3s ease, transform 0.3s ease;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-button:hover {
-	background-color: #e89090;
-	transform: scale(1.05);
-}
-
-/* Responsive Design Tweaks */
-@media (min-width: 768px) {
-	.md\:text-left {
-		text-align: left;
+@keyframes navbarFadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px);
 	}
-
-	.md\:flex-row {
-		flex-direction: row;
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
