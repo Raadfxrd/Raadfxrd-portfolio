@@ -7,6 +7,8 @@
 	--color-text-secondary: #999999; /* Secondary text color */
 	--border-dark: #ffffff33; /* Dark border color */
 	--color-accent: #faa2a2; /* Accent color */
+	--color-button-primary: #262626; /* Primary button color */
+	--color-button-secondary: #7e7e7e; /* Secondary button color */
 	--color-button-disabled: #cccccc; /* Disabled button color */
 	--color-overlay: rgba(0, 0, 0, 0.6); /* Overlay or grayscale effect */
 	--font-family-default: 'Pearl', monospace; /* Default font family */

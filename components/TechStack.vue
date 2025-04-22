@@ -1,5 +1,5 @@
 <template>
-  <div class="w-4/5 overflow-hidden rounded-lg my-8 py-6 relative shadow-xl">
+  <div class="w-4/5 overflow-hidden rounded-lg my-8 py-6 relative shadow-md">
     <div class="flex w-max animate-scroll">
       <div class="flex gap-12 px-6 items-center" v-for="tech in techStack" :key="tech.title">
         <i :class="tech.class" :title="tech.title"

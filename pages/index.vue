@@ -56,10 +56,10 @@
 
           <!-- Button -->
           <button
-              class="relative px-6 py-3 bg-text-primary text-black dark:text-white font-bold rounded-lg hover:bg-text-secondary transition shadow-lg group overflow-hidden"
+              class="relative px-6 py-3 bg-button-primary text-black dark:text-white font-bold rounded-lg hover:bg-text-secondary transition shadow-lg group overflow-hidden"
           >
             <span class="z-10 relative">View My Work</span>
-            <span class="absolute left-0 top-0 w-full h-full bg-border-dark group-hover:animate-shine"></span>
+            <span class="absolute left-0 top-0 w-full h-full bg-background-light group-hover:animate-shine"></span>
           </button>
         </div>
       </div>
@@ -79,6 +79,9 @@ const {currentTitle, isFadingOut, startTitleRotation} = useRotatingTitles();
 
 const showIntro = ref(true);
 const showContent = ref(false);
+import {useNavbarVisibility} from '~/composables/useNavbarVisibility';
+
+const {showNavbar} = useNavbarVisibility();
 
 onMounted(() => {
   startTitleRotation();
@@ -88,6 +91,7 @@ onMounted(() => {
 
     setTimeout(() => {
       showContent.value = true;
+      showNavbar();
     }, 300);
   }, 2000);
 });

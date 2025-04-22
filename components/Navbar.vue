@@ -1,6 +1,6 @@
 <template>
   <nav
-      v-if="showContent"
+      v-if="isNavbarVisible"
       class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 animate-navbarFadeIn"
   >
     <div
@@ -16,7 +16,7 @@
 <script setup>
 import NavLinks from './NavLinks.vue';
 
-const props = defineProps({
-  showContent: Boolean
-});
+import {useNavbarVisibility} from '~/composables/useNavbarVisibility';
+
+const {isNavbarVisible} = useNavbarVisibility();
 </script>
