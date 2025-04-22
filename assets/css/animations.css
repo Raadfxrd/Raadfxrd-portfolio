@@ -1,3 +1,8 @@
+/* Animation for the TechStack scrolling */
+.animate-scroll {
+	animation: scroll 60s linear infinite;
+}
+
 /* Intro animations */
 .animate-introFadeOut {
 	animation: introFadeOut 2s ease forwards;
@@ -41,6 +46,16 @@
 /* Navbar fade-in*/
 .animate-navbarFadeIn {
 	animation: navbarFadeIn 0.6s ease-out forwards;
+}
+
+/* TechStack scrolling */
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
 }
 
 /* Intro animations */

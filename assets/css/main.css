@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-	--color-primary-dark: #132534;
-	--color-secondary-dark: #1d3351;
-	--color-primary-light: #faa2a2;
-	--color-secondary-light: #6eb1e7;
-	--button-disabled: #645151;
-	--grayscale: rgba(255, 255, 255, 0.5);
-	--font-default: 'Pearl', monospace;
-	--duration: 0.3s;
+	--color-background-light: #ffffff; /* Light background color */
+	--color-background-dark: #e6e6e6; /* Dark background color */
+	--color-text-primary: #333333; /* Primary text color */
+	--color-text-secondary: #999999; /* Secondary text color */
+	--border-dark: #ffffff33; /* Dark border color */
+	--color-accent: #faa2a2; /* Accent color */
+	--color-button-disabled: #cccccc; /* Disabled button color */
+	--color-overlay: rgba(0, 0, 0, 0.6); /* Overlay or grayscale effect */
+	--font-family-default: 'Pearl', monospace; /* Default font family */
+	--transition-duration: 0.3s; /* Default transition duration */
 }
+
+/*.dark {*/
+/*	--color-primary-dark: #1c1f26;*/
+/*	--color-secondary-dark: #2a2e35;*/
+/*	--color-primary-light: #faa2a2;*/
+/*	--color-secondary-light: #6eb1e7;*/
+/*	--button-disabled: #6c757d;*/
+/*	--grayscale: rgba(255, 255, 255, 0.4);*/
+/*	--font-default: 'Pearl', monospace;*/
+/*	--duration: 0.3s;*/
+/*}*/
 
 @font-face {
 	font-family: 'Pearl';
@@ -27,9 +40,9 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 0;
-	font-family: var(--font-default), sans-serif;
-	background-color: var(--color-primary-dark);
-	color: var(--color-primary-light);
+	font-family: var(--font-family-default), sans-serif;
+	background-color: var(--color-background-light);
+	color: var(--color-text-primary);
 }
 
 /* Portrait Image Styling */
@@ -54,10 +67,10 @@ img:hover {
 }
 
 .btn-primary {
-	background-color: var(--color-primary-light);
-	color: var(--color-primary-dark);
+	background-color: var(--color-background-light);
+	color: var(--color-text-primary);
 	font-weight: bold;
 	border-radius: 0.375rem;
 	padding: 1rem 1.5rem;
-	transition: background-color var(--duration) ease, transform var(--duration) ease;
+	transition: background-color var(--transition-duration) ease, transform var(--transition-duration) ease;
 }

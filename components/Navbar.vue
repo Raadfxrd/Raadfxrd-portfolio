@@ -5,8 +5,8 @@
   >
     <div
         class="flex items-center gap-10 px-8 py-3 rounded-full
-             bg-white/10 border border-white/20 backdrop-blur-lg shadow-xl
-             text-white/90 transition duration-300 hover:shadow-2xl"
+               bg-background-light border-solid border-1 border-border-dark backdrop-blur-lg
+               text-light transition duration-300"
     >
       <NavLinks/>
     </div>

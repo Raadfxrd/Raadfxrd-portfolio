@@ -3,7 +3,7 @@
     <li>
       <NuxtLink
           href="/interests"
-          class="hover:text-[#faa2a2] transition"
+          class="hover:text-text-secondary transition"
       >
         Interests
       </NuxtLink>
@@ -11,7 +11,7 @@
     <li>
       <NuxtLink
           href="/services"
-          class="hover:text-[#faa2a2] transition"
+          class="hover:text-text-secondary transition"
       >
         Services
       </NuxtLink>
@@ -19,7 +19,7 @@
     <li>
       <NuxtLink
           href="/contact"
-          class="hover:text-[#faa2a2] transition"
+          class="hover:text-text-secondary transition"
       >
         Contact
       </NuxtLink>
