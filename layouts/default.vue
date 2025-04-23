@@ -10,7 +10,7 @@
       >
         <Navbar/>
         <main
-            :class="{'h-screen': !isInterestsPage, 'h-auto': isInterestsPage}"
+            :class="{'min-h-screen': !isInterestsPage, 'h-auto': isInterestsPage}"
         >
           <slot/>
         </main>
