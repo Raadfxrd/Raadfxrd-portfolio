@@ -38,29 +38,29 @@
 </template>
 
 <script setup>
-import NavLinks from './NavLinks.vue'
-import {useNavbarVisibility} from '~/composables/useNavbarVisibility'
-import {MoonIcon, SunIcon, ComputerDesktopIcon} from '@heroicons/vue/24/outline'
-import {useColorMode} from '#imports'
+import NavLinks from './NavLinks.vue';
+import {useNavbarVisibility} from '~/composables/useNavbarVisibility';
+import {ComputerDesktopIcon, MoonIcon, SunIcon} from '@heroicons/vue/24/outline';
+import {useColorMode} from '#imports';
 
-const {isNavbarVisible} = useNavbarVisibility()
-const colorMode = useColorMode()
+const {isNavbarVisible} = useNavbarVisibility();
+const colorMode = useColorMode();
 
 // Default to 'system' if no preference is set
 if (!colorMode.preference) {
-  colorMode.preference = 'system'
+  colorMode.preference = 'system';
 }
 
 // Cycle between 'light', 'dark', and 'system'
 const toggleTheme = () => {
-  if (colorMode.preference === 'light') colorMode.preference = 'dark'
-  else if (colorMode.preference === 'dark') colorMode.preference = 'system'
-  else colorMode.preference = 'light'
-}
+  if (colorMode.preference === 'light') colorMode.preference = 'dark';
+  else if (colorMode.preference === 'dark') colorMode.preference = 'system';
+  else colorMode.preference = 'light';
+};
 
 const icon = computed(() => {
-  if (colorMode.preference === 'light') return SunIcon
-  if (colorMode.preference === 'dark') return MoonIcon
-  return ComputerDesktopIcon
-})
+  if (colorMode.preference === 'light') return SunIcon;
+  if (colorMode.preference === 'dark') return MoonIcon;
+  return ComputerDesktopIcon;
+});
 </script>

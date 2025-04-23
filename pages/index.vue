@@ -73,26 +73,11 @@
 <script setup lang="ts">
 import Navbar from "~/components/Navbar.vue";
 import TechStack from "~/components/TechStack.vue";
+import {useIntroSequence} from '~/composables/useIntroSequence';
+import {useRotatingTitles} from '~/composables/useRotatingTitles';
 
 const {greeting} = useGreeting();
-const {currentTitle, isFadingOut, startTitleRotation} = useRotatingTitles();
 
-const showIntro = ref(true);
-const showContent = ref(false);
-import {useNavbarVisibility} from '~/composables/useNavbarVisibility';
-
-const {showNavbar} = useNavbarVisibility();
-
-onMounted(() => {
-  startTitleRotation();
-
-  setTimeout(() => {
-    showIntro.value = false;
-
-    setTimeout(() => {
-      showContent.value = true;
-      showNavbar();
-    }, 50);
-  }, 1000);
-});
+const {currentTitle, isFadingOut} = useRotatingTitles();
+const {showIntro, showContent} = useIntroSequence();
 </script>
