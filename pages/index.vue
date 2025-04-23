@@ -4,9 +4,9 @@
       <!-- Your Intro Overlay -->
       <div
           v-if="showIntro"
-          class="fixed inset-0 z-50 bg-background-light flex items-center justify-center animate-introFadeOut"
+          class="fixed inset-0 z-50 bg-background-light dark:bg-background-dark flex items-center justify-center animate-introFadeOut"
       >
-        <h1 class="text-4xl md:text-5xl font-bold text-white dark:text-black animate-scaleIn">Borys</h1>
+        <h1 class="text-4xl md:text-5xl font-bold text-text-primary dark:text-text-light animate-scaleIn">Borys</h1>
       </div>
 
       <!-- The rest of your content -->
@@ -52,7 +52,7 @@
             {{ currentTitle }}
           </h3>
 
-          <h3 class="mb-6 text-text-primary animate-textReveal">Innovating for our success.</h3>
+          <h3 class="mb-6 text-text-primary animate-textReveal">Innovating for success.</h3>
 
           <!-- Button -->
           <button
@@ -92,7 +92,7 @@ onMounted(() => {
     setTimeout(() => {
       showContent.value = true;
       showNavbar();
-    }, 300);
-  }, 2000);
+    }, 50);
+  }, 1000);
 });
 </script>

@@ -1,30 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-	--color-background-light: #ffffff; /* Light background color */
-	--color-background-dark: #e6e6e6; /* Dark background color */
-	--color-text-primary: #333333; /* Primary text color */
-	--color-text-secondary: #999999; /* Secondary text color */
-	--border-dark: #ffffff33; /* Dark border color */
-	--color-accent: #faa2a2; /* Accent color */
-	--color-button-primary: #262626; /* Primary button color */
-	--color-button-secondary: #7e7e7e; /* Secondary button color */
-	--color-button-disabled: #cccccc; /* Disabled button color */
-	--color-overlay: rgba(0, 0, 0, 0.6); /* Overlay or grayscale effect */
-	--font-family-default: 'Pearl', monospace; /* Default font family */
-	--transition-duration: 0.3s; /* Default transition duration */
+	--color-background-light: #ffffff;
+	--color-background-light-2: #e6e6e6;
+	--color-text-primary: #333333;
+	--color-text-secondary: #999999;
+	--border-light: rgb(192, 192, 192);
+	--color-button-primary: #262626;
+	--color-button-secondary: #7e7e7e;
+	--color-button-disabled: #cccccc;
+	--color-accent: #faa2a2;
+	--color-accent-2: #6eb1e7;
+	--color-overlay: rgba(0, 0, 0, 0.6);
+	--font-family-default: 'Pearl', monospace;
+	--transition-duration: 0.3s;
 }
 
-/*.dark {*/
-/*	--color-primary-dark: #1c1f26;*/
-/*	--color-secondary-dark: #2a2e35;*/
-/*	--color-primary-light: #faa2a2;*/
-/*	--color-secondary-light: #6eb1e7;*/
-/*	--button-disabled: #6c757d;*/
-/*	--grayscale: rgba(255, 255, 255, 0.4);*/
-/*	--font-default: 'Pearl', monospace;*/
-/*	--duration: 0.3s;*/
-/*}*/
+.dark {
+	--color-background-light: #1c1f26;
+	--color-background-light-2: #2a2e35;
+	--color-text-primary: #faa2a2;
+	--color-text-secondary: #6eb1e7;
+	--border-light: #ffffff33;
+}
 
 @font-face {
 	font-family: 'Pearl';
@@ -45,6 +43,7 @@ body {
 	font-family: var(--font-family-default), sans-serif;
 	background-color: var(--color-background-light);
 	color: var(--color-text-primary);
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Portrait Image Styling */

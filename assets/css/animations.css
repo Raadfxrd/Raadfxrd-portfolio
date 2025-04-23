@@ -5,7 +5,7 @@
 
 /* Intro animations */
 .animate-introFadeOut {
-	animation: introFadeOut 2s ease forwards;
+	animation: introFadeOut 1s ease forwards;
 }
 
 .animate-scaleIn {
