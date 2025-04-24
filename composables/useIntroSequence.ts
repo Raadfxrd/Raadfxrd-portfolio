@@ -13,25 +13,26 @@ export function useIntroSequence() {
         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
             const hasPlayedIntro = localStorage.getItem('hasPlayedIntro');
 
+            // Only play the intro sequence if it hasn't been played before
             if (!hasPlayedIntro) {
                 showIntro.value = true;
                 startTitleRotation?.();
 
                 setTimeout(() => {
                     showIntro.value = false;
-
-                    setTimeout(() => {
-                        showContent.value = true;
-                        showNavbar?.();
-                        localStorage.setItem('hasPlayedIntro', 'true');
-                    }, 300);
-                }, 2000);
+                    showContent.value = true;
+                    showNavbar?.();
+                    localStorage.setItem('hasPlayedIntro', 'true'); // Mark intro as played
+                }, 1000);
             } else {
+                // Skip intro and directly show content
                 showContent.value = true;
                 showNavbar?.();
             }
         } else {
+            // Fallback for environments without localStorage
             showContent.value = true;
+            showNavbar?.();
         }
     });
 

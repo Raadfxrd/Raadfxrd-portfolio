@@ -3,7 +3,8 @@
     <!-- Navbar -->
     <nav
         v-if="isNavbarVisible"
-        class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 animate-navbarFadeIn w-full flex justify-center"
+        :class="{'animate-navbarFadeIn': isAnimationComplete}"
+        class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full flex justify-center"
     >
       <div class="flex justify-around w-2/3 items-center">
         <!-- Small Logo -->
@@ -42,8 +43,9 @@ import NavLinks from './NavLinks.vue';
 import {useNavbarVisibility} from '~/composables/useNavbarVisibility';
 import {ComputerDesktopIcon, MoonIcon, SunIcon} from '@heroicons/vue/24/outline';
 import {useColorMode} from '#imports';
+import {computed} from 'vue';
 
-const {isNavbarVisible} = useNavbarVisibility();
+const {isNavbarVisible, isAnimationComplete} = useNavbarVisibility();
 const colorMode = useColorMode();
 
 // Default to 'system' if no preference is set
