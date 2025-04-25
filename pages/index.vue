@@ -65,13 +65,11 @@
       </div>
 
       <TechStack v-if="showContent"/>
-      <Navbar :showContent="showContent"/>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import Navbar from "~/components/Navbar.vue";
 import TechStack from "~/components/TechStack.vue";
 import {useIntroSequence} from '~/composables/useIntroSequence';
 import {useRotatingTitles} from '~/composables/useRotatingTitles';

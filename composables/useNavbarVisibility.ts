@@ -1,37 +1,34 @@
-import {onMounted, ref} from 'vue';
+import {onMounted, ref, watch} from 'vue';
+import {useRoute} from 'vue-router';
 
 let isNavbarVisible = ref(false);
 let isAnimationComplete = ref(false);
 
 export function useNavbarVisibility() {
+    const route = useRoute();
+
     // Singleton pattern to ensure shared state
     if (!isNavbarVisible || !isAnimationComplete) {
         isNavbarVisible = ref(false);
         isAnimationComplete = ref(false);
     }
 
+    // Watch for route changes
+    watch(() => route.path, (newPath) => {
+        if (newPath === '/') {
+            // Hide navbar when navigating to home page
+            isNavbarVisible.value = false;
+            isAnimationComplete.value = false;
+        }
+    }, {immediate: true});
+
     onMounted(() => {
         const hasPlayedIntro = localStorage.getItem('hasPlayedIntro');
-        const hasPlayedNavbarAnimation = localStorage.getItem('hasPlayedNavbarAnimation');
-        const navbarVisibleState = localStorage.getItem('isNavbarVisible');
 
-        // Restore navbar visibility state from localStorage
-        if (navbarVisibleState === 'true') {
+        // If not on home page or intro was played before, show navbar
+        if (route.path !== '/' || hasPlayedIntro === 'true') {
             isNavbarVisible.value = true;
-        }
-
-        if (hasPlayedIntro && !hasPlayedNavbarAnimation) {
-            isNavbarVisible.value = true;
-            localStorage.setItem('isNavbarVisible', 'true');
-
-            // Play animation once
-            setTimeout(() => {
-                isAnimationComplete.value = true;
-                localStorage.setItem('hasPlayedNavbarAnimation', 'true'); // Mark animation as played
-            }, 1000);
-        } else if (hasPlayedIntro) {
-            isNavbarVisible.value = true;
-            isAnimationComplete.value = true; // Skip animation if already played
+            isAnimationComplete.value = true;
         }
     });
 
@@ -39,8 +36,8 @@ export function useNavbarVisibility() {
         isNavbarVisible,
         isAnimationComplete,
         showNavbar: () => {
-            console.log('showNavbar called. Setting isNavbarVisible to true.');
             isNavbarVisible.value = true;
+            isAnimationComplete.value = true;
             localStorage.setItem('isNavbarVisible', 'true');
         },
     };
