@@ -9,9 +9,9 @@
       <div class="flex justify-around w-2/3 items-center">
         <!-- Small Logo -->
         <img
-            src="public/img/raadfxrd.jpeg"
             alt="Small Logo"
             class="w-10 h-10 rounded-full border-1 border-border-dark hover:cursor-pointer"
+            src="public/img/raadfxrd.jpeg"
             @click="$router.push('/')"
         />
 
@@ -26,9 +26,9 @@
 
         <!-- Theme Toggle Button -->
         <button
-            @click="toggleTheme"
             :aria-label="`Current theme: ${colorMode.preference}`"
             class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:ring-2 ring-blue-500 transition duration-300"
+            @click="toggleTheme"
         >
           <component :is="icon" class="w-6 h-6 text-yellow-500 dark:text-gray-300"/>
           <span class="sr-only">Theme: {{ colorMode.preference }}</span>
@@ -56,7 +56,6 @@ if (!colorMode.preference) {
 // Cycle between 'light', 'dark', and 'system'
 const toggleTheme = () => {
   if (colorMode.preference === 'light') colorMode.preference = 'dark';
-  else if (colorMode.preference === 'dark') colorMode.preference = 'system';
   else colorMode.preference = 'light';
 };
 
