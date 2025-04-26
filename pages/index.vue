@@ -12,11 +12,17 @@
                class="h-screen w-full flex flex-col items-center justify-center animate-contentEnter">
         <div class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center gap-12 px-4 md:px-6">
           <!-- Portrait -->
-          <img alt="Portrait of Borys"
-               class="w-[180px] h-[180px] md:w-[280px] md:h-[280px] rounded-full border-2 border-border-dark object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-1"
-               src="public/img/raadfxrd.jpeg"
-               style="object-position: center top; transform-origin: center;"/>
-
+          <ExplodingImage
+              :main-image="'/img/raadfxrd.jpeg'"
+              :satellite-images="[
+                  'https://placehold.co/150.png',
+                   'https://placehold.co/150.png',
+                   'https://placehold.co/150.png',
+                   'https://placehold.co/150.png',
+                   'https://placehold.co/150.png',
+                   ]"
+              alt="Portrait of Borys"
+          />
           <!-- Text Section -->
           <div class="text-center md:text-left max-w-lg">
             <h1 class="text-base md:text-3xl font-bold mb-2 flex flex-wrap gap-2">
@@ -120,8 +126,10 @@
                   <span class="z-10 relative flex items-center gap-2">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                      <path
+                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"></path>
                     </svg>
                     Download CV
                   </span>
