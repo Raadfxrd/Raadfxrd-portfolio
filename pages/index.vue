@@ -15,11 +15,11 @@
           <ExplodingImage
               :main-image="'/img/raadfxrd.jpeg'"
               :satellite-images="[
-                  'https://placehold.co/150.png',
-                   'https://placehold.co/150.png',
-                   'https://placehold.co/150.png',
-                   'https://placehold.co/150.png',
-                   'https://placehold.co/150.png',
+                  '/img/borys.jpeg',
+                   '/img/lemur.jpeg',
+                   '/img/kitteh.jpeg',
+                   '/img/desk-setup.jpeg',
+                   '/img/living-room.jpeg',
                    ]"
               alt="Portrait of Borys"
           />

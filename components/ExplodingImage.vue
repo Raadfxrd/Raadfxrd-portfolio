@@ -65,9 +65,7 @@ const handleMouseLeave = () => {
 
 <template>
   <div ref="containerRef"
-       class="grid place-items-center w-[280px] h-[280px] md:w-[400px] md:h-[400px]"
-       @mouseenter="handleMouseEnter"
-       @mouseleave="handleMouseLeave">
+       class="grid place-items-center w-[280px] h-[280px] md:w-[400px] md:h-[400px]">
     <div class="grid grid-cols-1 grid-rows-1 place-items-center">
       <!-- Main center image -->
       <img :src="mainImage"
@@ -75,7 +73,9 @@ const handleMouseLeave = () => {
            class="main-image col-start-1 row-start-1
                   w-[180px] h-[180px] md:w-[280px] md:h-[280px]
                   rounded-full border-2 border-border-dark object-cover
-                  shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  shadow-lg hover:shadow-xl transition-shadow duration-300 hover:cursor-pointer"
+           @mouseenter="handleMouseEnter"
+           @mouseleave="handleMouseLeave"
            style="object-position: center top;"/>
 
       <!-- Satellite images -->
@@ -95,6 +95,7 @@ const handleMouseLeave = () => {
 .satellite-image {
   transform-origin: center center;
   will-change: transform, opacity;
+  object-position: center top;
 }
 
 .main-image {
