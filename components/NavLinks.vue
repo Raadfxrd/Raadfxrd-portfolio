@@ -2,24 +2,24 @@
   <ul class="flex items-center gap-6 text-sm font-medium">
     <li>
       <NuxtLink
-          href="/interests"
           class="hover:text-text-secondary transition"
+          href="/interests"
       >
         Interests
       </NuxtLink>
     </li>
     <li>
       <NuxtLink
-          href="/services"
           class="hover:text-text-secondary transition"
+          href="/services"
       >
         Services
       </NuxtLink>
     </li>
     <li>
       <NuxtLink
-          href="/contact"
           class="hover:text-text-secondary transition"
+          href="/contact"
       >
         Contact
       </NuxtLink>
