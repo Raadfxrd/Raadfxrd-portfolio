@@ -47,7 +47,7 @@
 
             <!-- Button -->
             <button
-                class="relative px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-text-primary transition-all duration-300 shadow-sm group overflow-hidden">
+                class="relative px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden">
               <span class="z-10 relative">View My Work</span>
               <span class="absolute left-0 top-0 w-full h-full bg-background-light group-hover:animate-shine"></span>
             </button>
@@ -62,80 +62,14 @@
           <!-- Recent Posts Section -->
           <section class="w-full lg:w-3/5">
             <div class="space-y-4">
-              <!-- Post Card Template -->
-              <div class="group rounded-lg bg-transparent transition-all duration-300">
-                <div
-                    class="bg-background-light p-4 rounded-lg transition-all duration-300 group-hover:bg-background-light-2/90 group-hover:cursor-pointer">
-                  <h3 class="text-xs md:text-sm font-medium mb-2">Post Title</h3>
-                  <p class="text-xs text-text-secondary mb-3">Short description of the post...</p>
-                  <div class="flex justify-between items-center">
-                    <span class="text-xs text-text-secondary">Date</span>
-                    <p class="text-xs text-text-primary group-hover:translate-x-0.5 transition-transform">
-                      Read More →
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <PostCard title="Post Title" description="Short description of the post..." date="Date"/>
             </div>
           </section>
 
           <!-- Sidebar Section -->
           <section class="w-full lg:w-2/5 space-y-4">
-            <!-- Contact Form -->
-            <div class="bg-background-light border border-border-light p-4 rounded-lg">
-              <h2 class="text-sm font-bold mb-3">Stay up to date</h2>
-              <p class="text-xs text-text-secondary leading-relaxed mb-4">
-                Get notified when I post something, unsubscribe at any moment.
-              </p>
-              <form class="space-y-3">
-                <div class="flex gap-2">
-                  <input id="email"
-                         class="flex-1 text-xs p-2 rounded-md bg-background-light border border-border-light focus:ring-1 focus:ring-button-primary"
-                         placeholder="Enter your email"
-                         type="email">
-                  <button
-                      class="whitespace-nowrap text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-text-primary px-3 py-2 transition-colors"
-                      type="submit">
-                    Send Message
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            <!-- Past Experiences -->
-            <div class="bg-background-light border border-border-light p-4 rounded-lg">
-              <h2 class="text-sm font-bold mb-4">Work</h2>
-              <div class="space-y-4">
-                <div class="flex gap-3 items-start group hover:bg-background-light-2/90 p-2 rounded-lg">
-                  <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center">
-                    <img alt="Company Icon"
-                         class="w-full h-full object-cover rounded-full border border-border-light"
-                         src="public/img/raadfxrd.jpeg"/>
-                  </div>
-                  <div class="flex-grow">
-                    <div class="flex items-baseline justify-between">
-                      <h3 class="text-xs md:text-sm font-medium">Software Engineer</h3>
-                      <span class="text-xs text-text-secondary">2023 - Present</span>
-                    </div>
-                    <p class="text-xs text-text-secondary mt-0.5">Company Name</p>
-                  </div>
-                </div>
-              </div>
-              <button
-                  class="w-1/2 group relative inline-flex items-center gap-2 px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-text-primary duration-300 shadow-sm overflow-hidden">
-                  <span class="z-10 relative flex items-center gap-2">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                      <path
-                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                          stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2"></path>
-                    </svg>
-                    Download CV
-                  </span>
-                <span class="absolute left-0 top-0 w-full h-full bg-background-light group-hover:animate-shine"></span>
-              </button>
-            </div>
+            <SubscriptionForm/>
+            <WorkExperience :experiences="experiences"/>
           </section>
         </div>
       </div>
@@ -145,11 +79,40 @@
 
 <script lang="ts" setup>
 import TechStack from "~/components/TechStack.vue";
+import PostCard from "~/components/PostCard.vue";
+import WorkExperience from "~/components/WorkExperience.vue";
 import {useIntroSequence} from '~/composables/useIntroSequence';
 import {useRotatingTitles} from '~/composables/useRotatingTitles';
+import SubscriptionForm from "~/components/SubscriptionForm.vue";
 
 const {greeting} = useGreeting();
-
 const {currentTitle, isFadingOut} = useRotatingTitles();
 const {showIntro, showContent} = useIntroSequence();
+
+const experiences = [
+  {
+    title: "Software Engineer",
+    company: "IRP/WOSI",
+    period: "February 2025 - Now",
+    icon: "/img/raadfxrd.jpeg",
+  },
+  {
+    title: "Sales Assistant",
+    company: "Hifi-Klubben",
+    period: "March 2024 - Now",
+    icon: "/img/raadfxrd.jpeg",
+  },
+  {
+    title: "AGF-assistant",
+    company: "Albert Heijn",
+    period: "September 2023 - March 2024",
+    icon: "/img/raadfxrd.jpeg",
+  },
+  {
+    title: "Sales Assistant",
+    company: "Pull&Bear",
+    period: "April 2023 - August 2023",
+    icon: "/img/raadfxrd.jpeg",
+  },
+];
 </script>
