@@ -15,11 +15,11 @@
           <ExplodingImage
               :main-image="'/img/raadfxrd.jpeg'"
               :satellite-images="[
-                  '/img/borys.jpeg',
-                   '/img/lemur.jpeg',
-                   '/img/kitteh.jpeg',
-                   '/img/desk-setup.jpeg',
-                   '/img/living-room.jpeg',
+                  '/img/satelite/borys.jpeg',
+                   '/img/satelite/lemur.jpeg',
+                   '/img/satelite/kitteh.jpeg',
+                   '/img/satelite/desk-setup.jpeg',
+                   '/img/satelite/living-room.jpeg',
                    ]"
               alt="Portrait of Borys"
           />
@@ -94,25 +94,25 @@ const experiences = [
     title: "Software Engineer",
     company: "IRP/WOSI",
     period: "February 2025 - Now",
-    icon: "/img/raadfxrd.jpeg",
+    icon: "/img/companies/irp.png",
   },
   {
     title: "Sales Assistant",
     company: "Hifi-Klubben",
     period: "March 2024 - Now",
-    icon: "/img/raadfxrd.jpeg",
+    icon: "/img/companies/hfk.svg",
   },
   {
     title: "AGF-assistant",
     company: "Albert Heijn",
     period: "September 2023 - March 2024",
-    icon: "/img/raadfxrd.jpeg",
+    icon: "/img/companies/ah.png",
   },
   {
     title: "Sales Assistant",
     company: "Pull&Bear",
     period: "April 2023 - August 2023",
-    icon: "/img/raadfxrd.jpeg",
+    icon: "/img/companies/pb.png",
   },
 ];
 </script>

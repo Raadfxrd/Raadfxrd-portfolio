@@ -4,10 +4,10 @@
     <div class="space-y-4">
       <div v-for="experience in experiences" :key="experience.title"
            class="flex gap-3 items-start group hover:bg-background-light-2/90 p-2 rounded-lg">
-        <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+        <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center">
           <img :alt="experience.company"
-               class="w-full h-full object-cover rounded-full border border-border-light"
-               :src="experience.icon"/>
+               :src="experience.icon"
+               class="w-full h-full p-1 object-contain rounded-full border border-border-light bg-white"/>
         </div>
         <div class="flex-grow group-hover:cursor-default">
           <h3 class="text-xs md:text-sm font-medium">{{ experience.title }}</h3>
