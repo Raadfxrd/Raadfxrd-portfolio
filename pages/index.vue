@@ -62,7 +62,7 @@
           <!-- Recent Posts Section -->
           <section class="w-full lg:w-3/5">
             <div class="space-y-4">
-              <PostCard title="Post Title" description="Short description of the post..." date="Date"/>
+              <PostCard date="Date" description="Short description of the post..." title="Post Title"/>
             </div>
           </section>
 

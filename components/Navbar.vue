@@ -18,7 +18,7 @@
         <!-- Nav Links -->
         <div
             class="flex items-center gap-10 px-8 py-3 rounded-full
-                 bg-background-light border-solid border-1 border-border-light backdrop-blur-lg
+                 bg-background-light/20 border-solid border-1 border-border-light backdrop-blur-lg
                  text-light transition duration-300"
         >
           <NavLinks/>
@@ -27,7 +27,7 @@
         <!-- Theme Toggle Button -->
         <button
             :aria-label="`Current theme: ${colorMode.preference}`"
-            class="w-10 h-10 flex items-center justify-center rounded-full bg-background-light hover:ring-2 ring-blue-500 transition duration-300"
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-background-light hover:ring-1 ring-border-light transition duration-300"
             @click="toggleTheme"
         >
           <component :is="icon" class="w-6 h-6 text-text-primary"/>
