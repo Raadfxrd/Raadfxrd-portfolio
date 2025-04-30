@@ -27,7 +27,7 @@
 @font-face {
     font-family: 'Pearl';
     src: url('/public/fonts/Pearl.ttf') format('truetype');
-    font-weight: 700;
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -74,4 +74,40 @@ img:hover {
     border-radius: 0.375rem;
     padding: 1rem 1.5rem;
     transition: background-color var(--transition-duration) ease, transform var(--transition-duration) ease;
+}
+
+@layer components {
+    article * {
+        box-sizing: border-box; /* restore sane box model */
+    }
+
+    .markdown {
+        /* reapply base styles after revert */
+        @apply font-family-default text-text-primary leading-relaxed;
+
+        /* Headings */
+        @apply [&>h1]:mt-12 [&>h1]:mb-4 [&>h1]:text-4xl [&>h1]:font-bold;
+        @apply [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-3xl [&>h2]:font-semibold;
+        @apply [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-2xl [&>h3]:font-semibold;
+
+        /* Paragraphs */
+        @apply [&>p]:mb-6 [&>p]:text-base;
+
+        /* Lists */
+        @apply [&>ul]:mb-6 [&>ul]:list-disc [&>ul]:pl-6 [&>ul>li]:mb-2;
+        @apply [&>ol]:mb-6 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol>li]:mb-2;
+
+        /* Links */
+        @apply [&>a]:text-accent-2 hover:[&>a]:text-accent hover:[&>a]:underline;
+
+        /* Blockquotes */
+        @apply [&>blockquote]:mb-6 [&>blockquote]:pl-4 [&>blockquote]:border-l-4 [&>blockquote]:border-accent [&>blockquote]:italic;
+
+        /* Images */
+        @apply [&>img]:rounded-xl [&>img]:shadow-md [&>img]:my-6;
+
+        /* Code */
+        @apply [&>pre]:bg-background-light-2 [&>pre]:text-sm [&>pre]:p-4 [&>pre]:rounded-lg [&>pre]:overflow-x-auto [&>pre]:mb-6;
+        @apply [&>code]:bg-background-light [&>code]:text-accent-2 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>code]:text-sm;
+    }
 }

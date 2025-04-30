@@ -1,10 +1,14 @@
 <template>
   <NuxtLayout>
-    <NuxtPage/>
+    <NuxtPage />
   </NuxtLayout>
 </template>
 
 <script setup>
-import '@/assets/css/main.css';
-import '@/assets/css/animations.css';
+import "@/assets/css/main.css";
+import "@/assets/css/animations.css";
+
+definePageMeta({
+  scrollToTop: true,
+});
 </script>
