@@ -9,6 +9,7 @@
         class="fixed inset-0 z-50 bg-background-light flex items-center justify-center animate-introFadeOut"
       >
         <h1
+          id="intro-title"
           class="text-lg md:text-2xl font-bold text-text-primary animate-scaleIn"
         >
           Borys
@@ -68,20 +69,20 @@
                 'animate-fadeOut': isFadingOut,
                 'animate-fadeIn': !isFadingOut,
               }"
-              class="text-xs md:text-sm text-text-secondary mb-2 transition-transform duration-500"
+              class="w-fit text-xs md:text-sm text-text-secondary mb-2 transition-transform duration-500"
             >
               {{ currentTitle }}
             </h3>
 
             <h3
-              class="text-xs md:text-lg mb-4 text-text-primary animate-textReveal"
+              class="w-fit text-xs md:text-lg mb-4 text-text-primary animate-textReveal"
             >
               Innovating for success.
             </h3>
 
             <!-- Button -->
             <button
-              class="relative px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden"
+              class="w-fit relative px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden"
             >
               <span class="z-10 relative">View My Work</span>
               <span
@@ -103,7 +104,7 @@
           <section class="w-full lg:w-3/5">
             <div class="space-y-4">
               <PostCard
-                v-for="(post, key) in posts"
+                v-for="(post, key) in posts?.slice(0, 6)"
                 :key="post.path"
                 :post="post"
                 :is-big="!key"

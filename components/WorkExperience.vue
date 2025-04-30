@@ -22,6 +22,7 @@
             <p class="text-xs text-text-secondary mt-0.5">
               {{ experience.company }}
             </p>
+            
             <span class="text-xs text-text-secondary text-end">{{
               experience.period
             }}</span>
@@ -32,7 +33,7 @@
     <a
       href="/assets/borys-cv.pdf"
       download="Borys_CV.pdf"
-      class="w-1/2 group relative inline-flex items-center gap-2 px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 duration-300 shadow-sm overflow-hidden mt-4"
+      class="w-full group relative inline-flex justify-around items-center gap-2 px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 duration-300 shadow-sm overflow-hidden mt-4"
     >
       <span class="z-10 relative flex items-center gap-2">
         <svg
