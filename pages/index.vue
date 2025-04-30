@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full overflow-hidden">
+  <div class="relative w-full">
     <section
       class="min-h-screen w-full flex flex-col items-center justify-center"
     >
@@ -98,7 +98,7 @@
         v-if="showContent"
         class="container mx-auto max-w-5xl mt-12 mb-12 px-4 md:px-6 animate-contentEnter"
       >
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col lg:flex-row gap-8 items-start relative">
           <!-- Recent Posts Section -->
           <section class="w-full lg:w-3/5">
             <div class="space-y-4">
@@ -112,10 +112,12 @@
           </section>
 
           <!-- Sidebar Section -->
-          <section class="w-full lg:w-2/5 space-y-4">
-            <SubscriptionForm />
-            <WorkExperience :experiences="experiences" />
-          </section>
+          <aside class="w-full lg:w-2/5 lg:max-h-screen lg:sticky lg:top-4">
+            <div class="space-y-4">
+              <SubscriptionForm />
+              <WorkExperience :experiences="experiences" />
+            </div>
+          </aside>
         </div>
       </div>
     </section>
