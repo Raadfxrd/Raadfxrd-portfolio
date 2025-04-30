@@ -8,29 +8,29 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         <!-- Brand Section -->
         <div class="space-y-6 md:pr-8">
-          <h3 class="text-xl font-bold text-text-primary">Borys Babas</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
+          <h3 class="w-fit text-xl font-bold text-text-primary">Borys Babas</h3>
+          <p class="w-fit text-sm text-text-secondary leading-relaxed">
             Crafting digital experiences with passion and precision.
           </p>
           <div class="flex items-center space-x-6">
             <a
+              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
               href="https://github.com/raadfxrd"
               target="_blank"
-              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
             >
               <i class="devicon-github-original"></i>
             </a>
             <a
+              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
               href="https://linkedin.com/in/borys-babas"
               target="_blank"
-              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
             >
               <i class="devicon-linkedin-plain"></i>
             </a>
             <a
+              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
               href="https://twitter.com/raadfxrd"
               target="_blank"
-              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
             >
               <i class="devicon-twitter-original"></i>
             </a>
@@ -40,7 +40,7 @@
         <!-- Navigation Section -->
         <div class="space-y-6">
           <h4
-            class="text-sm font-bold uppercase tracking-wider text-text-primary"
+            class="w-fit text-sm font-bold uppercase tracking-wider text-text-primary"
           >
             Navigation
           </h4>
@@ -48,7 +48,7 @@
             <li v-for="link in navigationLinks" :key="link.path">
               <NuxtLink
                 :to="link.path"
-                class="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center justify-start gap-2 group"
+                class="w-fit text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center justify-start gap-2 group"
               >
                 <span
                   class="w-0 h-[1px] bg-text-primary transition-all duration-300 group-hover:w-4"
@@ -62,13 +62,13 @@
         <!-- Latest Posts Section -->
         <div class="space-y-6">
           <h4
-            class="text-sm font-bold uppercase tracking-wider text-text-primary"
+            class="w-fit text-sm font-bold uppercase tracking-wider text-text-primary"
           >
             Latest Posts
           </h4>
           <ul class="space-y-4">
             <li v-for="post in latestPosts" :key="post.slug">
-              <NuxtLink :to="`/blog/${post.slug}`" class="group block">
+              <NuxtLink :to="`/blog/${post.slug}`" class="w-fit group block">
                 <h5
                   class="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors line-clamp-2"
                 >
@@ -82,21 +82,21 @@
         <!-- Contact Section -->
         <div class="space-y-6">
           <h4
-            class="text-sm font-bold uppercase tracking-wider text-text-primary"
+            class="w-fit text-sm font-bold uppercase tracking-wider text-text-primary"
           >
             Contact
           </h4>
           <div class="space-y-3">
             <a
+              class="w-fit text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2"
               href="mailto:b.babas@icloud.com"
-              class="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2"
             >
               <FontAwesomeIcon :icon="faEnvelope" />
               b.babas@icloud.com
             </a>
             <a
+              class="w-fit text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2"
               href="tel:+31618900864"
-              class="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2"
             >
               <FontAwesomeIcon :icon="faPhone" />
               +31 6 1890 0864
@@ -129,7 +129,7 @@
   </footer>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 

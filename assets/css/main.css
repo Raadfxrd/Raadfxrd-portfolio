@@ -6,8 +6,8 @@
     --color-text-primary: #333333;
     --color-text-secondary: #999999;
     --border-light: rgb(192, 192, 192);
-    --color-button-primary: #262626;
-    --color-button-secondary: #7e7e7e;
+    --color-button-primary: #ececec;
+    --color-button-secondary: #b6b6b6;
     --color-button-disabled: #cccccc;
     --color-accent: #faa2a2;
     --color-accent-2: #6eb1e7;
@@ -18,11 +18,16 @@
 }
 
 .dark {
-    --color-background-light: #1c1f26;
-    --color-background-light-2: #2a2e35;
-    --color-text-primary: #ffc2c2;
-    --color-text-secondary: #6eb1e7;
+    --color-background-light: #333333;
+    --color-background-light-2: #565656;
+    --color-text-primary: #eeeeee;
+    --color-text-secondary: #bebebe;
     --border-light: #ffffff33;
+    --color-accent: #6eb1e7;
+    --color-accent-2: #faa2a2;
+    --color-button-primary: #262626;
+    --color-button-secondary: #7e7e7e;
+    --color-button-disabled: #cccccc;
 }
 
 @font-face {

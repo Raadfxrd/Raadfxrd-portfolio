@@ -9,8 +9,6 @@
         class="sticky top-0 h-screen overflow-y-auto no-scrollbar z-10"
         @mousemove="updateCursor"
       >
-        <div ref="cursor" :class="['cursor', cursorType]" />
-
         <Navbar />
         <main
           :class="{
@@ -22,6 +20,7 @@
         </main>
         <Footer />
       </div>
+      <div ref="cursor" :class="['cursor', cursorType]" />
     </div>
   </div>
 </template>
@@ -84,9 +83,9 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-text-primary, white);
+  width: 10px;
+  height: 10px;
+  background-color: white;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -98,8 +97,8 @@ onUnmounted(() => {
 }
 
 .cursor.hover {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 
 .cursor.text {

@@ -82,7 +82,7 @@
 
             <!-- Button -->
             <button
-              class="w-fit relative px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden"
+              class="w-fit relative px-4 py-2 text-xs bg-button-primary text-text-primary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden"
             >
               <span class="z-10 relative">View My Work</span>
               <span
@@ -106,8 +106,8 @@
               <PostCard
                 v-for="(post, key) in posts?.slice(0, 6)"
                 :key="post.path"
-                :post="post"
                 :is-big="!key"
+                :post="post"
               />
             </div>
           </section>
