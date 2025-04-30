@@ -14,6 +14,7 @@
     --color-overlay: rgba(0, 0, 0, 0.6);
     --font-family-default: 'Pearl', monospace;
     --transition-duration: 0.3s;
+    --color-text-primary-rgb: 0, 0, 0;
 }
 
 .dark {
