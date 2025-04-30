@@ -1,7 +1,7 @@
 <template>
   <div class="bg-background-light border border-border-light p-4 rounded-l">
-    <h2 class="text-sm font-bold mb-3">Stay up to date</h2>
-    <p class="text-xs text-text-secondary leading-relaxed mb-4">
+    <h2 class="w-fit text-sm font-bold mb-3">Stay up to date</h2>
+    <p class="w-fit text-xs text-text-secondary text-justify leading-3 mb-4">
       Get notified when I post something, unsubscribe at any moment.
     </p>
     <form class="space-y-3">

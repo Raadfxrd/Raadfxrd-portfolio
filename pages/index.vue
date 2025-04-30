@@ -112,7 +112,7 @@
           </section>
 
           <!-- Sidebar Section -->
-          <aside class="w-full lg:w-2/5 lg:max-h-screen lg:sticky lg:top-4">
+          <aside class="w-full lg:w-2/5 lg:max-h-screen lg:sticky lg:top-25">
             <div class="space-y-4">
               <SubscriptionForm />
               <WorkExperience :experiences="experiences" />
