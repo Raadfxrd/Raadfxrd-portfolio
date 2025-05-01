@@ -14,25 +14,31 @@
           </p>
           <div class="flex items-center space-x-6">
             <a
-              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
+              class="group block transform transition-all duration-200 ease-out hover:scale-110"
               href="https://github.com/raadfxrd"
               target="_blank"
             >
-              <i class="devicon-github-original"></i>
+              <i
+                class="devicon-github-original text-2xl text-text-secondary transition-colors duration-200 group-hover:text-text-primary"
+              ></i>
             </a>
             <a
-              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
+              class="group block transform transition-all duration-200 ease-out hover:scale-110"
               href="https://linkedin.com/in/borys-babas"
               target="_blank"
             >
-              <i class="devicon-linkedin-plain"></i>
+              <i
+                class="devicon-linkedin-plain text-2xl text-text-secondary transition-colors duration-200 group-hover:text-text-primary"
+              ></i>
             </a>
             <a
-              class="text-text-secondary hover:text-text-primary transition-all duration-300 text-2xl hover:scale-110"
+              class="group block transform transition-all duration-200 ease-out hover:scale-110"
               href="https://twitter.com/raadfxrd"
               target="_blank"
             >
-              <i class="devicon-twitter-original"></i>
+              <i
+                class="devicon-twitter-original text-2xl text-text-secondary transition-colors duration-200 group-hover:text-text-primary"
+              ></i>
             </a>
           </div>
         </div>

@@ -82,6 +82,11 @@ img:hover {
     transition: background-color var(--transition-duration) ease, transform var(--transition-duration) ease;
 }
 
+.social-link {
+    @apply text-text-secondary transition-colors duration-200 ease-out hover:text-text-primary;
+}
+
+/* Blog page styling */
 .markdown {
     max-width: 900px;
     margin: 0 auto;
