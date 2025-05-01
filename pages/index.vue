@@ -81,14 +81,12 @@
             </h3>
 
             <!-- Button -->
-            <button
+            <NuxtLink
+              to="/projects"
               class="w-fit relative px-4 py-2 text-xs bg-button-primary text-text-primary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden"
             >
               <span class="z-10 relative">View My Work</span>
-              <span
-                class="absolute left-0 top-0 w-full h-full bg-background-light group-hover:animate-shine"
-              ></span>
-            </button>
+            </NuxtLink>
           </div>
         </div>
         <TechStack v-if="showContent" />
