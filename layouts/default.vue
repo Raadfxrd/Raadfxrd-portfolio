@@ -1,6 +1,9 @@
 <template>
   <div
-    class="relative w-full min-h-screen bg-background-light-2 dark:bg-background-dark-2 flex justify-center items-start overflow-hidden"
+    :class="[
+      'relative w-full min-h-screen bg-background-light-2 dark:bg-background-dark-2 flex justify-center items-start overflow-hidden',
+      { 'w-full h-full': isInterestsPage },
+    ]"
   >
     <div
       class="w-2/3 h-[300vh] bg-background-light dark:bg-background-dark rounded-md mt-[-100vh] mb-[-100vh] z-0 relative border-solid border-x border-x-border-dark"
@@ -12,7 +15,7 @@
         <Navbar />
         <main
           :class="{
-            'min-h-screen': !isInterestsPage,
+            'h-screen': !isInterestsPage,
             'h-auto': isInterestsPage,
           }"
         >

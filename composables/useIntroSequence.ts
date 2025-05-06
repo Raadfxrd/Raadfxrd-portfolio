@@ -24,7 +24,7 @@ export function useIntroSequence() {
           showContent.value = true;
           showNavbar?.();
           localStorage.setItem("hasPlayedIntro", "true");
-        }, 4000);
+        }, 1000);
       } else {
         // Skip intro and directly show content
         showContent.value = true;
