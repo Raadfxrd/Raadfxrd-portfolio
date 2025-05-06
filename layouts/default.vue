@@ -1,35 +1,32 @@
 <template>
   <div
-    :class="[
-      'relative w-full min-h-screen bg-background-light-2 dark:bg-background-dark-2 flex justify-center items-start overflow-hidden',
-      { 'w-full h-full': isInterestsPage },
-    ]"
+      class="relative w-full min-h-screen bg-background-light-2 dark:bg-background-dark-2 flex justify-center items-start overflow-hidden"
   >
     <div
-      class="w-2/3 h-[300vh] bg-background-light dark:bg-background-dark rounded-md mt-[-100vh] mb-[-100vh] z-0 relative border-solid border-x border-x-border-dark"
+        class="w-2/3 h-[300vh] bg-background-light dark:bg-background-dark rounded-md mt-[-100vh] mb-[-100vh] z-0 relative border-solid border-x border-x-border-dark"
     >
       <div
-        class="sticky top-0 h-screen overflow-y-auto no-scrollbar z-10"
-        @mousemove="updateCursor"
+          class="sticky top-0 h-screen overflow-y-auto no-scrollbar z-10"
+          @mousemove="updateCursor"
       >
-        <Navbar />
+        <Navbar/>
         <main
-          :class="{
-            'h-screen': !isInterestsPage,
+            :class="{
+            'min-h-screen': !isInterestsPage,
             'h-auto': isInterestsPage,
           }"
         >
-          <slot />
+          <slot/>
         </main>
-        <Footer />
+        <Footer/>
       </div>
-      <div ref="cursor" :class="['cursor', cursorType]" />
+      <div ref="cursor" :class="['cursor', cursorType]"/>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
+import {useRoute} from "vue-router";
 
 const route = useRoute();
 const isInterestsPage = route.name === "Interests";
@@ -51,14 +48,14 @@ const updateCursor = (e: MouseEvent) => {
   if (target.closest("a, button, [role='button'], .cursor-hover")) {
     cursorType.value = "hover";
   } else if (
-    ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
-    getComputedStyle(target).cursor === "text" ||
-    target.closest(
-      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
-    ) ||
-    target.matches(
-      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
-    )
+      ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
+      getComputedStyle(target).cursor === "text" ||
+      target.closest(
+          "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
+      ) ||
+      target.matches(
+          "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
+      )
   ) {
     cursorType.value = "text";
   } else {
@@ -94,9 +91,8 @@ onUnmounted(() => {
   z-index: 9999;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
-  transition:
-    width 0.15s ease,
-    height 0.15s ease;
+  transition: width 0.15s ease,
+  height 0.15s ease;
 }
 
 .cursor.hover {

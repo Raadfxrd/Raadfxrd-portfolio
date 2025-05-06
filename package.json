@@ -22,7 +22,6 @@
     "@tresjs/core": "^4.3.3",
     "@tresjs/nuxt": "^3.0.8",
     "@tresjs/post-processing": "^2.3.1",
-    "@vue/composition-api": "^1.7.2",
     "gsap": "^3.12.7",
     "nuxt": "^3.16.0",
     "tailwindcss": "^4.0.15",
