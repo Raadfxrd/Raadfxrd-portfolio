@@ -6,19 +6,14 @@
     ]"
   >
     <div
-      class="w-2/3 h-[300vh] bg-background-light dark:bg-background-dark rounded-md mt-[-100vh] mb-[-100vh] z-0 relative border-solid border-x border-x-border-dark"
+      class="w-2/3 min-h-screen bg-background-light dark:bg-background-dark rounded-md z-0 relative border-solid border-x border-x-border-dark"
     >
       <div
         class="sticky top-0 h-screen overflow-y-auto no-scrollbar z-10"
         @mousemove="updateCursor"
       >
         <Navbar />
-        <main
-          :class="{
-            'h-screen': !isInterestsPage,
-            'h-auto': isInterestsPage,
-          }"
-        >
+        <main class="flex-1">
           <slot />
         </main>
         <Footer />
