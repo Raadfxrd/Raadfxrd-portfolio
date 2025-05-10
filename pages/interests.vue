@@ -1,6 +1,29 @@
 <script setup lang="ts">
 import { TresCanvas } from "@tresjs/core";
 import { GLTFModel } from "@tresjs/cientos";
+
+const sections = [
+  {
+    title: "My Journey into Tech",
+    text: `As a Software Engineering student at AUAS, I blend formal education with my self-taught coding journey. My passion for technology extends beyond the classroom, where I create meaningful projects that solve real-world problems and bring joy to others.`,
+  },
+  {
+    title: "The World of Audio",
+    text: `By day, I'm immersed in the audiophile world at Hifi Klubben Rijnstraat, where I help others discover the perfect harmony between technology and sound. This role fuels my appreciation for both technical excellence and artistic expression.`,
+  },
+  {
+    title: "Gaming as a Creative Outlet",
+    text: `Gaming isn't just a hobby—it's my creative outlet. Whether it's strategic plays in Valorant, building virtual worlds in Minecraft, or exploring the vast landscapes of Black Desert Online, each game offers a unique perspective on interactive design and user experience.`,
+  },
+  {
+    title: "The Joy of Mechanical Keyboards",
+    text: `I'm particularly drawn to the world of mechanical keyboards, where engineering meets aesthetics. Each build is an opportunity to create something unique, combining tactile feedback, sound design, and visual appeal into a daily driver that sparks joy.`,
+  },
+  {
+    title: "Why I Love Building for People",
+    text: `I’m especially fascinated by how users interact with tech—how emotion and logic merge in well-designed interfaces. Whether I’m working on a portfolio or a client’s site, I strive to create smooth, meaningful experiences that leave a lasting impression.`,
+  },
+];
 </script>
 
 <template>
@@ -30,42 +53,27 @@ import { GLTFModel } from "@tresjs/cientos";
           </p>
         </header>
 
-        <div class="space-y-6">
-          <p class="leading-relaxed">
-            As a Software Engineering student at AUAS, I blend formal education
-            with my self-taught coding journey. My passion for technology
-            extends beyond the classroom, where I create meaningful projects
-            that solve real-world problems and bring joy to others.
-          </p>
-
-          <p class="leading-relaxed">
-            By day, I'm immersed in the audiophile world at Hifi Klubben
-            Rijnstraat, where I help others discover the perfect harmony between
-            technology and sound. This role fuels my appreciation for both
-            technical excellence and artistic expression.
-          </p>
-
-          <p class="leading-relaxed">
-            Gaming isn't just a hobby—it's my creative outlet. Whether it's
-            strategic plays in Valorant, building virtual worlds in Minecraft,
-            or exploring the vast landscapes of Black Desert Online, each game
-            offers a unique perspective on interactive design and user
-            experience.
-          </p>
-
-          <p class="leading-relaxed">
-            My true passion lies in the intersection of hardware and user
-            experience. I'm particularly drawn to the world of mechanical
-            keyboards, where engineering meets aesthetics. Each build is an
-            opportunity to create something unique, combining tactile feedback,
-            sound design, and visual appeal into a daily driver that sparks joy.
-          </p>
-
-          <p class="leading-relaxed">
-            I'm always eager to connect with fellow tech enthusiasts, gamers, or
-            anyone interested in the ever-evolving world of technology. Drop me
-            a message through the contact form—let's start a conversation!
-          </p>
+        <div class="space-y-16">
+          <FadeInSection v-for="(section, index) in sections" :key="index">
+            <div
+              :class="[
+                'flex flex-col md:flex-row items-center gap-8',
+                index % 3 === 0
+                  ? 'justify-center text-center'
+                  : index % 3 === 1
+                    ? 'justify-start text-left'
+                    : 'justify-end text-right',
+              ]"
+            >
+              <div
+                class="max-w-xl bg-white/10 p-6 rounded-lg backdrop-blur-sm"
+                :style="{ transitionDelay: `${index * 100}ms` }"
+              >
+                <h3 class="text-2xl font-bold mb-2">{{ section.title }}</h3>
+                <p class="leading-relaxed">{{ section.text }}</p>
+              </div>
+            </div>
+          </FadeInSection>
         </div>
 
         <div class="mt-12 p-6 bg-white/10 rounded-lg backdrop-blur-sm">
