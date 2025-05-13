@@ -7,40 +7,40 @@
       <div class="mt-10 w-1/3">
         <form action="#" method="POST">
           <div class="mb-4">
-            <label for="name" class="block text-lg text-primary">Name</label>
+            <label class="block text-lg text-primary" for="name">Name</label>
             <input
-              type="text"
               id="name"
+              class="w-full p-3 mt-2 rounded-lg bg-background-light-2 text-primary"
               name="name"
-              class="w-full p-3 mt-2 rounded-lg bg-background-light-2 text-primary"
               required
+              type="text"
             />
           </div>
           <div class="mb-4">
-            <label for="email" class="block text-lg text-primary">Email</label>
+            <label class="block text-lg text-primary" for="email">Email</label>
             <input
-              type="email"
               id="email"
-              name="email"
               class="w-full p-3 mt-2 rounded-lg bg-background-light-2 text-primary"
+              name="email"
               required
+              type="email"
             />
           </div>
           <div class="mb-4">
-            <label for="message" class="block text-lg text-primary"
+            <label class="block text-lg text-primary" for="message"
               >Message</label
             >
             <textarea
               id="message"
-              name="message"
-              rows="5"
               class="w-full p-3 mt-2 rounded-lg bg-background-light-2 text-primary"
+              name="message"
               required
+              rows="5"
             ></textarea>
           </div>
           <button
-            type="submit"
             class="w-full py-3 rounded-lg bg-button-primary text-primary hover:bg-text-secondary font-semibold"
+            type="submit"
           >
             Send Message
           </button>

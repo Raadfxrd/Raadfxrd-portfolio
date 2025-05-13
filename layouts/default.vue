@@ -6,7 +6,7 @@
     ]"
   >
     <div
-      class="w-2/3 min-h-screen bg-background-light dark:bg-background-dark rounded-md z-0 relative border-solid border-x border-x-border-dark"
+      class="w-2/3 min-h-screen bg-background-light dark:bg-background-dark z-0 relative border-solid border-x border-x-border-dark"
     >
       <div
         class="sticky top-0 h-screen overflow-y-auto no-scrollbar z-10"

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { TresCanvas } from "@tresjs/core";
 import { GLTFModel } from "@tresjs/cientos";
 
@@ -29,10 +29,10 @@ const sections = [
 <template>
   <section class="relative w-full">
     <!-- Background Canvas -->
-    <TresCanvas preset="realistic" class="absolute inset-0 z-0">
-      <TresPerspectiveCamera :position="[0.2, 0.5, 0.5]" :look-at="[0, 0, 0]" />
+    <TresCanvas class="absolute inset-0 z-0" preset="realistic">
+      <TresPerspectiveCamera :look-at="[0, 0, 0]" :position="[0.2, 0.5, 0.5]" />
       <Suspense>
-        <GLTFModel path="/models/ibm_model_m_keyboard/scene.gltf" draco />
+        <GLTFModel draco path="/models/ibm_model_m_keyboard/scene.gltf" />
       </Suspense>
       <TresAmbientLight :intensity="0.6" />
     </TresCanvas>
@@ -44,11 +44,11 @@ const sections = [
       <div class="max-w-3xl space-y-8">
         <header class="space-y-4">
           <h2
-            class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
+            class="w-fit text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
           >
             Hello, World!
           </h2>
-          <p class="text-xl font-light leading-relaxed">
+          <p class="w-fit text-xl font-light leading-relaxed">
             Bridging the gap between technology and creativity in Amsterdam
           </p>
         </header>
@@ -59,18 +59,20 @@ const sections = [
               :class="[
                 'flex flex-col md:flex-row items-center gap-8',
                 index % 3 === 0
-                  ? 'justify-center text-center'
+                  ? 'justify-center text-justify'
                   : index % 3 === 1
-                    ? 'justify-start text-left'
-                    : 'justify-end text-right',
+                    ? 'justify-start text-justify'
+                    : 'justify-end text-justify',
               ]"
             >
               <div
-                class="max-w-xl bg-white/10 p-6 rounded-lg backdrop-blur-sm"
                 :style="{ transitionDelay: `${index * 100}ms` }"
+                class="max-w-xl bg-white/10 p-6 rounded-lg backdrop-blur-sm"
               >
-                <h3 class="text-2xl font-bold mb-2">{{ section.title }}</h3>
-                <p class="leading-relaxed">{{ section.text }}</p>
+                <h3 class="text-2xl font-bold mb-2 w-fit">
+                  {{ section.title }}
+                </h3>
+                <p class="leading-relaxed w-fit">{{ section.text }}</p>
               </div>
             </div>
           </FadeInSection>

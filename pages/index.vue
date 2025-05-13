@@ -82,8 +82,8 @@
 
             <!-- Button -->
             <NuxtLink
-              to="/projects"
               class="w-fit relative px-4 py-2 text-xs bg-button-primary text-text-primary font-medium rounded-md hover:bg-background-light-2 transition-all duration-300 shadow-sm group overflow-hidden"
+              to="/projects"
             >
               <span class="z-10 relative">View My Work</span>
             </NuxtLink>
