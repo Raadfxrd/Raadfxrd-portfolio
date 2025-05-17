@@ -2,8 +2,8 @@
   <div
     ref="el"
     :class="[
-      'transition-all duration-1000 ease-out opacity-0 translate-y-6',
-      visible && 'opacity-100 translate-y-0',
+      'translate-y-6 opacity-0 transition-all duration-1000 ease-out',
+      visible && 'translate-y-0 opacity-100',
     ]"
   >
     <slot />

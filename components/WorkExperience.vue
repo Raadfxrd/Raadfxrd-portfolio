@@ -1,29 +1,29 @@
 <template>
-  <div class="bg-background-light border border-border-light p-4 rounded-lg">
-    <h2 class="text-sm font-bold mb-4">Work</h2>
+  <div class="bg-background-light border-border-light rounded-lg border p-4">
+    <h2 class="mb-4 text-sm font-bold">Work</h2>
     <div class="space-y-4">
       <div
         v-for="experience in experiences"
         :key="experience.title"
-        class="flex gap-3 items-start group hover:bg-background-light-2/90 p-2 rounded-lg"
+        class="group hover:bg-background-light-2/90 flex items-start gap-3 rounded-lg p-2"
       >
-        <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center">
+        <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center">
           <img
             :alt="experience.company"
             :src="experience.icon"
-            class="w-fit h-full p-1 object-contain rounded-full border border-border-light bg-white"
+            class="border-border-light h-full w-fit rounded-full border bg-white object-contain p-1"
           />
         </div>
         <div class="flex-grow group-hover:cursor-default">
-          <h3 class="w-fit text-xs md:text-sm font-medium">
+          <h3 class="w-fit text-xs font-medium md:text-sm">
             {{ experience.title }}
           </h3>
           <div class="flex items-baseline justify-between">
-            <p class="text-xs text-text-secondary mt-0.5">
+            <p class="text-text-secondary mt-0.5 text-xs">
               {{ experience.company }}
             </p>
 
-            <span class="text-xs text-text-secondary text-end">{{
+            <span class="text-text-secondary text-end text-xs">{{
               experience.period
             }}</span>
           </div>
@@ -31,13 +31,13 @@
       </div>
     </div>
     <a
-      class="w-full group relative inline-flex justify-around items-center gap-2 px-4 py-2 text-xs bg-button-primary text-text-secondary font-medium rounded-md hover:bg-background-light-2 duration-300 shadow-sm overflow-hidden mt-4"
+      class="group bg-button-primary text-text-secondary hover:bg-background-light-2 relative mt-4 inline-flex w-full items-center justify-around gap-2 overflow-hidden rounded-md px-4 py-2 text-xs font-medium shadow-sm duration-300"
       download="Borys_CV.pdf"
       href="/assets/borys-cv.pdf"
     >
-      <span class="z-10 relative flex items-center gap-2">
+      <span class="relative z-10 flex items-center gap-2">
         <svg
-          class="w-3.5 h-3.5"
+          class="h-3.5 w-3.5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -53,7 +53,7 @@
         Download CV
       </span>
       <span
-        class="absolute left-0 top-0 w-full h-full bg-background-light group-hover:animate-shine"
+        class="bg-background-light group-hover:animate-shine absolute top-0 left-0 h-full w-full"
       ></span>
     </a>
   </div>

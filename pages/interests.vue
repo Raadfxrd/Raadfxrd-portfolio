@@ -39,16 +39,16 @@ const sections = [
 
     <!-- Foreground Content -->
     <div
-      class="relative z-10 flex items-center justify-center text-left text-white backdrop-blur-md px-4 pt-32 pb-24"
+      class="relative z-10 flex items-center justify-center px-4 pt-32 pb-24 text-left text-white backdrop-blur-md"
     >
       <div class="max-w-3xl space-y-8">
         <header class="space-y-4">
           <h2
-            class="w-fit text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
+            class="w-fit bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-4xl font-bold text-transparent"
           >
             Hello, World!
           </h2>
-          <p class="w-fit text-xl font-light leading-relaxed">
+          <p class="w-fit text-xl leading-relaxed font-light">
             Bridging the gap between technology and creativity in Amsterdam
           </p>
         </header>
@@ -57,7 +57,7 @@ const sections = [
           <FadeInSection v-for="(section, index) in sections" :key="index">
             <div
               :class="[
-                'flex flex-col md:flex-row items-center gap-8',
+                'flex flex-col items-center gap-8 md:flex-row',
                 index % 3 === 0
                   ? 'justify-center text-justify'
                   : index % 3 === 1
@@ -67,20 +67,20 @@ const sections = [
             >
               <div
                 :style="{ transitionDelay: `${index * 100}ms` }"
-                class="max-w-xl bg-white/10 p-6 rounded-lg backdrop-blur-sm"
+                class="max-w-xl rounded-lg bg-white/10 p-6 backdrop-blur-sm"
               >
-                <h3 class="text-2xl font-bold mb-2 w-fit">
+                <h3 class="mb-2 w-fit text-2xl font-bold">
                   {{ section.title }}
                 </h3>
-                <p class="leading-relaxed w-fit">{{ section.text }}</p>
+                <p class="w-fit leading-relaxed">{{ section.text }}</p>
               </div>
             </div>
           </FadeInSection>
         </div>
 
-        <div class="mt-12 p-6 bg-white/10 rounded-lg backdrop-blur-sm">
-          <h2 class="text-2xl font-semibold mb-4">Quick Facts</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="mt-12 rounded-lg bg-white/10 p-6 backdrop-blur-sm">
+          <h2 class="mb-4 text-2xl font-semibold">Quick Facts</h2>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div class="space-y-3">
               <div class="flex items-center space-x-2">
                 <span class="font-semibold">🎓 Education:</span>

@@ -22,6 +22,7 @@
     "@tresjs/core": "^4.3.3",
     "@tresjs/nuxt": "^3.0.8",
     "@tresjs/post-processing": "^2.3.1",
+    "@vue/composition-api": "^1.7.2",
     "@vueuse/core": "^13.1.0",
     "gsap": "^3.12.7",
     "nuxt": "^3.16.0",
@@ -37,5 +38,10 @@
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "vite": "^6.2.6"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }

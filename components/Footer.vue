@@ -1,15 +1,15 @@
 <template>
   <footer
-    class="w-full bg-background-light py-16 mt-auto border-solid border-t border-border-dark"
+    class="bg-background-light border-border-dark mt-auto w-full border-t border-solid py-16"
   >
     <!-- Main Footer Content -->
-    <div class="w-11/12 max-w-7xl mx-auto">
+    <div class="mx-auto w-11/12 max-w-7xl">
       <!-- Top Section -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div class="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
         <!-- Brand Section -->
         <div class="space-y-6 md:pr-8">
-          <h3 class="w-fit text-xl font-bold text-text-primary">Borys Babas</h3>
-          <p class="w-fit text-sm text-text-secondary leading-relaxed">
+          <h3 class="text-text-primary w-fit text-xl font-bold">Borys Babas</h3>
+          <p class="text-text-secondary w-fit text-sm leading-relaxed">
             Crafting digital experiences with passion and precision.
           </p>
           <div class="flex items-center space-x-6">
@@ -19,7 +19,7 @@
               target="_blank"
             >
               <i
-                class="devicon-github-original text-2xl text-text-secondary transition-colors duration-200 group-hover:text-text-primary"
+                class="devicon-github-original text-text-secondary group-hover:text-text-primary text-2xl transition-colors duration-200"
               ></i>
             </a>
             <a
@@ -28,7 +28,7 @@
               target="_blank"
             >
               <i
-                class="devicon-linkedin-plain text-2xl text-text-secondary transition-colors duration-200 group-hover:text-text-primary"
+                class="devicon-linkedin-plain text-text-secondary group-hover:text-text-primary text-2xl transition-colors duration-200"
               ></i>
             </a>
             <a
@@ -37,7 +37,7 @@
               target="_blank"
             >
               <i
-                class="devicon-twitter-original text-2xl text-text-secondary transition-colors duration-200 group-hover:text-text-primary"
+                class="devicon-twitter-original text-text-secondary group-hover:text-text-primary text-2xl transition-colors duration-200"
               ></i>
             </a>
           </div>
@@ -46,7 +46,7 @@
         <!-- Navigation Section -->
         <div class="space-y-6">
           <h4
-            class="w-fit text-sm font-bold uppercase tracking-wider text-text-primary"
+            class="text-text-primary w-fit text-sm font-bold tracking-wider uppercase"
           >
             Navigation
           </h4>
@@ -54,10 +54,10 @@
             <li v-for="link in navigationLinks" :key="link.path">
               <NuxtLink
                 :to="link.path"
-                class="w-fit text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center justify-start gap-2 group"
+                class="text-text-secondary hover:text-text-primary group flex w-fit items-center justify-start gap-2 text-sm transition-colors"
               >
                 <span
-                  class="w-0 h-[1px] bg-text-primary transition-all duration-300 group-hover:w-4"
+                  class="bg-text-primary h-[1px] w-0 transition-all duration-300 group-hover:w-4"
                 ></span>
                 {{ link.label }}
               </NuxtLink>
@@ -68,15 +68,15 @@
         <!-- Latest Posts Section -->
         <div class="space-y-6">
           <h4
-            class="w-fit text-sm font-bold uppercase tracking-wider text-text-primary"
+            class="text-text-primary w-fit text-sm font-bold tracking-wider uppercase"
           >
             Latest Posts
           </h4>
           <ul class="space-y-4">
             <li v-for="post in latestPosts" :key="post.slug">
-              <NuxtLink :to="`/blog/${post.slug}`" class="w-fit group block">
+              <NuxtLink :to="`/blog/${post.slug}`" class="group block w-fit">
                 <h5
-                  class="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors line-clamp-2"
+                  class="text-text-secondary group-hover:text-text-primary line-clamp-2 text-sm font-medium transition-colors"
                 >
                   {{ post.title }}
                 </h5>
@@ -88,20 +88,20 @@
         <!-- Contact Section -->
         <div class="space-y-6">
           <h4
-            class="w-fit text-sm font-bold uppercase tracking-wider text-text-primary"
+            class="text-text-primary w-fit text-sm font-bold tracking-wider uppercase"
           >
             Contact
           </h4>
           <div class="space-y-3">
             <a
-              class="w-fit text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2"
+              class="text-text-secondary hover:text-text-primary flex w-fit items-center gap-2 text-sm transition-colors"
               href="mailto:b.babas@icloud.com"
             >
               <FontAwesomeIcon :icon="faEnvelope" />
               b.babas@icloud.com
             </a>
             <a
-              class="w-fit text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2"
+              class="text-text-secondary hover:text-text-primary flex w-fit items-center gap-2 text-sm transition-colors"
               href="tel:+31618900864"
             >
               <FontAwesomeIcon :icon="faPhone" />
@@ -112,11 +112,11 @@
       </div>
 
       <!-- Bottom Bar -->
-      <div class="pt-8 border-t border-border-light">
+      <div class="border-border-light border-t pt-8">
         <div
-          class="flex flex-col md:flex-row justify-between items-center gap-4"
+          class="flex flex-col items-center justify-between gap-4 md:flex-row"
         >
-          <p class="text-sm text-text-secondary">
+          <p class="text-text-secondary text-sm">
             © {{ new Date().getFullYear() }} Borys Babas - All rights reserved.
           </p>
           <div class="flex items-center space-x-6">
@@ -124,7 +124,7 @@
               v-for="link in legalLinks"
               :key="link.path"
               :to="link.path"
-              class="text-sm text-text-secondary hover:text-text-primary transition-colors"
+              class="text-text-secondary hover:text-text-primary text-sm transition-colors"
             >
               {{ link.label }}
             </NuxtLink>

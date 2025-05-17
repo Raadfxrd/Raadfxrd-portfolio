@@ -4,23 +4,23 @@
     class="group rounded-lg bg-transparent transition-all duration-300"
   >
     <div
-      class="bg-background-light p-4 rounded-lg transition-all duration-300 group-hover:bg-background-light-2/90 group-hover:cursor-pointer h-full flex flex-col justify-between"
+      class="bg-background-light group-hover:bg-background-light-2/90 flex h-full flex-col justify-between rounded-lg p-4 transition-all duration-300 group-hover:cursor-pointer"
     >
       <!-- Post Title -->
-      <h3 class="text-xs md:text-sm font-medium mb-2">
+      <h3 class="mb-2 text-xs font-medium md:text-sm">
         {{ post.title }}
       </h3>
 
       <!-- Post Description -->
-      <p class="text-xs text-text-secondary mb-3 line-clamp-3">
+      <p class="text-text-secondary mb-3 line-clamp-3 text-xs">
         {{ post.description }}
       </p>
 
       <!-- Author and Date -->
-      <div class="flex justify-between items-center">
-        <span class="text-xs text-text-secondary">{{ formattedDate }}</span>
+      <div class="flex items-center justify-between">
+        <span class="text-text-secondary text-xs">{{ formattedDate }}</span>
         <p
-          class="text-xs text-text-primary group-hover:translate-x-0.5 transition-transform"
+          class="text-text-primary text-xs transition-transform group-hover:translate-x-0.5"
         >
           Read More →
         </p>

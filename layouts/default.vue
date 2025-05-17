@@ -1,15 +1,15 @@
 <template>
   <div
     :class="[
-      'relative w-full min-h-screen bg-background-light-2 dark:bg-background-dark-2 flex justify-center items-start overflow-hidden',
-      { 'w-full h-full': isInterestsPage },
+      'bg-background-light-2 dark:bg-background-dark-2 relative flex min-h-screen w-full items-start justify-center overflow-hidden',
+      { 'h-full w-full': isInterestsPage },
     ]"
   >
     <div
-      class="w-2/3 min-h-screen bg-background-light dark:bg-background-dark z-0 relative border-solid border-x border-x-border-dark"
+      class="bg-background-light dark:bg-background-dark border-x-border-dark relative z-0 min-h-screen w-2/3 border-x border-solid"
     >
       <div
-        class="sticky top-0 h-screen overflow-y-auto no-scrollbar z-10"
+        class="no-scrollbar sticky top-0 z-10 h-screen overflow-y-auto"
         @mousemove="updateCursor"
       >
         <Navbar />
@@ -94,11 +94,13 @@ onUnmounted(() => {
     height 0.15s ease;
 }
 
+//eslint-disable-next-line no-unused-vars
 .cursor.hover {
   width: 25px;
   height: 25px;
 }
 
+//eslint-disable-next-line no-unused-vars
 .cursor.text {
   width: 2px;
   height: 24px;

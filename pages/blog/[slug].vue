@@ -49,19 +49,19 @@ const formatDate = (date) => {
 
 <template>
   <section
-    class="min-h-screen px-6 pt-32 pb-20 bg-background-light text-text-primary font-default"
+    class="bg-background-light text-text-primary font-default min-h-screen px-6 pt-32 pb-20"
   >
-    <div class="max-w-3xl mx-auto space-y-10">
+    <div class="mx-auto max-w-3xl space-y-10">
       <!-- Title -->
       <h1
-        class="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-text-primary"
+        class="text-text-primary text-4xl leading-tight font-bold tracking-tight md:text-6xl"
       >
         {{ post?.title || "Post not found" }}
       </h1>
 
       <!-- Meta -->
       <div
-        class="text-sm flex items-center justify-between border-b pb-4 text-text-secondary border-border-light"
+        class="text-text-secondary border-border-light flex items-center justify-between border-b pb-4 text-sm"
       >
         <span v-if="post?.author">By {{ post.author }}</span>
         <span v-if="post?.date">{{ formatDate(post.date) }}</span>
@@ -72,7 +72,7 @@ const formatDate = (date) => {
         v-if="post?.cover"
         :src="post.cover"
         alt="Cover image"
-        class="w-full rounded-2xl shadow-xl ring-1 ring-overlay"
+        class="ring-overlay w-full rounded-2xl shadow-xl ring-1"
       />
 
       <!-- Content -->
@@ -84,11 +84,11 @@ const formatDate = (date) => {
     <!-- Back Home Button -->
     <div class="mt-12">
       <RouterLink
-        class="inline-flex items-center px-4 py-2 text-sm font-medium text-text-primary bg-background-dark rounded-lg hover:-translate-x-0.5 transition-all duration-300"
+        class="text-text-primary bg-background-dark inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-x-0.5"
         to="/"
       >
         <svg
-          class="h-5 w-5 mr-2"
+          class="mr-2 h-5 w-5"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"

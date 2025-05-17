@@ -4,20 +4,20 @@
     <nav
       v-if="isNavbarVisible"
       :class="{ 'animate-navbarFadeIn': isAnimationComplete }"
-      class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full flex justify-center"
+      class="fixed top-6 left-1/2 z-50 flex w-full -translate-x-1/2 transform justify-center"
     >
-      <div class="flex justify-around w-2/3 items-center">
+      <div class="flex w-2/3 items-center justify-around">
         <!-- Small Logo -->
         <img
           alt="Small Logo"
-          class="w-10 h-10 rounded-full border-1 border-border-dark hover:cursor-pointer"
+          class="border-border-dark h-10 w-10 rounded-full border-1 hover:cursor-pointer"
           src="public/img/raadfxrd.jpeg"
           @click="$router.push('/')"
         />
 
         <!-- Nav Links -->
         <div
-          class="flex items-center gap-10 px-8 py-3 rounded-full bg-background-light/20 border-solid border-1 border-border-light backdrop-blur-lg text-light transition duration-300"
+          class="bg-background-light/20 border-border-light text-light flex items-center gap-10 rounded-full border-1 border-solid px-8 py-3 backdrop-blur-lg transition duration-300"
         >
           <NavLinks />
         </div>
@@ -25,10 +25,10 @@
         <!-- Theme Toggle Button -->
         <button
           :aria-label="`Current theme: ${colorMode.preference}`"
-          class="w-10 h-10 flex items-center justify-center rounded-full bg-background-light/20 hover:ring-1 backdrop-blur-lg ring-border-light transition duration-300"
+          class="bg-background-light/20 ring-border-light flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-lg transition duration-300 hover:ring-1"
           @click="toggleTheme"
         >
-          <component :is="icon" class="w-6 h-6 text-text-primary" />
+          <component :is="icon" class="text-text-primary h-6 w-6" />
           <span class="sr-only">Theme: {{ colorMode.preference }}</span>
         </button>
       </div>

@@ -1,26 +1,26 @@
 <template>
-  <div class="w-4/5 overflow-hidden rounded-lg my-8 py-6 relative shadow-md">
-    <div class="flex w-max animate-scroll">
+  <div class="relative my-8 w-4/5 overflow-hidden rounded-lg py-6 shadow-md">
+    <div class="animate-scroll flex w-max">
       <div
         v-for="tech in techStack"
         :key="tech.title"
-        class="flex gap-12 px-6 items-center"
+        class="flex items-center gap-12 px-6"
       >
         <i
           :class="tech.class"
           :title="tech.title"
-          class="text-4xl text-text-primary transition-transform duration-300 ease-in-out hover:scale-125 hover:text-text-secondary"
+          class="text-text-primary hover:text-text-secondary text-4xl transition-transform duration-300 ease-in-out hover:scale-125"
         ></i>
       </div>
       <div
         v-for="tech in techStack"
         :key="tech.title + '-duplicate'"
-        class="flex gap-12 px-6 items-center"
+        class="flex items-center gap-12 px-6"
       >
         <i
           :class="tech.class"
           :title="tech.title"
-          class="text-4xl text-text-primary transition-transform duration-300 ease-in-out hover:scale-125 hover:text-text-secondary"
+          class="text-text-primary hover:text-text-secondary text-4xl transition-transform duration-300 ease-in-out hover:scale-125"
         ></i>
       </div>
     </div>
