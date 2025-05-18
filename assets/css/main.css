@@ -86,6 +86,10 @@ img:hover {
     @apply text-text-secondary transition-colors duration-200 ease-out hover:text-text-primary;
 }
 
+.gradient {
+    @apply bg-gradient-to-r from-blue-300 to-red-200 bg-clip-text text-transparent;
+}
+
 /* Blog page styling */
 .markdown {
     max-width: 900px;

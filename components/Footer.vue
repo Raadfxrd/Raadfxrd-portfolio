@@ -8,7 +8,9 @@
       <div class="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
         <!-- Brand Section -->
         <div class="space-y-6 md:pr-8">
-          <h3 class="text-text-primary w-fit text-xl font-bold">Borys Babas</h3>
+          <h3 class="text-text-primary gradient w-fit text-xl font-bold">
+            Borys Babas
+          </h3>
           <p class="text-text-secondary w-fit text-sm leading-relaxed">
             Crafting digital experiences with passion and precision.
           </p>

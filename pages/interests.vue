@@ -43,11 +43,7 @@ const sections = [
     >
       <div class="max-w-3xl space-y-8">
         <header class="space-y-4">
-          <h2
-            class="w-fit bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-4xl font-bold text-transparent"
-          >
-            Hello, World!
-          </h2>
+          <h2 class="gradient w-fit text-4xl font-bold">Hello, World!</h2>
           <p class="w-fit text-xl leading-relaxed font-light">
             Bridging the gap between technology and creativity in Amsterdam
           </p>

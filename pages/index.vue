@@ -37,7 +37,7 @@
             alt="Portrait of Borys"
           />
           <!-- Text Section -->
-          <div class="max-w-lg text-center md:text-left">
+          <div class="gradient max-w-lg">
             <h1
               class="mb-2 flex flex-wrap gap-2 text-base font-bold md:text-3xl"
             >
@@ -100,6 +100,9 @@
         <div class="relative flex flex-col items-start gap-8 lg:flex-row">
           <!-- Recent Posts Section -->
           <section class="w-full lg:w-3/5">
+            <h1 class="gradient bl-4 ml-4 w-fit text-2xl font-semibold">
+              Recent Posts
+            </h1>
             <div class="space-y-4">
               <PostCard
                 v-for="(post, key) in posts?.slice(0, 6)"
