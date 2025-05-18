@@ -94,13 +94,11 @@ onUnmounted(() => {
     height 0.15s ease;
 }
 
-//eslint-disable-next-line no-unused-vars
 .cursor.hover {
   width: 25px;
   height: 25px;
 }
 
-//eslint-disable-next-line no-unused-vars
 .cursor.text {
   width: 2px;
   height: 24px;

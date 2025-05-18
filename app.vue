@@ -7,8 +7,4 @@
 <script setup>
 import "@/assets/css/main.css";
 import "@/assets/css/animations.css";
-
-definePageMeta({
-  scrollToTop: true,
-});
 </script>
