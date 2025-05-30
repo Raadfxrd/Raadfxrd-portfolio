@@ -9,6 +9,12 @@
       class="bg-background-light dark:bg-background-dark border-x-border-dark relative z-0 min-h-screen w-2/3 border-x border-solid"
     >
       <div
+        v-if="isBlogPage"
+        :style="{ width: scrollProgress + '%' }"
+        class="fixed top-0 left-0 z-50 h-1 bg-gradient-to-r from-blue-300 to-red-200 transition-all duration-150"
+      />
+      <div
+        ref="scrollContainer"
         class="no-scrollbar sticky top-0 z-10 h-screen overflow-y-auto"
         @mousemove="updateCursor"
       >
@@ -18,18 +24,32 @@
         </main>
         <Footer />
       </div>
-      <div ref="cursor" :class="['cursor', cursorType]" />
     </div>
+    <div ref="cursor" :class="['cursor', cursorType]" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import { computed, ref, onMounted, onUnmounted, watch } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
+
 const isInterestsPage = route.name === "Interests";
+const isBlogPage = computed(() => route.path.startsWith("/blog/"));
+
 const cursor = ref<HTMLElement | null>(null);
 const cursorType = ref<"default" | "hover" | "text">("default");
+const scrollProgress = ref(0);
+const scrollContainer = ref<HTMLElement | null>(null);
+
+const updateScroll = () => {
+  if (!scrollContainer.value) return;
+  const scrollTop = scrollContainer.value.scrollTop;
+  const scrollHeight =
+    scrollContainer.value.scrollHeight - scrollContainer.value.clientHeight;
+  scrollProgress.value = (scrollTop / scrollHeight) * 100;
+};
 
 let mouseX = 0;
 let mouseY = 0;
@@ -61,14 +81,45 @@ const updateCursor = (e: MouseEvent) => {
   }
 };
 
+const addScrollListener = () => {
+  if (scrollContainer.value) {
+    scrollContainer.value.addEventListener("scroll", updateScroll);
+    updateScroll();
+  }
+};
+
+const removeScrollListener = () => {
+  if (scrollContainer.value) {
+    scrollContainer.value.removeEventListener("scroll", updateScroll);
+    scrollProgress.value = 0;
+  }
+};
+
 onMounted(() => {
   document.body.style.cursor = "none";
   window.addEventListener("mousemove", updateCursor);
+
+  if (isBlogPage.value) {
+    addScrollListener();
+  }
 });
+
+// Watch route changes to toggle scroll listener and progress bar
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    if (newPath.startsWith("/blog/")) {
+      addScrollListener();
+    } else {
+      removeScrollListener();
+    }
+  },
+);
 
 onUnmounted(() => {
   document.body.style.cursor = "auto";
   window.removeEventListener("mousemove", updateCursor);
+  removeScrollListener();
 });
 </script>
 

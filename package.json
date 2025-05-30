@@ -17,6 +17,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@heroicons/vue": "^2.2.0",
     "@nuxtjs/color-mode": "^3.5.2",
+    "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.0.15",
     "@tresjs/cientos": "^4.3.0",
     "@tresjs/core": "^4.3.3",
