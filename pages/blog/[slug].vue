@@ -1,7 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useAsyncData } from "#app";
+import { ChevronLeftIcon } from "@heroicons/vue/24/outline";
 
 const route = useRoute();
 const slug = route.params.slug;
@@ -10,7 +11,7 @@ const slug = route.params.slug;
 const {
   data: post,
   error,
-  refresh
+  refresh,
 } = await useAsyncData(`blog-${slug}`, async () => {
   try {
     const result = await queryCollection("blog").path(`/blog/${slug}`).first();
@@ -27,14 +28,14 @@ watch(
   () => route.params.slug,
   async () => {
     await refresh();
-  }
+  },
 );
 
 // Scroll to top on mount
 onMounted(() => {
   // Scroll to top of scroll container
   const container = document.querySelector(
-    ".no-scrollbar"
+    ".no-scrollbar",
   ) as HTMLElement | null;
   if (container) container.scrollTop = 0;
 });
@@ -45,7 +46,7 @@ const formatDate = (date: string) => {
   return new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   }).format(new Date(date));
 };
 </script>
@@ -94,21 +95,17 @@ const formatDate = (date: string) => {
       <!-- Back Button -->
       <div class="pt-10">
         <RouterLink
+          class="group bg-background-dark text-text-primary hover:bg-opacity-80 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm transition"
           to="/"
-          class="bg-background-dark text-text-primary hover:bg-opacity-80 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm transition hover:-translate-x-0.5"
         >
-          <svg
-            class="h-4 w-4"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            class="relative inline-flex h-4 w-4 items-center justify-center"
           >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+            <!-- Chevron arrowhead -->
+            <ChevronLeftIcon
+              class="text-text-primary h-4 w-4 transition-transform duration-300 ease-out group-hover:-translate-x-1"
             />
-          </svg>
+          </span>
           Back to Home
         </RouterLink>
       </div>
