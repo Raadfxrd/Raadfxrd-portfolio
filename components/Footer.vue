@@ -99,14 +99,18 @@
               class="text-text-secondary hover:text-text-primary flex w-fit items-center gap-2 text-sm transition-colors"
               href="mailto:b.babas@icloud.com"
             >
-              <FontAwesomeIcon :icon="faEnvelope" />
+              <EnvelopeIcon
+                class="text-text-secondary group-hover:text-text-primary h-5 w-5"
+              />
               b.babas@icloud.com
             </a>
             <a
               class="text-text-secondary hover:text-text-primary flex w-fit items-center gap-2 text-sm transition-colors"
               href="tel:+31618900864"
             >
-              <FontAwesomeIcon :icon="faPhone" />
+              <DevicePhoneMobileIcon
+                class="text-text-secondary group-hover:text-text-primary h-5 w-5"
+              />
               +31 6 1890 0864
             </a>
           </div>
@@ -138,8 +142,7 @@
 </template>
 
 <script lang="ts" setup>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { DevicePhoneMobileIcon, EnvelopeIcon } from "@heroicons/vue/24/outline";
 
 const navigationLinks = [
   { path: "/", label: "Home" },
