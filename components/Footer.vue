@@ -97,12 +97,12 @@
           <div class="space-y-3">
             <a
                 class="text-text-secondary hover:text-text-primary flex w-fit items-center gap-2 text-sm transition-colors"
-                href="mailto:b.babas@icloud.com"
+                href="mailto:borysbabas@pm.me"
             >
               <EnvelopeIcon
                   class="text-text-secondary group-hover:text-text-primary h-5 w-5"
               />
-              b.babas@icloud.com
+              borysbabas@pm.me
             </a>
             <a
                 class="text-text-secondary hover:text-text-primary flex w-fit items-center gap-2 text-sm transition-colors"
@@ -123,7 +123,7 @@
             class="flex flex-col items-center justify-between gap-4 md:flex-row"
         >
           <p class="text-text-secondary text-sm">
-            © {{ new Date().getFullYear() }} Borys Babas - All rights reserved.
+            © {{ new Date().getFullYear() }} Raadnerd - All rights reserved.
           </p>
           <div class="flex items-center space-x-6">
             <NuxtLink
