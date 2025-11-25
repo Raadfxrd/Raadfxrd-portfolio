@@ -1,66 +1,73 @@
-# Dynamic Sitemap Guide
+# Dynamic Sitemap - Developer Guide
 
-Your sitemap is now **mostly automatic**! Here's how it works and what you need to do when adding new pages.
+## Overview
 
-## What's Automatic
+The sitemap system is semi-automatic, leveraging Nuxt's router for route discovery while requiring minimal configuration
+for new pages. Blog posts are fully automatic via Nuxt Content.
 
-### Blog Posts (100% Automatic)
+## Architecture
 
-- **Zero maintenance required**
-- New blog posts in `/content/blog/` automatically appear
-- Sorted by date (newest first)
-- Includes title, description, and date
-- **Action needed**: None! Just add your `.md` files to `/content/blog/`
+### Automatic Components
 
-### Page Detection
+#### 1. Blog Post Discovery
 
-- Pages in `/pages/` are automatically discovered
-- Routes are pulled from Nuxt Router
-- No need to manually add routes
-- **Action needed**: Just create your `.vue` files in `/pages/`
+- **Source**: `content/blog/*.md`
+- **Query**: Nuxt Content's `queryCollection('blog')`
+- **Sorting**: Descending by `date` field
+- **Data**: Auto-extracts `title`, `description`, `date`, `path`
+- **Developer Action**: None required - just create markdown files
 
-## What Needs Configuration
+#### 2. Route Discovery
 
-When you create a **new page**, you need to add it to the configuration objects in `sitemap.vue`:
+- **Source**: Nuxt Router (`useRouter().getRoutes()`)
+- **Filtering**: Excludes dynamic routes (`:param`) and sitemap itself
+- **Mapping**: Automatic path-to-display conversion
+- **Developer Action**: Standard Vue file creation in `/pages/`
 
-### 1. **Add to `pageCategories`** (Required)
+### Configuration Required
 
-This determines which section the page appears in:
+When adding a new page route, update three configuration objects in `pages/sitemap.vue`:
+
+#### 1. `pageCategories` (Required)
+
+Maps routes to sitemap sections.
 
 ```typescript
 const pageCategories: Record<string, 'main' | 'legal'> = {
-    '/your-new-page': 'main',  // or 'legal' for policy pages
+    '/new-route': 'main',  // or 'legal'
 }
 ```
 
-**Options:**
+**Types:**
 
-- `'main'` - Appears in "Main Pages" section
-- `'legal'` - Appears in "Legal & Policies" section
+- `'main'` → Renders in "Main Pages" section
+- `'legal'` → Renders in "Legal & Policies" section
 
-### 2. **Add to `pageTitles`** (Optional)
+**Impact**: Pages not in this map are excluded from the sitemap.
 
-Customize how the page name appears:
+#### 2. `pageTitles` (Optional)
+
+Overrides default title generation.
 
 ```typescript
 const pageTitles: Record<string, string> = {
-    '/your-new-page': 'Your New Page',  // Display name
+    '/new-route': 'Custom Display Name',
 }
 ```
 
-If you don't add it, the URL path will be used as the title.
+**Fallback**: If undefined, uses capitalized route path (e.g., `/about` → "About")
 
-### 3. **Add to `pageDescriptions`** (Optional)
+#### 3. `pageDescriptions` (Optional)
 
-Add a description for the page:
+Provides page descriptions for better UX.
 
 ```typescript
 const pageDescriptions: Record<string, string> = {
-    '/your-new-page': 'Description of what this page does',
+    '/new-route': 'Brief description of page functionality',
 }
 ```
 
-If you don't add it, a generic description will be used.
+**Fallback**: Generic description based on page type
 
 ## Example: Adding a New Page
 
