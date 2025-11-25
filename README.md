@@ -108,7 +108,6 @@ portfolio/
 │   └── WorkExperience.vue     # Work history
 ├── composables/
 │   ├── techStack.ts           # Tech stack data
-│   ├── useAvatarTransition.ts # Avatar animations
 │   ├── useGreeting.ts         # Dynamic greeting
 │   ├── useIntroSequence.ts    # Intro animations
 │   ├── useNavbarVisibility.ts # Navbar scroll behavior
