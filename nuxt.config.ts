@@ -10,9 +10,9 @@ export default defineNuxtConfig({
             mode: "out-in",
         },
         head: {
-            title: "Raadfxrd",
+            title: "Raadnerd",
             meta: [
-                {name: "description", content: "Raadfxrd's next gen portfolio"},
+                {name: "description", content: "Raadnerd, Borys' personal portfolio."},
                 {name: "viewport", content: "width=device-width, initial-scale=1"},
             ],
             link: [

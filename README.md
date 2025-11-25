@@ -1,8 +1,9 @@
-# Raadfxrd's Next Gen Portfolio
+# Raadnerd, Borys' Next-Gen Portfolio
 
 ![Thumbnail](public/img/portfolio.png)
 
-This repository contains the source code for Raadfxrd's next-generation portfolio. The portfolio is built using **Nuxt 4**, **Vue 3**, and **Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal
+This repository contains the source code for Raadnerd. The portfolio is built using **Nuxt 4**, **Vue 3**, and *
+*Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal
 information with stunning 3D visualizations.
 
 ## Table of Contents
@@ -19,7 +20,7 @@ information with stunning 3D visualizations.
 - [Credits](#credits)
 
 ## Features
- 
+
 **Dynamic GitHub Integration** - Automatically fetches and displays projects from GitHub with READMEs and images  
 **Dark Mode Support** - Seamless theme switching with system preference detection  
 **Blog System** - Content management powered by Nuxt Content  
