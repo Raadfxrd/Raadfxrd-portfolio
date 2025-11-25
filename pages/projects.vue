@@ -22,16 +22,30 @@ interface Repository {
 const repos = ref<Repository[]>([])
 const loading = ref(true)
 const error = ref<string | null>(null)
+const config = useRuntimeConfig()
 
 const fetchGitHubRepos = async () => {
   try {
     loading.value = true
     error.value = null
 
-    // Fetch public repositories
-    const reposResponse = await fetch('https://api.github.com/users/raadfxrd/repos?sort=updated&per_page=100')
+    const reposResponse = await fetch('https://api.github.com/users/raadfxrd/repos?sort=updated&per_page=20', {
+      headers: config.public.githubToken ? {
+        Authorization: `Bearer ${config.public.githubToken}`
+      } : {}
+    })
 
     if (!reposResponse.ok) {
+      if (reposResponse.status === 403) {
+        const rateLimitRemaining = reposResponse.headers.get('X-RateLimit-Remaining')
+        const rateLimitReset = reposResponse.headers.get('X-RateLimit-Reset')
+
+        if (rateLimitRemaining === '0') {
+          const resetDate = rateLimitReset ? new Date(parseInt(rateLimitReset) * 1000).toLocaleTimeString() : 'unknown'
+          console.error('GitHub API rate limit exceeded. Resets at:', resetDate)
+          throw new Error(`GitHub API rate limit exceeded. Please try again after ${resetDate}`)
+        }
+      }
       throw new Error('Failed to fetch repositories')
     }
 
@@ -43,11 +57,13 @@ const fetchGitHubRepos = async () => {
     repos.value = await Promise.all(
         publicRepos.map(async (repo: any) => {
           try {
-            // Fetch README
             const readmeResponse = await fetch(
                 `https://api.github.com/repos/raadfxrd/${repo.name}/readme`,
                 {
-                  headers: {
+                  headers: config.public.githubToken ? {
+                    Accept: 'application/vnd.github.v3.raw',
+                    Authorization: `Bearer ${config.public.githubToken}`
+                  } : {
                     Accept: 'application/vnd.github.v3.raw'
                   }
                 }
@@ -57,6 +73,15 @@ const fetchGitHubRepos = async () => {
             let thumbnail = ''
             let readmeTitle = ''
             let readmeDescription = ''
+
+            if (!readmeResponse.ok && readmeResponse.status === 403) {
+              const rateLimitRemaining = readmeResponse.headers.get('X-RateLimit-Remaining')
+              if (rateLimitRemaining === '0') {
+                const rateLimitReset = readmeResponse.headers.get('X-RateLimit-Reset')
+                const resetDate = rateLimitReset ? new Date(parseInt(rateLimitReset) * 1000).toLocaleTimeString() : 'unknown'
+                console.error(`GitHub API rate limit exceeded while fetching README for ${repo.name}. Resets at:`, resetDate)
+              }
+            }
 
             if (readmeResponse.ok) {
               readme = await readmeResponse.text()
@@ -163,7 +188,6 @@ onMounted(() => {
 <template>
   <div class="min-h-screen w-full py-20">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-      <!-- Header -->
       <div class="mb-12">
         <h1 class="text-text-primary mb-4 text-3xl font-bold md:text-5xl">
           Projects
