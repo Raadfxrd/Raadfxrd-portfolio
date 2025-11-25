@@ -30,16 +30,16 @@
               :to="post.path"
               class="bg-background-light hover:bg-background-light-2 border border-transparent hover:border-button-primary group flex flex-col rounded-lg overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1"
           >
-            <!-- Dynamic Gradient Header with Pattern -->
+            <!-- Header -->
             <div
                 :class="getGradientClass(index)"
                 class="h-32 md:h-40 w-full relative overflow-hidden"
             >
-              <!-- Animated gradient overlay -->
+              <!-- Gradient -->
               <div
                   class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent group-hover:from-white/20 transition-all duration-500"></div>
 
-              <!-- Decorative shapes -->
+              <!-- Shapes -->
               <div
                   class="absolute top-2 right-2 w-16 h-16 rounded-full border-2 border-white/20 group-hover:scale-150 group-hover:rotate-180 transition-all duration-700"></div>
               <div
@@ -48,9 +48,9 @@
                   class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 border border-white/10 rotate-45 group-hover:rotate-90 transition-all duration-700"></div>
             </div>
 
-            <!-- Post Content -->
+            <!-- Content -->
             <div class="flex flex-1 flex-col p-2 md:p-3">
-              <!-- Post Date -->
+              <!-- Date -->
               <div class="flex items-center gap-2 text-text-secondary mb-3 text-xs">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,17 +59,17 @@
                 <span>{{ formatDate(post.date) }}</span>
               </div>
 
-              <!-- Post Title -->
+              <!-- Title -->
               <h2 class="text-text-secondary group-hover:text-text-primary mb-3 text-lg md:text-xl font-bold transition-colors line-clamp-3">
                 {{ post.title }}
               </h2>
 
-              <!-- Post Description -->
+              <!-- Description -->
               <p class="text-text-secondary group-hover:text-text-primary mb-4 text-sm line-clamp-3 transition-colors leading-relaxed">
                 {{ post.description }}
               </p>
 
-              <!-- Read More Link -->
+              <!-- Read More -->
               <div
                   class="mt-auto flex items-center gap-1 text-text-secondary group-hover:text-text-primary text-sm font-semibold transition-all">
                 <span class="relative">
@@ -84,7 +84,7 @@
           </NuxtLink>
         </div>
 
-        <!-- No Posts State -->
+        <!-- No Posts -->
         <div v-else class="flex flex-col items-center justify-center py-12 md:py-20">
           <div class="text-text-secondary text-lg mb-4">No blog posts yet</div>
           <p class="text-text-secondary text-sm">Check back soon for new content!</p>
@@ -136,23 +136,5 @@ const getGradientClass = (index: number) => {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
-}
-
-@keyframes float-delay {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(-180deg);
-  }
 }
 </style>
