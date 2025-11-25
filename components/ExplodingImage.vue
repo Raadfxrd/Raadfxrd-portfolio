@@ -11,52 +11,81 @@ interface Props {
 const props = defineProps<Props>();
 const containerRef = ref<HTMLElement | null>(null);
 const isHovered = ref(false);
+const hoverTimeout = ref<NodeJS.Timeout | null>(null);
 
 const handleMouseEnter = () => {
-  isHovered.value = true;
-  const container = containerRef.value;
-  if (!container) return;
+  if (hoverTimeout.value) {
+    clearTimeout(hoverTimeout.value);
+    hoverTimeout.value = null;
+  }
+  hoverTimeout.value = setTimeout(() => {
+    isHovered.value = true;
+    const container = containerRef.value;
+    if (!container) return;
 
-  gsap.to(container.querySelector(".main-image"), {
-    scale: 0.95,
-    duration: 0.5,
-    ease: "power2.out",
-  });
+    const mainImage = container.querySelector(".main-image");
+    if (mainImage) {
+      gsap.killTweensOf(mainImage);
 
-  props.satelliteImages.forEach((_, index) => {
-    const angle = (index * 360) / props.satelliteImages.length;
-    const radius = 150;
+      gsap.to(mainImage, {
+        scale: 0.95,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    }
 
-    gsap.to(container.querySelectorAll(".satellite-image")[index], {
-      opacity: 1,
-      scale: 1,
-      x: Math.cos((angle * Math.PI) / 180) * radius,
-      y: Math.sin((angle * Math.PI) / 180) * radius,
-      duration: 0.6,
-      delay: index * 0.1,
-      ease: "power3.out",
+    props.satelliteImages.forEach((_, index) => {
+      const angle = (index * 360) / props.satelliteImages.length;
+      const radius = 150;
+      const satelliteElement = container.querySelectorAll(".satellite-image")[index];
+
+      if (satelliteElement) {
+        gsap.killTweensOf(satelliteElement);
+
+        gsap.to(satelliteElement, {
+          opacity: 1,
+          scale: 1,
+          x: Math.cos((angle * Math.PI) / 180) * radius,
+          y: Math.sin((angle * Math.PI) / 180) * radius,
+          duration: 0.6,
+          delay: index * 0.1,
+          ease: "power3.out",
+        });
+      }
     });
-  });
+  }, 150);
 };
 
 const handleMouseLeave = () => {
+  if (hoverTimeout.value) {
+    clearTimeout(hoverTimeout.value);
+    hoverTimeout.value = null;
+  }
+
   isHovered.value = false;
   const container = containerRef.value;
   if (!container) return;
 
-  gsap.to(container.querySelector(".main-image"), {
-    scale: 1,
-    duration: 0.5,
-    ease: "power2.inOut",
-  });
+  const mainImage = container.querySelector(".main-image");
+  if (mainImage) {
+    gsap.killTweensOf(mainImage);
+
+    gsap.to(mainImage, {
+      scale: 1,
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
+  }
 
   container.querySelectorAll(".satellite-image").forEach((element) => {
+    gsap.killTweensOf(element);
+
     gsap.to(element, {
       opacity: 0,
       scale: 0.5,
       x: 0,
       y: 0,
-      duration: 0.4,
+      duration: 0.3,
       ease: "power3.in",
     });
   });
