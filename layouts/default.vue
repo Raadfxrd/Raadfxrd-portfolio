@@ -97,6 +97,16 @@ const removeScrollListener = () => {
   }
 };
 
+// Scroll to top on route change
+const scrollToTop = () => {
+  if (scrollContainer.value) {
+    scrollContainer.value.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+};
+
 onMounted(() => {
   document.body.style.cursor = "none";
   window.addEventListener("mousemove", updateCursor);
@@ -109,12 +119,14 @@ onMounted(() => {
 // Watch route changes to toggle scroll listener and progress bar
 watch(
     () => route.path,
-    (newPath, oldPath) => {
+    (newPath) => {
       if (newPath.startsWith("/blog/")) {
         addScrollListener();
       } else {
         removeScrollListener();
       }
+      // Scroll to top on every route change
+      scrollToTop();
     },
 );
 

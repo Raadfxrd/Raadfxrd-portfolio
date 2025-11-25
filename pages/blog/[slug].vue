@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {onMounted, watch} from "vue";
+import {watch} from "vue";
 import {useRoute} from "vue-router";
 import {useAsyncData} from "#app";
 import {ChevronLeftIcon} from "@heroicons/vue/24/outline";
@@ -29,16 +29,9 @@ watch(
     },
 );
 
-onMounted(() => {
-  const container = document.querySelector(
-      ".no-scrollbar",
-  ) as HTMLElement | null;
-  if (container) container.scrollTop = 0;
-});
-
 const formatDate = (date: string) => {
   if (!date) return "";
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat("en-NL", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -63,13 +56,6 @@ const formatDate = (date: string) => {
         <span v-if="post?.author">By {{ post.author }}</span>
         <span v-if="post?.date">{{ formatDate(post.date) }}</span>
       </div>
-
-      <img
-          v-if="post?.cover"
-          :src="post.cover"
-          alt="Cover image"
-          class="ring-overlay w-full rounded-lg md:rounded-xl shadow-md ring-1"
-      />
 
       <article v-if="post">
         <ContentRenderer
