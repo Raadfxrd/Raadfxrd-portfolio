@@ -6,7 +6,7 @@
     ]"
   >
     <div
-        class="bg-background-light dark:bg-background-dark border-x-border-dark relative z-0 min-h-screen w-full border-x-0 md:border-x border-solid"
+        class="bg-background-light dark:bg-background-dark border-x-border-dark relative z-0 min-h-screen w-full lg:w-2/3 border-x-0 md:border-x border-solid"
     >
       <div
           v-if="isBlogPage"
