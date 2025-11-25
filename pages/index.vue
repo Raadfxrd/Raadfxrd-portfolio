@@ -118,6 +118,7 @@
             <div class="space-y-4">
               <SubscriptionForm/>
               <WorkExperience :experiences="experiences"/>
+              <EducationTrajectory :educations="educations"/>
             </div>
           </aside>
         </div>
@@ -131,6 +132,7 @@ import TechStack from "~/components/TechStack.vue";
 import PostCard from "~/components/PostCard.vue";
 import SubscriptionForm from "~/components/SubscriptionForm.vue";
 import WorkExperience from "~/components/WorkExperience.vue";
+import EducationTrajectory from "~/components/EducationTrajectory.vue";
 import {useIntroSequence} from "~/composables/useIntroSequence";
 import {useRotatingTitles} from "~/composables/useRotatingTitles";
 import {useGreeting} from "~/composables/useGreeting";
@@ -167,6 +169,21 @@ const experiences = [
     company: "Pull&Bear",
     period: "April 2023 - August 2023",
     icon: "/img/companies/pb.png",
+  },
+];
+
+const educations = [
+  {
+    degree: "Software Engineering",
+    school: "Amsterdam University of Applied Sciences",
+    period: "2022 - 2026",
+    icon: "/img/schools/hva.png",
+  },
+  {
+    degree: "Dark Tech",
+    school: "Amsterdam University of Applied Sciences",
+    period: "2024 - 2025",
+    icon: "/img/schools/hva.png",
   },
 ];
 </script>
