@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { gsap } from "gsap";
+import {ref} from "vue";
+import {gsap} from "gsap";
 
 interface Props {
   mainImage: string;
@@ -65,26 +65,26 @@ const handleMouseLeave = () => {
 
 <template>
   <div
-    ref="containerRef"
-    class="grid h-[280px] w-[280px] place-items-center md:h-[400px] md:w-[400px]"
+      ref="containerRef"
+      class="grid h-[280px] w-[280px] place-items-center md:h-[400px] md:w-[400px]"
   >
     <div class="grid grid-cols-1 grid-rows-1 place-items-center">
       <!-- Main center image -->
       <img
-        :alt="alt ?? 'Main image'"
-        :src="mainImage"
-        class="main-image border-border-dark col-start-1 row-start-1 h-[180px] w-[180px] rounded-full border-2 object-cover shadow-lg transition-shadow duration-300 hover:cursor-pointer hover:shadow-xl md:h-[280px] md:w-[280px]"
-        style="object-position: center top"
-        @mouseenter="handleMouseEnter"
-        @mouseleave="handleMouseLeave"
+          :alt="alt ?? 'Main image'"
+          :src="mainImage"
+          class="main-image border-border-dark col-start-1 row-start-1 h-[180px] w-[180px] rounded-full border-2 object-cover shadow-lg transition-shadow duration-300 hover:cursor-pointer hover:shadow-xl md:h-[280px] md:w-[280px]"
+          style="object-position: center top"
+          @mouseenter="handleMouseEnter"
+          @mouseleave="handleMouseLeave"
       />
 
       <!-- Satellite images -->
       <template v-for="(image, index) in satelliteImages" :key="index">
         <img
-          :alt="`Satellite image ${index + 1}`"
-          :src="image"
-          class="satellite-image border-border-dark col-start-1 row-start-1 h-[100px] w-[100px] scale-50 rounded-full border-1 object-cover opacity-0 shadow-md md:h-[150px] md:w-[150px]"
+            :alt="`Satellite image ${index + 1}`"
+            :src="image"
+            class="satellite-image border-border-dark col-start-1 row-start-1 h-[100px] w-[100px] scale-50 rounded-full border-1 object-cover opacity-0 shadow-md md:h-[150px] md:w-[150px]"
         />
       </template>
     </div>

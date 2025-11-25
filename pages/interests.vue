@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { TresCanvas } from "@tresjs/core";
-import { GLTFModel } from "@tresjs/cientos";
+import {TresCanvas} from "@tresjs/core";
+import {GLTFModel} from "@tresjs/cientos";
 
 const sections = [
   {
@@ -30,16 +30,16 @@ const sections = [
   <section class="relative w-full">
     <!-- Background Canvas -->
     <TresCanvas class="absolute inset-0 z-0" preset="realistic">
-      <TresPerspectiveCamera :look-at="[0, 0, 0]" :position="[0.2, 0.5, 0.5]" />
+      <TresPerspectiveCamera :look-at="[0, 0, 0]" :position="[0.2, 0.5, 0.5]"/>
       <Suspense>
-        <GLTFModel draco path="/models/ibm_model_m_keyboard/scene.gltf" />
+        <GLTFModel draco path="/models/ibm_model_m_keyboard/scene.gltf"/>
       </Suspense>
-      <TresAmbientLight :intensity="0.6" />
+      <TresAmbientLight :intensity="0.6"/>
     </TresCanvas>
 
     <!-- Foreground Content -->
     <div
-      class="relative z-10 flex items-center justify-center px-4 pt-32 pb-24 text-left text-white backdrop-blur-md"
+        class="relative z-10 flex items-center justify-center px-4 pt-32 pb-24 text-left text-white backdrop-blur-md"
     >
       <div class="max-w-3xl space-y-8">
         <header class="space-y-4">
@@ -52,7 +52,7 @@ const sections = [
         <div class="space-y-16">
           <FadeInSection v-for="(section, index) in sections" :key="index">
             <div
-              :class="[
+                :class="[
                 'flex flex-col items-center gap-8 md:flex-row',
                 index % 3 === 0
                   ? 'justify-center text-justify'
@@ -62,8 +62,8 @@ const sections = [
               ]"
             >
               <div
-                :style="{ transitionDelay: `${index * 100}ms` }"
-                class="max-w-xl rounded-lg bg-white/10 p-6 backdrop-blur-sm"
+                  :style="{ transitionDelay: `${index * 100}ms` }"
+                  class="max-w-xl rounded-lg bg-white/10 p-6 backdrop-blur-sm"
               >
                 <h3 class="mb-2 w-fit text-2xl font-bold">
                   {{ section.title }}

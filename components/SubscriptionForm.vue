@@ -7,14 +7,14 @@
     <form class="space-y-3">
       <div class="flex gap-2">
         <input
-          id="email"
-          class="bg-background-light border-border-light focus:ring-button-primary flex-1 rounded-md border p-2 text-xs focus:ring-1"
-          placeholder="Enter your email"
-          type="email"
+            id="email"
+            class="bg-background-light border-border-light focus:ring-button-primary flex-1 rounded-md border p-2 text-xs focus:ring-1"
+            placeholder="Enter your email"
+            type="email"
         />
         <button
-          class="bg-button-primary text-text-secondary hover:bg-background-light-2 rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap transition-colors"
-          type="submit"
+            class="bg-button-primary text-text-secondary hover:bg-background-light-2 rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap transition-colors"
+            type="submit"
         >
           Subscribe
         </button>

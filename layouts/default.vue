@@ -1,37 +1,37 @@
 <template>
   <div
-    :class="[
+      :class="[
       'bg-background-light-2 dark:bg-background-dark-2 relative flex min-h-screen w-full items-start justify-center overflow-hidden',
       { 'h-full w-full': isInterestsPage },
     ]"
   >
     <div
-      class="bg-background-light dark:bg-background-dark border-x-border-dark relative z-0 min-h-screen w-2/3 border-x border-solid"
+        class="bg-background-light dark:bg-background-dark border-x-border-dark relative z-0 min-h-screen w-2/3 border-x border-solid"
     >
       <div
-        v-if="isBlogPage"
-        :style="{ width: scrollProgress + '%' }"
-        class="fixed top-0 left-0 z-50 h-1 bg-gradient-to-r from-blue-300 to-red-200 transition-all duration-150"
+          v-if="isBlogPage"
+          :style="{ width: scrollProgress + '%' }"
+          class="fixed top-0 left-0 z-50 h-1 bg-gradient-to-r from-blue-300 to-red-200 transition-all duration-150"
       />
       <div
-        ref="scrollContainer"
-        class="no-scrollbar sticky top-0 z-10 h-screen overflow-y-auto"
-        @mousemove="updateCursor"
+          ref="scrollContainer"
+          class="no-scrollbar sticky top-0 z-10 h-screen overflow-y-auto"
+          @mousemove="updateCursor"
       >
-        <Navbar />
+        <Navbar/>
         <main class="flex-1">
-          <slot />
+          <slot/>
         </main>
-        <Footer />
+        <Footer/>
       </div>
     </div>
-    <div ref="cursor" :class="['cursor', cursorType]" />
+    <div ref="cursor" :class="['cursor', cursorType]"/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onMounted, onUnmounted, watch } from "vue";
-import { useRoute } from "vue-router";
+import {computed, onMounted, onUnmounted, ref, watch} from "vue";
+import {useRoute} from "vue-router";
 
 const route = useRoute();
 
@@ -47,7 +47,7 @@ const updateScroll = () => {
   if (!scrollContainer.value) return;
   const scrollTop = scrollContainer.value.scrollTop;
   const scrollHeight =
-    scrollContainer.value.scrollHeight - scrollContainer.value.clientHeight;
+      scrollContainer.value.scrollHeight - scrollContainer.value.clientHeight;
   scrollProgress.value = (scrollTop / scrollHeight) * 100;
 };
 
@@ -66,14 +66,14 @@ const updateCursor = (e: MouseEvent) => {
   if (target.closest("a, button, [role='button'], .cursor-hover")) {
     cursorType.value = "hover";
   } else if (
-    ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
-    getComputedStyle(target).cursor === "text" ||
-    target.closest(
-      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
-    ) ||
-    target.matches(
-      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
-    )
+      ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
+      getComputedStyle(target).cursor === "text" ||
+      target.closest(
+          "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
+      ) ||
+      target.matches(
+          "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
+      )
   ) {
     cursorType.value = "text";
   } else {
@@ -106,14 +106,14 @@ onMounted(() => {
 
 // Watch route changes to toggle scroll listener and progress bar
 watch(
-  () => route.path,
-  (newPath, oldPath) => {
-    if (newPath.startsWith("/blog/")) {
-      addScrollListener();
-    } else {
-      removeScrollListener();
-    }
-  },
+    () => route.path,
+    (newPath, oldPath) => {
+      if (newPath.startsWith("/blog/")) {
+        addScrollListener();
+      } else {
+        removeScrollListener();
+      }
+    },
 );
 
 onUnmounted(() => {
@@ -140,9 +140,8 @@ onUnmounted(() => {
   z-index: 9999;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
-  transition:
-    width 0.15s ease,
-    height 0.15s ease;
+  transition: width 0.15s ease,
+  height 0.15s ease;
 }
 
 .cursor.hover {

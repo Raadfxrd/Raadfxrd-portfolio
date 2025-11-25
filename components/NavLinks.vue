@@ -27,4 +27,4 @@
     </li>
   </ul>
 </template>
-<script setup lang="ts"></script>
+<script lang="ts" setup></script>
