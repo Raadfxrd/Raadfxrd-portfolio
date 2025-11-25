@@ -12,7 +12,7 @@
             id="intro-title"
             class="text-text-primary animate-scaleIn text-lg font-bold md:text-2xl"
         >
-          Borys
+          Borys Babas
         </h1>
       </div>
 

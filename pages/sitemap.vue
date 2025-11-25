@@ -87,14 +87,14 @@ const externalLinks = [
           <h1 class="gradient mb-3 md:mb-4 text-3xl md:text-4xl lg:text-5xl font-bold w-fit">
             Sitemap
           </h1>
-          <p class="text-text-secondary text-sm md:text-lg">
+          <p class="text-text-secondary text-sm md:text-lg w-fit">
             Navigate through all pages and content on my website
           </p>
         </div>
 
         <div class="space-y-8 md:space-y-12">
           <section>
-            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold">
+            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold w-fit">
               Main Pages
             </h2>
             <div class="grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -115,7 +115,7 @@ const externalLinks = [
           </section>
 
           <section v-if="posts && posts.length > 0">
-            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold">
+            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold w-fit">
               Blog Posts ({{ posts.length }})
             </h2>
             <div class="bg-background-light rounded-lg p-4 md:p-6">
@@ -151,7 +151,7 @@ const externalLinks = [
           </section>
 
           <section>
-            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold">
+            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold w-fit">
               External Links
             </h2>
             <div class="grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -178,7 +178,7 @@ const externalLinks = [
           </section>
 
           <section>
-            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold">
+            <h2 class="text-text-primary mb-4 md:mb-6 text-xl md:text-2xl font-semibold w-fit">
               Legal & Policies
             </h2>
             <div class="grid gap-3 md:gap-4 sm:grid-cols-2">
@@ -199,7 +199,7 @@ const externalLinks = [
           </section>
 
           <section class="bg-background-light rounded-lg p-4 md:p-6">
-            <h2 class="text-text-primary mb-4 text-xl font-semibold">
+            <h2 class="text-text-primary mb-4 text-xl font-semibold w-fit">
               About This Sitemap
             </h2>
             <p class="text-text-secondary leading-relaxed text-xs md:text-sm">
