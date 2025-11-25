@@ -19,10 +19,10 @@
       <!-- Hero Section -->
       <section
           v-if="showContent"
-          class="animate-contentEnter flex h-screen w-full flex-col items-center justify-center"
+          class="animate-contentEnter flex h-screen w-full flex-col items-center justify-center px-4"
       >
         <div
-            class="flex w-full max-w-5xl flex-col items-center justify-center gap-12 px-4 md:flex-row md:px-6"
+            class="flex w-full max-w-5xl flex-col items-center justify-center gap-8 md:gap-12 px-4 md:flex-row md:px-6"
         >
           <!-- Portrait -->
           <ExplodingImage
@@ -37,9 +37,9 @@
               alt="Portrait of Borys"
           />
           <!-- Text Section -->
-          <div class="gradient max-w-lg">
+          <div class="gradient max-w-lg text-center md:text-left">
             <h1
-                class="mb-2 flex flex-wrap gap-2 text-base font-bold md:text-3xl"
+                class="mb-2 flex flex-wrap justify-center md:justify-start gap-2 text-xl sm:text-2xl md:text-3xl font-bold"
             >
               <span
                   v-for="(word, wi) in greeting.split(' ')"
@@ -59,7 +59,7 @@
             </h1>
 
             <h1
-                class="animate-textReveal mb-3 text-base font-bold delay-150 md:text-3xl"
+                class="animate-textReveal mb-3 text-xl sm:text-2xl md:text-3xl font-bold delay-150"
             >
               I'm Borys!
             </h1>
@@ -69,20 +69,20 @@
                 'animate-fadeOut': isFadingOut,
                 'animate-fadeIn': !isFadingOut,
               }"
-                class="text-text-secondary mb-2 w-fit text-xs transition-transform duration-500 md:text-sm"
+                class="text-text-secondary mb-2 w-fit mx-auto md:mx-0 text-sm md:text-sm transition-transform duration-500"
             >
               {{ currentTitle }}
             </h3>
 
             <h3
-                class="text-text-primary animate-textReveal mb-4 w-fit text-xs md:text-lg"
+                class="text-text-primary animate-textReveal mb-4 w-fit mx-auto md:mx-0 text-sm md:text-lg"
             >
               Innovating for success.
             </h3>
 
             <!-- Button -->
             <NuxtLink
-                class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative w-fit overflow-hidden rounded-md px-4 py-2 text-xs font-medium shadow-sm transition-all duration-300"
+                class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative w-fit mx-auto md:mx-0 overflow-hidden rounded-md px-4 py-2 text-xs md:text-sm font-medium shadow-sm transition-all duration-300 inline-block"
                 to="/projects"
             >
               <span class="relative z-10">View My Work</span>
@@ -95,12 +95,12 @@
       <!-- Content Section -->
       <div
           v-if="showContent"
-          class="animate-contentEnter container mx-auto mt-12 mb-12 max-w-5xl px-4 md:px-6"
+          class="animate-contentEnter container mx-auto mt-8 md:mt-12 mb-8 md:mb-12 max-w-5xl px-4 md:px-6"
       >
-        <div class="relative flex flex-col items-start gap-8 lg:flex-row">
+        <div class="relative flex flex-col items-start gap-6 md:gap-8 lg:flex-row">
           <!-- Recent Posts Section -->
           <section class="w-full lg:w-3/5">
-            <h1 class="gradient bl-4 ml-4 w-fit text-2xl font-semibold">
+            <h1 class="gradient bl-4 ml-4 w-fit text-xl md:text-2xl font-semibold mb-4">
               Recent Posts
             </h1>
             <div class="space-y-4">

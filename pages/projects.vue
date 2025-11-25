@@ -208,24 +208,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen w-full pt-30 pb-20">
+  <div class="min-h-screen w-full pt-20 md:pt-30 pb-12 md:pb-20">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-      <div class="mb-12">
-        <h1 class="gradient mb-4 text-3xl font-bold md:text-5xl w-fit pb-1">
+      <div class="mb-8 md:mb-12">
+        <h1 class="gradient mb-3 md:mb-4 text-2xl md:text-3xl lg:text-5xl font-bold w-fit pb-1">
           Projects
         </h1>
-        <p class="text-text-secondary text-base md:text-lg w-fit">
+        <p class="text-text-secondary text-sm md:text-base lg:text-lg w-fit">
           Here are some of my recent projects from GitHub
         </p>
       </div>
 
-      <div v-if="loading" class="flex items-center justify-center py-20">
-        <div class="text-text-secondary text-lg">Loading projects...</div>
+      <div v-if="loading" class="flex items-center justify-center py-12 md:py-20">
+        <div class="text-text-secondary text-base md:text-lg">Loading projects...</div>
       </div>
-      <div v-else-if="error" class="flex items-center justify-center py-20">
-        <div class="text-red-500 text-lg">{{ error }}</div>
+      <div v-else-if="error" class="flex items-center justify-center py-12 md:py-20">
+        <div class="text-red-500 text-base md:text-lg">{{ error }}</div>
       </div>
-      <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div v-else class="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <article
             v-for="repo in repos"
             :key="repo.id"

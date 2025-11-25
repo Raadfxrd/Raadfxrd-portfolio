@@ -7,23 +7,23 @@ useSeoMeta({
 
 <template>
   <div class="relative w-full">
-    <section class="container mx-auto min-h-screen px-4 w-fit pt-30 pb-20 md:px-6">
+    <section class="container mx-auto min-h-screen px-4 w-fit pt-20 md:pt-30 pb-12 md:pb-20 md:px-6">
       <div class="mx-auto max-w-4xl">
-        <div class="mb-12">
-          <h1 class="gradient mb-4 text-4xl font-bold md:text-5xl w-fit">
+        <div class="mb-8 md:mb-12">
+          <h1 class="gradient mb-3 md:mb-4 text-3xl md:text-4xl lg:text-5xl font-bold w-fit">
             Privacy Policy
           </h1>
-          <p class="text-text-secondary text-sm">
+          <p class="text-text-secondary text-xs md:text-sm">
             Last updated: November 25, 2025
           </p>
         </div>
 
-        <div class="prose prose-invert max-w-none space-y-8">
-          <section class="bg-background-light rounded-lg p-6">
-            <h2 class="text-text-primary mb-4 text-2xl font-semibold">
+        <div class="prose prose-invert max-w-none space-y-6 md:space-y-8">
+          <section class="bg-background-light rounded-lg p-4 md:p-6">
+            <h2 class="text-text-primary mb-3 md:mb-4 text-xl md:text-2xl font-semibold">
               Introduction
             </h2>
-            <p class="text-text-secondary leading-relaxed">
+            <p class="text-text-secondary leading-relaxed text-sm md:text-base">
               Welcome to Raadnerd. This Privacy Policy explains how I collect, use, and protect your
               personal information when you visit my website. Your privacy is important to me, and I am committed to
               protecting your personal data.
@@ -196,9 +196,9 @@ useSeoMeta({
             </p>
             <div class="text-text-primary mt-4 space-y-1">
               <p><strong>Email:</strong> <a href="mailto:borysbabas@pm.me"
-                                            class="text-button-primary hover:underline">borysbabas@pm.me</a></p>
+                                            class="social-link underline">borysbabas@pm.me</a></p>
               <p><strong>GitHub:</strong> <a href="https://github.com/raadfxrd" target="_blank"
-                                             rel="noopener noreferrer" class="text-button-primary hover:underline">@raadfxrd</a>
+                                             rel="noopener noreferrer" class="social-link underline">@raadfxrd</a>
               </p>
             </div>
           </section>

@@ -95,14 +95,14 @@ const handleMouseLeave = () => {
 <template>
   <div
       ref="containerRef"
-      class="grid h-[280px] w-[280px] place-items-center md:h-[400px] md:w-[400px]"
+      class="grid h-[220px] w-[220px] sm:h-[280px] sm:w-[280px] md:h-[400px] md:w-[400px] place-items-center"
   >
     <div class="grid grid-cols-1 grid-rows-1 place-items-center">
       <!-- Main center image -->
       <img
           :alt="alt ?? 'Main image'"
           :src="mainImage"
-          class="main-image border-border-dark col-start-1 row-start-1 h-[180px] w-[180px] rounded-full border-2 object-cover shadow-lg transition-shadow duration-300 hover:cursor-pointer hover:shadow-xl md:h-[280px] md:w-[280px]"
+          class="main-image border-border-dark col-start-1 row-start-1 h-[140px] w-[140px] sm:h-[180px] sm:w-[180px] md:h-[280px] md:w-[280px] rounded-full border-2 object-cover shadow-lg transition-shadow duration-300 hover:cursor-pointer hover:shadow-xl"
           style="object-position: center top"
           @mouseenter="handleMouseEnter"
           @mouseleave="handleMouseLeave"
@@ -113,7 +113,7 @@ const handleMouseLeave = () => {
         <img
             :alt="`Satellite image ${index + 1}`"
             :src="image"
-            class="satellite-image border-border-dark col-start-1 row-start-1 h-[100px] w-[100px] scale-50 rounded-full border-1 object-cover opacity-0 shadow-md md:h-[150px] md:w-[150px]"
+            class="satellite-image border-border-dark col-start-1 row-start-1 h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] md:h-[150px] md:w-[150px] scale-50 rounded-full border-1 object-cover opacity-0 shadow-md"
         />
       </template>
     </div>

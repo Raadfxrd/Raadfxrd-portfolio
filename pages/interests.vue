@@ -28,7 +28,6 @@ const sections = [
 
 <template>
   <section class="relative w-full">
-    <!-- Background Canvas -->
     <TresCanvas class="absolute inset-0 z-0" preset="realistic">
       <TresPerspectiveCamera :look-at="[0, 0, 0]" :position="[0.2, 0.5, 0.5]"/>
       <Suspense>
@@ -37,23 +36,22 @@ const sections = [
       <TresAmbientLight :intensity="0.6"/>
     </TresCanvas>
 
-    <!-- Foreground Content -->
     <div
-        class="relative z-10 flex items-center justify-center px-4 pt-32 pb-24 text-left text-white backdrop-blur-md"
+        class="relative z-10 flex items-center justify-center px-4 md:px-6 pt-24 md:pt-32 pb-16 md:pb-24 text-left text-white backdrop-blur-md"
     >
-      <div class="max-w-3xl space-y-8">
-        <header class="space-y-4">
-          <h2 class="gradient w-fit text-4xl font-bold">Hello, World!</h2>
-          <p class="w-fit text-xl leading-relaxed font-light">
+      <div class="max-w-3xl space-y-6 md:space-y-8">
+        <header class="space-y-3 md:space-y-4">
+          <h2 class="gradient w-fit text-3xl md:text-4xl font-bold">Hello, World!</h2>
+          <p class="w-fit text-base md:text-xl leading-relaxed font-light">
             Bridging the gap between technology and creativity in Amsterdam
           </p>
         </header>
 
-        <div class="space-y-16">
+        <div class="space-y-12 md:space-y-16">
           <FadeInSection v-for="(section, index) in sections" :key="index">
             <div
                 :class="[
-                'flex flex-col items-center gap-8 md:flex-row',
+                'flex flex-col items-center gap-6 md:gap-8 md:flex-row',
                 index % 3 === 0
                   ? 'justify-center text-justify'
                   : index % 3 === 1
@@ -63,44 +61,44 @@ const sections = [
             >
               <div
                   :style="{ transitionDelay: `${index * 100}ms` }"
-                  class="max-w-xl rounded-lg bg-white/10 p-6 backdrop-blur-sm"
+                  class="max-w-xl rounded-lg bg-white/10 p-4 md:p-6 backdrop-blur-sm"
               >
-                <h3 class="mb-2 w-fit text-2xl font-bold">
+                <h3 class="mb-2 w-fit text-xl md:text-2xl font-bold">
                   {{ section.title }}
                 </h3>
-                <p class="w-fit leading-relaxed">{{ section.text }}</p>
+                <p class="w-fit leading-relaxed text-sm md:text-base">{{ section.text }}</p>
               </div>
             </div>
           </FadeInSection>
         </div>
 
-        <div class="mt-12 rounded-lg bg-white/10 p-6 backdrop-blur-sm">
-          <h2 class="mb-4 text-2xl font-semibold">Quick Facts</h2>
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div class="space-y-3">
-              <div class="flex items-center space-x-2">
+        <div class="mt-8 md:mt-12 rounded-lg bg-white/10 p-4 md:p-6 backdrop-blur-sm">
+          <h2 class="mb-3 md:mb-4 text-xl md:text-2xl font-semibold">Quick Facts</h2>
+          <div class="grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2">
+            <div class="space-y-2 md:space-y-3">
+              <div class="flex items-center space-x-2 text-sm md:text-base">
                 <span class="font-semibold">🎓 Education:</span>
                 <span>Software Engineering @ AUAS</span>
               </div>
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-2 text-sm md:text-base">
                 <span class="font-semibold">💼 Work:</span>
                 <span>Hifi Klubben Rijnstraat</span>
               </div>
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-2 text-sm md:text-base">
                 <span class="font-semibold">🌍 From:</span>
                 <span>Poland</span>
               </div>
             </div>
-            <div class="space-y-3">
-              <div>
+            <div class="space-y-2 md:space-y-3">
+              <div class="text-sm md:text-base">
                 <span class="font-semibold">🎮 Gaming:</span>
                 <span>Valorant, Minecraft, Black Desert</span>
               </div>
-              <div>
+              <div class="text-sm md:text-base">
                 <span class="font-semibold">⌨️ Tech:</span>
                 <span>Custom PCs, Mechanical Keyboards</span>
               </div>
-              <div>
+              <div class="text-sm md:text-base">
                 <span class="font-semibold">🎵 Passion:</span>
                 <span>High-fidelity Audio</span>
               </div>
