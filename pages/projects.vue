@@ -88,9 +88,32 @@ const fetchGitHubRepos = async () => {
 
               const imageMatch = readme.match(/!\[.*?]\((.*?)\)/i)
               if (imageMatch && imageMatch[1]) {
-                thumbnail = imageMatch[1]
-                if (!thumbnail.startsWith('http')) {
-                  thumbnail = `https://raw.githubusercontent.com/raadfxrd/${repo.name}/main/${thumbnail.replace(/^\.?\//, '')}`
+                let imagePath = imageMatch[1]
+
+                if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+                  thumbnail = imagePath
+                } else {
+                  imagePath = imagePath.replace(/^\.?\//, '')
+
+                  const branch = repo.default_branch || 'main'
+                  thumbnail = `https://raw.githubusercontent.com/raadfxrd/${repo.name}/${branch}/${imagePath}`
+
+                  try {
+                    const imgCheckResponse = await fetch(thumbnail, {method: 'HEAD'})
+                    if (!imgCheckResponse.ok) {
+                      const alternateBranch = branch === 'main' ? 'master' : 'main'
+                      const alternateUrl = `https://raw.githubusercontent.com/raadfxrd/${repo.name}/${alternateBranch}/${imagePath}`
+                      const altCheckResponse = await fetch(alternateUrl, {method: 'HEAD'})
+                      if (altCheckResponse.ok) {
+                        thumbnail = alternateUrl
+                      } else {
+                        thumbnail = ''
+                      }
+                    }
+                  } catch (err) {
+                    console.warn(`Could not verify image for ${repo.name}:`, err)
+                    thumbnail = ''
+                  }
                 }
               }
               const titleMatch = readme.match(/^#+\s+(.+?)$/m)
