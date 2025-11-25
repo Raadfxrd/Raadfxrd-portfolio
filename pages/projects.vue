@@ -51,7 +51,6 @@ const fetchGitHubRepos = async () => {
 
     const reposData = await reposResponse.json()
 
-    // Filter out forks and fetch README for each repo
     const publicRepos = reposData.filter((repo: any) => !repo.fork)
 
     repos.value = await Promise.all(
@@ -209,13 +208,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen w-full py-20">
+  <div class="min-h-screen w-full pt-30 pb-20">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
       <div class="mb-12">
-        <h1 class="text-text-primary mb-4 text-3xl font-bold md:text-5xl">
+        <h1 class="gradient mb-4 text-3xl font-bold md:text-5xl w-fit pb-1">
           Projects
         </h1>
-        <p class="text-text-secondary text-base md:text-lg">
+        <p class="text-text-secondary text-base md:text-lg w-fit">
           Here are some of my recent projects from GitHub
         </p>
       </div>
@@ -230,21 +229,21 @@ onMounted(() => {
         <article
             v-for="repo in repos"
             :key="repo.id"
-            class="bg-background-light hover:bg-background-light-2/90 group flex flex-col overflow-hidden rounded-lg transition-all duration-300"
+            class="group bg-background-light hover:bg-background-light-2/90 flex flex-col rounded-lg transition-all duration-300"
         >
           <div
               v-if="repo.thumbnail"
-              class="aspect-video w-full overflow-hidden bg-gray-800"
+              class="aspect-video w-full overflow-hidden rounded-t-lg bg-gray-800"
           >
             <img
                 :src="repo.thumbnail"
                 :alt="`${repo.name} thumbnail`"
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                class="h-full w-full object-cover"
                 @error="(e) => ((e.target as HTMLImageElement).style.display = 'none')"
             />
           </div>
           <div class="flex flex-1 flex-col p-4">
-            <h3 class="text-text-primary mb-2 text-lg font-semibold">
+            <h3 class="text-text-primary mb-2 text-lg font-semibold w-fit">
               {{ parseReadmeText(repo.readmeTitle || repo.name) }}
             </h3>
             <p class="text-text-secondary mb-3 line-clamp-3 text-sm">

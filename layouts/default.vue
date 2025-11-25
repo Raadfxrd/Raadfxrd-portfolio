@@ -63,13 +63,15 @@ const updateCursor = (e: MouseEvent) => {
     cursor.value.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
   }
 
-  if (target.closest("a, button, [role='button'], .cursor-hover")) {
+  if (target.tagName === "IMG" || target.closest("img")) {
+    cursorType.value = "default";
+  } else if (target.closest("a, button, [role='button'], .cursor-hover")) {
     cursorType.value = "hover";
   } else if (
       ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
       getComputedStyle(target).cursor === "text" ||
       target.closest(
-          "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
+          "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code",
       ) ||
       target.matches(
           "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
