@@ -69,90 +69,316 @@ const pageDescriptions: Record<string, string> = {
 
 **Fallback**: Generic description based on page type
 
-## Example: Adding a New Page
+## Implementation Examples
 
-Let's say you create a new page: `/pages/portfolio.vue`
+### Example 1: Adding a Standard Page
 
-**Minimum required** (only this is mandatory):
+**Scenario**: Create `/pages/portfolio.vue`
+
+**Minimum Implementation** (production-ready):
 
 ```typescript
+// pages/sitemap.vue
 const pageCategories: Record<string, 'main' | 'legal'> = {
-    // ...existing pages...
-    '/portfolio': 'main',  // ← Add this line
+    // ...existing routes
+    '/portfolio': 'main',
 }
 ```
 
-**Full configuration** (recommended for best UX):
+**Recommended Implementation** (enhanced UX):
 
 ```typescript
+// pages/sitemap.vue
 const pageCategories: Record<string, 'main' | 'legal'> = {
-    // ...existing pages...
+    // ...existing routes
     '/portfolio': 'main',
 }
 
 const pageTitles: Record<string, string> = {
-    // ...existing pages...
-    '/portfolio': 'Portfolio',  // ← Nice display name
+    // ...existing routes
+    '/portfolio': 'Portfolio',
 }
 
 const pageDescriptions: Record<string, string> = {
-    // ...existing pages...
-    '/portfolio': 'Browse my complete portfolio of work',  // ← Helpful description
+    // ...existing routes
+    '/portfolio': 'Explore my complete collection of projects and work samples',
 }
 ```
 
-## External Links
+### Example 2: Adding a Legal/Policy Page
 
-To add new external links (GitHub, LinkedIn, etc.), update the `externalLinks` array:
+**Scenario**: Create `/pages/cookie-policy.vue`
 
 ```typescript
+// pages/sitemap.vue
+const pageCategories: Record<string, 'main' | 'legal'> = {
+    // ...existing routes
+    '/cookie-policy': 'legal',
+}
+
+const pageTitles: Record<string, string> = {
+    // ...existing routes
+    '/cookie-policy': 'Cookie Policy',
+}
+
+const pageDescriptions: Record<string, string> = {
+    // ...existing routes
+    '/cookie-policy': 'Information about cookies and tracking on this site',
+}
+```
+
+### Example 3: Adding External Links
+
+```typescript
+// pages/sitemap.vue
 const externalLinks = [
+    // ...existing links
     {
-        name: 'Your Social',
-        url: 'https://example.com/your-profile',
-        description: 'Follow me on Your Social',
+        name: 'Twitter',
+        url: 'https://twitter.com/yourusername',
+        description: 'Follow me on Twitter for updates',
     },
 ]
 ```
 
-## How It Works
-
-1. **Nuxt Router** provides all registered routes
-2. **Filters** exclude:
-    - Dynamic routes (paths with `:`)
-    - The sitemap page itself
-    - Pages not in `pageCategories`
-3. **Maps** routes to display objects with name, path, description
-4. **Sorts** alphabetically (Home always first)
-
-## Benefits
-
-- **Blog posts**: 100% automatic, zero config
-- **New pages**: Only 1-3 lines of config needed
-- **Maintenance**: Minimal - pages auto-discovered
-- **Flexibility**: Can still customize titles/descriptions
-- **Type-safe**: TypeScript ensures correctness
-
-## Quick Reference
-
-### When adding a new blog post:
+### Example 4: Adding a Blog Post (Zero Config)
 
 ```bash
-# Just create the file - that's it!
-content/blog/my-new-post.md
+# Simply create the markdown file
+touch content/blog/my-new-post.md
 ```
 
-### When adding a new page:
+```markdown
+---
+title: My New Blog Post
+description: A brief description of the post
+date: 2025-11-25
+---
+
+Your content here...
+```
+
+**Result**: Automatically appears in sitemap on next build/refresh.
+
+## Technical Implementation Details
+
+### Route Processing Pipeline
+
+1. **Route Collection**
+   ```typescript
+   const routes = useRouter().getRoutes()
+   ```
+    - Fetches all registered Nuxt routes
+    - Includes static and file-based routes
+
+2. **Filtering**
+   ```typescript
+   .filter(route => 
+     !route.path.includes(':') &&  // Exclude dynamic routes
+     route.path !== '/sitemap' &&   // Exclude self
+     pageCategories[route.path]     // Must be categorized
+   )
+   ```
+
+3. **Mapping**
+   ```typescript
+   .map(route => ({
+     name: pageTitles[route.path] || capitalizeRoute(route.path),
+     path: route.path,
+     description: pageDescriptions[route.path] || getDefaultDescription(route.path),
+   }))
+   ```
+
+4. **Sorting**
+    - Alphabetical by name
+    - Home (`/`) always first
+
+### Blog Post Pipeline
 
 ```typescript
-// 1. Create the page
-pages / my - page.vue
+const {data: posts} = await useAsyncData('blog-sitemap', () =>
+    queryCollection('blog')
+        .order('date', 'DESC')
+        .all()
+)
+```
 
-// 2. Add to sitemap.vue (minimum):
+- Automatic query via Nuxt Content
+- No manual configuration needed
+- Sorted by date (newest first)
+- Includes all frontmatter data
+
+## Developer Workflow
+
+### Adding a New Page
+
+**Step 1**: Create the page file
+
+```bash
+# Create your page component
+touch pages/my-new-page.vue
+```
+
+**Step 2**: Add to sitemap configuration
+
+```typescript
+// pages/sitemap.vue
+
+// Required: Categorize the page
 const pageCategories: Record<string, 'main' | 'legal'> = {
-    '/my-page': 'main',  // Only this line is required!
+    // ...existing
+    '/my-new-page': 'main',
+}
+
+// Optional but recommended: Add title
+const pageTitles: Record<string, string> = {
+    // ...existing
+    '/my-new-page': 'My New Page',
+}
+
+// Optional but recommended: Add description
+const pageDescriptions: Record<string, string> = {
+    // ...existing
+    '/my-new-page': 'Detailed description of the page purpose',
 }
 ```
 
-That's it! Your sitemap is now mostly maintenance-free. 🎉
+**Step 3**: Verify
+
+```bash
+# Development
+npm run dev
+
+# Navigate to /sitemap
+# Verify your page appears in the correct section
+```
+
+### Adding a Blog Post
+
+**Step 1**: Create markdown file
+
+```bash
+touch content/blog/my-post.md
+```
+
+**Step 2**: Add frontmatter
+
+```markdown
+---
+title: My Blog Post Title
+description: Brief summary of the post
+date: 2025-11-25
+---
+
+Your content here...
+```
+
+**Step 3**: Build/Refresh
+
+- Automatically detected by Nuxt Content
+- No configuration needed
+- Appears in sitemap immediately
+
+## Configuration Reference
+
+### Type Definitions
+
+```typescript
+// Page categories
+type PageCategory = 'main' | 'legal'
+
+// Configuration objects
+const pageCategories: Record<string, PageCategory>
+const pageTitles: Record<string, string>
+const pageDescriptions: Record<string, string>
+
+// External links
+interface ExternalLink {
+    name: string
+    url: string
+    description: string
+}
+
+const externalLinks: ExternalLink[]
+```
+
+### Required vs Optional
+
+| Configuration      | Required | Fallback Behavior          |
+|--------------------|----------|----------------------------|
+| `pageCategories`   | ✅ Yes    | Page excluded from sitemap |
+| `pageTitles`       | ❌ No     | Capitalized route path     |
+| `pageDescriptions` | ❌ No     | Generic description        |
+
+## Troubleshooting
+
+### Page not appearing in sitemap
+
+**Check:**
+
+1. ✅ File exists in `/pages/` directory
+2. ✅ Route is in `pageCategories` object
+3. ✅ Route path matches exactly (include leading `/`)
+4. ✅ Page is not a dynamic route (no `:` in path)
+
+### Blog post not appearing
+
+**Check:**
+
+1. ✅ File is in `/content/blog/` directory
+2. ✅ File has `.md` extension
+3. ✅ Frontmatter includes required fields: `title`, `description`, `date`
+4. ✅ Date format is valid (YYYY-MM-DD)
+
+### Wrong section
+
+**Fix:**
+
+```typescript
+// Check pageCategories value
+const pageCategories: Record<string, 'main' | 'legal'> = {
+    '/my-page': 'main',  // Should be 'main' or 'legal'
+}
+```
+
+## Benefits
+
+### For Developers
+
+- ✅ **Minimal configuration**: Only 1 line per page required
+- ✅ **Type-safe**: TypeScript ensures correctness
+- ✅ **Auto-discovery**: Leverages Nuxt router
+- ✅ **Blog automation**: Zero config for content
+
+### For Users
+
+- ✅ **Always up-to-date**: New pages appear automatically
+- ✅ **Better SEO**: Comprehensive site structure
+- ✅ **Easy navigation**: All content in one place
+
+## Maintenance
+
+### Regular Maintenance
+
+- **None required** for blog posts
+- **Minimal** for new pages (1-3 lines)
+
+### When to Update
+
+- ✅ Adding a new page to `/pages/`
+- ✅ Changing page titles/descriptions
+- ✅ Adding external social links
+- ❌ Adding blog posts (automatic)
+- ❌ Removing pages (automatic detection)
+
+## Quick Reference
+
+```bash
+# New blog post (automatic)
+content/blog/my-post.md
+
+# New page (needs config)
+pages/my-page.vue
+# + Add to pageCategories in pages/sitemap.vue
+```
 
