@@ -32,7 +32,7 @@
             </slot>
 
             <!-- Title -->
-            <h3 class="gradient mb-6 text-3xl md:text-4xl font-bold text-text-primary w-fit">
+            <h3 class="gradient mb-6 text-3xl md:text-4xl font-bold w-fit">
               {{ title }}
             </h3>
 
@@ -56,7 +56,7 @@
 
             <!-- Details List -->
             <div v-if="details && details.length > 0">
-              <h4 class="text-lg font-semibold text-text-primary mb-4 w-fit">{{ detailsTitle }}:</h4>
+              <h4 class="text-lg font-semibold text-accent-2 mb-4 w-fit">{{ detailsTitle }}:</h4>
               <ul class="space-y-3 mb-4">
                 <li
                     v-for="(detail, idx) in details"

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-background-light border-border-light rounded-lg border p-3 md:p-4">
-    <h2 class="mb-3 md:mb-4 text-xs md:text-sm font-bold">Work</h2>
+    <h2 class="gradient mb-3 md:mb-4 text-xs md:text-sm font-bold w-fit">Work</h2>
     <div class="space-y-3 md:space-y-4">
       <div
           v-for="(experience, index) in experiences"
@@ -45,7 +45,7 @@
       ></span>
     </a>
 
-    <!-- Shared Modal -->
+    <!-- Modal -->
     <DetailModal
         :is-open="openModalIndex !== null && currentExperience !== null"
         :icon="currentExperience?.icon || ''"

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-background-light border-border-light rounded-l border p-3 md:p-4">
-    <h2 class="mb-2 md:mb-3 w-fit text-xs md:text-sm font-bold">Stay up to date</h2>
+    <h2 class="gradient mb-2 md:mb-3 w-fit text-xs md:text-sm font-bold">Stay up to date</h2>
     <p class="text-text-secondary mb-3 md:mb-4 w-fit text-justify text-xs leading-relaxed">
       Get notified when I post something, unsubscribe at any moment.
     </p>
@@ -22,3 +22,5 @@
     </form>
   </div>
 </template>
+<script setup lang="ts">
+</script>
