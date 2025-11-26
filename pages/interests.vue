@@ -153,64 +153,23 @@ const quickFacts = [
         </FadeInSection>
       </div>
 
-      <!-- Modal Overlay -->
-      <Teleport to="body">
-        <Transition name="modal">
-          <div
-              v-if="openModalIndex !== null"
-              class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-              @click.self="closeModal"
-          >
-            <div
-                class="modal-card relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border border-border-light bg-background-light-2 p-8 shadow-2xl"
-                @click.stop
-            >
-              <!-- Close Button -->
-              <button
-                  @click="closeModal"
-                  class="absolute top-4 right-4 p-2 rounded-lg hover:bg-background-light transition-colors duration-200"
-                  aria-label="Close modal"
-              >
-                <svg class="w-6 h-6 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-              </button>
-
-              <!-- Modal Content -->
-              <div v-if="currentInterest" class="text-text-primary">
-                <!-- Icon -->
-                <div
-                    class="mb-6 inline-flex items-center justify-center rounded-xl bg-background-light p-4 border border-border-light">
-                  <component :is="currentInterest.icon" class="w-12 h-12 text-text-primary"/>
-                </div>
-
-                <!-- Title -->
-                <h3 class="mb-6 text-3xl md:text-4xl font-bold text-text-primary">
-                  {{ currentInterest.title }}
-                </h3>
-
-                <!-- Original Description -->
-                <p class="text-text-secondary leading-relaxed mb-6 pb-6 border-b border-border-light text-base">
-                  {{ currentInterest.text }}
-                </p>
-
-                <!-- Detailed Information -->
-                <h4 class="text-lg font-semibold text-text-primary mb-4">More Details:</h4>
-                <ul class="space-y-3 mb-4">
-                  <li
-                      v-for="(detail, detailIndex) in currentInterest.details"
-                      :key="detailIndex"
-                      class="flex items-start space-x-3 text-text-secondary text-base"
-                  >
-                    <span class="text-accent mt-1 text-lg font-bold">•</span>
-                    <span class="leading-relaxed flex-1">{{ detail }}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <!-- Modal -->
+      <DetailModal
+          :is-open="openModalIndex !== null && currentInterest !== null"
+          :icon="''"
+          :title="currentInterest?.title || ''"
+          :description="currentInterest?.text"
+          :details="currentInterest?.details"
+          details-title="More Details"
+          @close="closeModal"
+      >
+        <template #icon>
+          <div v-if="currentInterest"
+               class="mb-6 inline-flex items-center justify-center rounded-xl bg-background-light p-4 border border-border-light">
+            <component :is="currentInterest.icon" class="w-12 h-12 text-text-primary"/>
           </div>
-        </Transition>
-      </Teleport>
+        </template>
+      </DetailModal>
 
       <!-- Quick Facts Section -->
       <FadeInSection>
@@ -256,49 +215,3 @@ const quickFacts = [
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Modal animations */
-.modal-enter-active {
-  transition: opacity 0.3s ease;
-}
-
-.modal-leave-active {
-  transition: opacity 0.25s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active .modal-card {
-  animation: modalSpinIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.modal-leave-active .modal-card {
-  animation: modalSpinOut 0.4s cubic-bezier(0.36, 0, 0.66, -0.56);
-}
-
-@keyframes modalSpinIn {
-  0% {
-    transform: scale(0.7) rotateY(-180deg) rotateX(20deg);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1) rotateY(0deg) rotateX(0deg);
-    opacity: 1;
-  }
-}
-
-@keyframes modalSpinOut {
-  0% {
-    transform: scale(1) rotateY(0deg) rotateX(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.7) rotateY(180deg) rotateX(-20deg);
-    opacity: 0;
-  }
-}
-</style>

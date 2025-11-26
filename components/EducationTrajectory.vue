@@ -3,9 +3,10 @@
     <h2 class="mb-3 md:mb-4 text-xs md:text-sm font-bold">Education</h2>
     <div class="space-y-3 md:space-y-4">
       <div
-          v-for="education in educations"
+          v-for="(education, index) in educations"
           :key="education.degree"
-          class="group hover:bg-background-light-2/90 flex items-start gap-2 md:gap-3 rounded-lg p-1.5 md:p-2"
+          class="group hover:bg-background-light-2/90 flex items-start gap-2 md:gap-3 rounded-lg p-1.5 md:p-2 cursor-pointer transition-all duration-200"
+          @click="openModal(index)"
       >
         <div class="flex h-8 w-8 md:h-10 md:w-10 flex-shrink-0 items-center justify-center">
           <img
@@ -14,7 +15,7 @@
               class="border-border-light h-full w-fit rounded-full border bg-white object-contain p-1"
           />
         </div>
-        <div class="flex-grow group-hover:cursor-default">
+        <div class="flex-grow">
           <h3 class="w-fit text-xs md:text-sm font-medium">
             {{ education.degree }}
           </h3>
@@ -30,17 +31,52 @@
         </div>
       </div>
     </div>
+
+    <!-- Shared Modal -->
+    <DetailModal
+        :is-open="openModalIndex !== null && currentEducation !== null"
+        :icon="currentEducation?.icon || ''"
+        :title="currentEducation?.degree || ''"
+        :meta-icon="AcademicCapIcon"
+        :meta-text="currentEducation?.school || ''"
+        :period="currentEducation?.period || ''"
+        :description="currentEducation?.description"
+        :details="currentEducation?.focusAreas"
+        details-title="Focus Areas"
+        @close="closeModal"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+import {AcademicCapIcon} from "@heroicons/vue/24/outline";
+import {computed, ref} from "vue";
+
+const props = defineProps<{
   educations: Array<{
     degree: string;
     school: string;
     period: string;
     icon: string;
+    description?: string;
+    focusAreas?: string[];
   }>;
 }>();
-</script>
 
+const openModalIndex = ref<number | null>(null);
+
+const currentEducation = computed(() => {
+  if (openModalIndex.value !== null) {
+    return props.educations[openModalIndex.value];
+  }
+  return null;
+});
+
+const openModal = (index: number) => {
+  openModalIndex.value = index;
+};
+
+const closeModal = () => {
+  openModalIndex.value = null;
+};
+</script>
