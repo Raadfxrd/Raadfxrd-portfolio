@@ -1,4 +1,4 @@
-# Raadfxrd's Next Gen Portfolio
+# Raadnerd, my next gen portfolio
 
 ![Thumbnail](public/img/portfolio.png)
 
