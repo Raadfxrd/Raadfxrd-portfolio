@@ -2,9 +2,8 @@
 
 ![Thumbnail](public/img/portfolio.png)
 
-This repository contains the source code for Raadnerd. The portfolio is built using **Nuxt 4**, **Vue 3**, and *
-*Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal
-information with stunning 3D visualizations.
+This repository contains the source code for Raadnerd. The portfolio is built using **Nuxt 4**, **Vue 3**, and **Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal information with beautiful
+animations and interactive elements.
 
 ## Table of Contents
 
@@ -24,7 +23,7 @@ information with stunning 3D visualizations.
 **Dynamic GitHub Integration** - Automatically fetches and displays projects from GitHub with READMEs and images  
 **Dark Mode Support** - Seamless theme switching with system preference detection  
 **Blog System** - Content management powered by Nuxt Content  
-**3D Visualizations** - Interactive 3D models using TresJS  
+**Interactive UI** - Engaging animations and modal interactions  
 **Lightning Fast** - Built with Nuxt 4 and Vite for optimal performance  
 **Modern UI** - Tailwind CSS 4 with custom animations and transitions  
 **Fully Responsive** - Mobile-first design approach
@@ -33,12 +32,11 @@ information with stunning 3D visualizations.
 
 - **Framework**: [Nuxt 4](https://nuxt.com/) - Vue 3 meta-framework
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) with Vite plugin
-- **3D Graphics**: [TresJS](https://tresjs.org/) - Vue 3 powered Three.js wrapper
 - **Content**: [Nuxt Content](https://content.nuxt.com/) - File-based CMS
 - **Icons**: [Heroicons Vue](https://heroicons.com/)
 - **Animations**: GSAP & custom CSS animations
 - **Typography**: [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
-- **Post Processing**: [@tresjs/post-processing](https://tresjs.org/guide/post-processing.html)
+- **State Management**: VueUse for composable utilities
 
 ## Recommended IDE Setup
 
@@ -97,6 +95,7 @@ portfolio/
 │       ├── main.css        # Global styles
 │       └── animations.css  # Custom animations
 ├── components/
+│   ├── EducationTrajectory.vue # Education timeline
 │   ├── ExplodingImage.vue     # Interactive image component
 │   ├── FadeInSection.vue      # Scroll animations
 │   ├── Footer.vue             # Site footer
@@ -125,13 +124,14 @@ portfolio/
 ├── pages/
 │   ├── index.vue              # Home page
 │   ├── projects.vue           # Projects (GitHub integration)
-│   ├── interests.vue          # Personal interests
+│   ├── interests.vue          # Personal interests with modal cards
 │   ├── contact.vue            # Contact form
 │   ├── services.vue           # Services offered
 │   ├── privacy.vue            # Privacy policy
 │   ├── terms.vue              # Terms of service
 │   ├── sitemap.vue            # Sitemap
 │   └── blog/
+│       ├── index.vue          # Blog listing
 │       └── [slug].vue         # Dynamic blog post pages
 ├── public/
 │   ├── favicon.ico
@@ -140,9 +140,7 @@ portfolio/
 │   │   └── borys-cv.pdf
 │   ├── fonts/
 │   │   └── Pearl.ttf
-│   ├── img/                   # Images
-│   └── models/                # 3D models
-│       └── ibm_model_m_keyboard/
+│   └── img/                   # Images and thumbnails
 └── server/
     └── tsconfig.json          # Server TypeScript config
 ```
@@ -158,6 +156,15 @@ The projects page automatically fetches repositories from GitHub (`raadfxrd`), e
 - Repository topics, stars, and language
 - Links to live demos and source code
 
+### Interactive Interests Page
+
+Engaging modal-based interface:
+
+- Click-to-reveal interest cards with smooth spinning animations
+- Detailed information displayed in centered modals
+- Heroicons integration for modern iconography
+- Responsive design with backdrop blur effects
+
 ### Responsive Design
 
 Mobile-first approach with breakpoints:
@@ -171,6 +178,7 @@ Mobile-first approach with breakpoints:
 - Intro sequence with fade and scale effects
 - Letter-by-letter text reveal
 - Smooth page transitions
+- Modal spinning animations with 3D transforms
 - Hover effects and micro-interactions
 - Exploding image gallery with satellites
 
@@ -203,15 +211,16 @@ Blog posts written in Markdown with:
 
 ## Credits
 
-- **3D Models**: IBM Model M Keyboard from [Sketchfab](https://sketchfab.com/)
 - **Icons**: [Heroicons](https://heroicons.com/) & [Devicon](https://devicon.dev/)
 - **Framework**: [Nuxt Team](https://nuxt.com/) for the amazing meta-framework
-- **3D Library**: [TresJS Team](https://tresjs.org/) for Vue 3 Three.js integration
 - **Animations**: [GSAP](https://greensock.com/gsap/) for smooth animations
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) for utility-first CSS
+- **Content**: [Nuxt Content](https://content.nuxt.com/) for file-based CMS
 
 ---
 
-**Built with <3 by Borys (Raadfxrd)**
+**Built with ❤️ by Borys (Raadfxrd)**
 
 Check out the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more about the
 framework.
+
