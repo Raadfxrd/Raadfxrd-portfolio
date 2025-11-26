@@ -2,7 +2,7 @@
 
 ![Thumbnail](public/img/portfolio.png)
 
-This repository contains the source code for Raadfxrd's next-generation portfolio. The portfolio is built using **Nuxt 4**, **Vue 3**, and **Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal
+This repository contains the source code for Raadnerd, my next gen portfolio. The portfolio is built using **Nuxt 4**, **Vue 3**, and **Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal
 information with stunning 3D visualizations.
 
 ## Table of Contents
