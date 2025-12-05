@@ -12,17 +12,17 @@
             id="intro-title"
             class="text-text-primary animate-scaleIn text-lg font-bold md:text-2xl"
         >
-          Borys
+          Borys Babas
         </h1>
       </div>
 
       <!-- Hero Section -->
       <section
           v-if="showContent"
-          class="animate-contentEnter flex h-screen w-full flex-col items-center justify-center"
+          class="animate-contentEnter flex h-screen w-full flex-col items-center justify-center px-4"
       >
         <div
-            class="flex w-full max-w-5xl flex-col items-center justify-center gap-12 px-4 md:flex-row md:px-6"
+            class="flex w-full max-w-5xl flex-col items-center justify-center gap-8 md:gap-12 px-4 md:flex-row md:px-6"
         >
           <!-- Portrait -->
           <ExplodingImage
@@ -37,9 +37,9 @@
               alt="Portrait of Borys"
           />
           <!-- Text Section -->
-          <div class="gradient max-w-lg">
+          <div class="gradient max-w-lg text-center md:text-left">
             <h1
-                class="mb-2 flex flex-wrap gap-2 text-base font-bold md:text-3xl"
+                class="mb-2 flex flex-wrap justify-center md:justify-start gap-2 text-xl sm:text-2xl md:text-3xl font-bold"
             >
               <span
                   v-for="(word, wi) in greeting.split(' ')"
@@ -59,7 +59,7 @@
             </h1>
 
             <h1
-                class="animate-textReveal mb-3 text-base font-bold delay-150 md:text-3xl"
+                class="animate-textReveal mb-3 text-xl sm:text-2xl md:text-3xl font-bold delay-150"
             >
               I'm Borys!
             </h1>
@@ -69,20 +69,20 @@
                 'animate-fadeOut': isFadingOut,
                 'animate-fadeIn': !isFadingOut,
               }"
-                class="text-text-secondary mb-2 w-fit text-xs transition-transform duration-500 md:text-sm"
+                class="text-text-secondary mb-2 w-fit mx-auto md:mx-0 text-sm md:text-sm transition-transform duration-500"
             >
               {{ currentTitle }}
             </h3>
 
             <h3
-                class="text-text-primary animate-textReveal mb-4 w-fit text-xs md:text-lg"
+                class="text-text-primary animate-textReveal mb-4 w-fit mx-auto md:mx-0 text-sm md:text-lg"
             >
               Innovating for success.
             </h3>
 
             <!-- Button -->
             <NuxtLink
-                class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative w-fit overflow-hidden rounded-md px-4 py-2 text-xs font-medium shadow-sm transition-all duration-300"
+                class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative w-fit mx-auto md:mx-0 overflow-hidden rounded-md px-4 py-2 text-xs md:text-sm font-medium shadow-sm transition-all duration-300 inline-block"
                 to="/projects"
             >
               <span class="relative z-10">View My Work</span>
@@ -95,12 +95,12 @@
       <!-- Content Section -->
       <div
           v-if="showContent"
-          class="animate-contentEnter container mx-auto mt-12 mb-12 max-w-5xl px-4 md:px-6"
+          class="animate-contentEnter container mx-auto mt-8 md:mt-12 mb-8 md:mb-12 max-w-5xl px-4 md:px-6"
       >
-        <div class="relative flex flex-col items-start gap-8 lg:flex-row">
+        <div class="relative flex flex-col items-start gap-6 md:gap-8 lg:flex-row">
           <!-- Recent Posts Section -->
           <section class="w-full lg:w-3/5">
-            <h1 class="gradient bl-4 ml-4 w-fit text-2xl font-semibold">
+            <h1 class="gradient bl-4 ml-4 w-fit text-xl md:text-2xl font-semibold mb-4">
               Recent Posts
             </h1>
             <div class="space-y-4">
@@ -118,6 +118,7 @@
             <div class="space-y-4">
               <SubscriptionForm/>
               <WorkExperience :experiences="experiences"/>
+              <EducationTrajectory :educations="educations"/>
             </div>
           </aside>
         </div>
@@ -131,6 +132,7 @@ import TechStack from "~/components/TechStack.vue";
 import PostCard from "~/components/PostCard.vue";
 import SubscriptionForm from "~/components/SubscriptionForm.vue";
 import WorkExperience from "~/components/WorkExperience.vue";
+import EducationTrajectory from "~/components/EducationTrajectory.vue";
 import {useIntroSequence} from "~/composables/useIntroSequence";
 import {useRotatingTitles} from "~/composables/useRotatingTitles";
 import {useGreeting} from "~/composables/useGreeting";
@@ -149,24 +151,90 @@ const experiences = [
     company: "IRP/WOSI",
     period: "February 2025 - Now",
     icon: "/img/companies/irp.png",
+    description: "Working with my team on developing an innovative web platform that displays 3D models of houses on the market. The application allows users to explore properties in incredible detail and even visualize their own furniture in the space.",
+    responsibilities: [
+      "Collaborating with the development team on the 3D house visualization platform",
+      "Implementing features for detailed 3D model viewing and interaction",
+      "Developing furniture placement functionality for virtual staging",
+      "Building responsive and performant web applications using modern frameworks",
+      "Contributing to technical discussions and code reviews",
+    ],
   },
   {
     title: "Sales Assistant",
-    company: "Hifi-Klubben",
+    company: "Hifi Klubben",
     period: "March 2024 - Now",
     icon: "/img/companies/hfk.svg",
+    description: "Sales advisor for audio equipment across all budget ranges, from entry-level systems to high-end audiophile setups. Focused on understanding client needs and delivering complete solutions for the best possible audio experience.",
+    responsibilities: [
+      "Advising customers on audio equipment across all price ranges",
+      "Communicating extensively with clients to understand their needs and preferences",
+      "Providing full solutions to audio-related problems and challenges",
+      "Demonstrating products and explaining technical specifications clearly",
+      "Building long-term relationships with audiophile community and clients",
+    ],
   },
   {
     title: "AGF-assistant",
     company: "Albert Heijn",
     period: "September 2023 - March 2024",
     icon: "/img/companies/ah.png",
+    description: "Worked in the fresh produce department ensuring quality and customer satisfaction.",
+    responsibilities: [
+      "Managing fresh produce inventory and displays",
+      "Ensuring product quality and freshness standards",
+      "Assisting customers with product selection",
+      "Maintaining cleanliness and organization of department",
+      "Supporting team operations during peak hours",
+    ],
   },
   {
     title: "Sales Assistant",
     company: "Pull&Bear",
     period: "April 2023 - August 2023",
     icon: "/img/companies/pb.png",
+    description: "Provided customer service and sales support in a fast-paced retail environment.",
+    responsibilities: [
+      "Assisting customers with fashion choices and sizing",
+      "Processing transactions and handling cash operations",
+      "Maintaining store presentation and visual merchandising",
+      "Managing fitting rooms and inventory restocking",
+      "Contributing to sales targets and customer satisfaction",
+      "Keycarrier responsibilities including opening/closing the store and cash handling",
+    ],
+  },
+];
+
+const educations = [
+  {
+    degree: "Software Engineering",
+    school: "Amsterdam University of Applied Sciences",
+    period: "2022 - 2026",
+    icon: "/img/schools/hva.png",
+    description: "Pursuing a Bachelor's degree in Software Engineering, focusing on modern web technologies, software architecture, and user-centered design.",
+    focusAreas: [
+      "Full-stack web development with modern frameworks",
+      "Software architecture and design patterns",
+      "Database design and management",
+      "Agile development methodologies",
+      "User experience and interface design",
+      "DevOps and continuous integration/deployment",
+    ],
+  },
+  {
+    degree: "Dark Tech",
+    school: "Amsterdam University of Applied Sciences",
+    period: "2024 - 2025",
+    icon: "/img/schools/hva.png",
+    description: "Specialized minor program exploring the intersection of technology, ethics, and societal impact of emerging technologies.",
+    focusAreas: [
+      "Ethical implications of emerging technologies",
+      "Privacy and data security considerations",
+      "AI and machine learning ethics",
+      "Critical thinking about technology's role in society",
+      "Responsible innovation and design",
+      "Digital rights and surveillance",
+    ],
   },
 ];
 </script>

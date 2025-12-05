@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-background-light border-border-light rounded-l border p-4">
-    <h2 class="mb-3 w-fit text-sm font-bold">Stay up to date</h2>
-    <p class="text-text-secondary mb-4 w-fit text-justify text-xs leading-3">
+  <div class="bg-background-light border-border-light rounded-l border p-3 md:p-4">
+    <h2 class="gradient mb-2 md:mb-3 w-fit text-xs md:text-sm font-bold">Stay up to date</h2>
+    <p class="text-text-secondary mb-3 md:mb-4 w-fit text-justify text-xs leading-relaxed">
       Get notified when I post something, unsubscribe at any moment.
     </p>
-    <form class="space-y-3">
-      <div class="flex gap-2">
+    <form class="space-y-2 md:space-y-3">
+      <div class="flex flex-col sm:flex-row gap-2">
         <input
             id="email"
             class="bg-background-light border-border-light focus:ring-button-primary flex-1 rounded-md border p-2 text-xs focus:ring-1"
@@ -22,3 +22,5 @@
     </form>
   </div>
 </template>
+<script setup lang="ts">
+</script>

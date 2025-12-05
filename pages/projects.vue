@@ -51,7 +51,6 @@ const fetchGitHubRepos = async () => {
 
     const reposData = await reposResponse.json()
 
-    // Filter out forks and fetch README for each repo
     const publicRepos = reposData.filter((repo: any) => !repo.fork)
 
     repos.value = await Promise.all(
@@ -88,9 +87,32 @@ const fetchGitHubRepos = async () => {
 
               const imageMatch = readme.match(/!\[.*?]\((.*?)\)/i)
               if (imageMatch && imageMatch[1]) {
-                thumbnail = imageMatch[1]
-                if (!thumbnail.startsWith('http')) {
-                  thumbnail = `https://raw.githubusercontent.com/raadfxrd/${repo.name}/main/${thumbnail.replace(/^\.?\//, '')}`
+                let imagePath = imageMatch[1]
+
+                if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+                  thumbnail = imagePath
+                } else {
+                  imagePath = imagePath.replace(/^\.?\//, '')
+
+                  const branch = repo.default_branch || 'main'
+                  thumbnail = `https://raw.githubusercontent.com/raadfxrd/${repo.name}/${branch}/${imagePath}`
+
+                  try {
+                    const imgCheckResponse = await fetch(thumbnail, {method: 'HEAD'})
+                    if (!imgCheckResponse.ok) {
+                      const alternateBranch = branch === 'main' ? 'master' : 'main'
+                      const alternateUrl = `https://raw.githubusercontent.com/raadfxrd/${repo.name}/${alternateBranch}/${imagePath}`
+                      const altCheckResponse = await fetch(alternateUrl, {method: 'HEAD'})
+                      if (altCheckResponse.ok) {
+                        thumbnail = alternateUrl
+                      } else {
+                        thumbnail = ''
+                      }
+                    }
+                  } catch (err) {
+                    console.warn(`Could not verify image for ${repo.name}:`, err)
+                    thumbnail = ''
+                  }
                 }
               }
               const titleMatch = readme.match(/^#+\s+(.+?)$/m)
@@ -186,42 +208,42 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen w-full py-20">
+  <div class="min-h-screen w-full pt-20 md:pt-30 pb-12 md:pb-20">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-      <div class="mb-12">
-        <h1 class="text-text-primary mb-4 text-3xl font-bold md:text-5xl">
+      <div class="mb-8 md:mb-12">
+        <h1 class="gradient mb-3 md:mb-4 text-2xl md:text-3xl lg:text-5xl font-bold w-fit pb-1">
           Projects
         </h1>
-        <p class="text-text-secondary text-base md:text-lg">
+        <p class="text-text-secondary text-sm md:text-base lg:text-lg w-fit">
           Here are some of my recent projects from GitHub
         </p>
       </div>
 
-      <div v-if="loading" class="flex items-center justify-center py-20">
-        <div class="text-text-secondary text-lg">Loading projects...</div>
+      <div v-if="loading" class="flex items-center justify-center py-12 md:py-20">
+        <div class="text-text-secondary text-base md:text-lg">Loading projects...</div>
       </div>
-      <div v-else-if="error" class="flex items-center justify-center py-20">
-        <div class="text-red-500 text-lg">{{ error }}</div>
+      <div v-else-if="error" class="flex items-center justify-center py-12 md:py-20">
+        <div class="text-red-500 text-base md:text-lg">{{ error }}</div>
       </div>
-      <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div v-else class="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <article
             v-for="repo in repos"
             :key="repo.id"
-            class="bg-background-light hover:bg-background-light-2/90 group flex flex-col overflow-hidden rounded-lg transition-all duration-300"
+            class="group bg-background-light hover:bg-background-light-2/90 flex flex-col rounded-lg transition-all duration-300"
         >
           <div
               v-if="repo.thumbnail"
-              class="aspect-video w-full overflow-hidden bg-gray-800"
+              class="aspect-video w-full overflow-hidden rounded-t-lg bg-gray-800"
           >
             <img
                 :src="repo.thumbnail"
                 :alt="`${repo.name} thumbnail`"
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                class="h-full w-full object-cover"
                 @error="(e) => ((e.target as HTMLImageElement).style.display = 'none')"
             />
           </div>
           <div class="flex flex-1 flex-col p-4">
-            <h3 class="text-text-primary mb-2 text-lg font-semibold">
+            <h3 class="text-text-primary mb-2 text-lg font-semibold w-fit">
               {{ parseReadmeText(repo.readmeTitle || repo.name) }}
             </h3>
             <p class="text-text-secondary mb-3 line-clamp-3 text-sm">

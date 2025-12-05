@@ -1,16 +1,16 @@
 <template>
-  <ul class="flex items-center gap-6 text-sm font-medium">
+  <ul class="flex items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm font-medium">
     <li>
       <NuxtLink class="hover:text-text-secondary transition" href="/projects">
         Projects
       </NuxtLink>
     </li>
-    <li>
+    <li class="hidden sm:block">
       <NuxtLink class="hover:text-text-secondary transition" href="/interests">
         Interests
       </NuxtLink>
     </li>
-    <li>
+    <li class="hidden md:block">
       <NuxtLink class="hover:text-text-secondary transition" href="/services">
         Services
       </NuxtLink>
