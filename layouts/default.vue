@@ -71,10 +71,10 @@ const updateCursor = (e: MouseEvent) => {
     ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
     getComputedStyle(target).cursor === "text" ||
     target.closest(
-      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code",
+      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, li",
     ) ||
     target.matches(
-      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article",
+      "h1, h2, h3, h4, h5, h6, p, span, div[contenteditable='true'], pre, code, article, li",
     )
   ) {
     cursorType.value = "text";
