@@ -44,7 +44,7 @@ animations and interactive elements.
 
 This project includes comprehensive setup and developer guides:
 
-### [GitHub Token Setup Guide](GITHUB_TOKEN_SETUP.md)
+### [GitHub Token Setup Guide](docs/GITHUB_TOKEN_SETUP.md)
 
 **Essential for GitHub API integration** - Learn how to create and configure a GitHub Personal Access Token to avoid
 rate limiting when fetching repositories.
@@ -55,7 +55,7 @@ rate limiting when fetching repositories.
 - Rate limits: 60 requests/hour (without token) vs 5,000 requests/hour (with token)
 - Security best practices
 
-### [Sitemap Developer Guide](SITEMAP_GUIDE.md)
+### [Sitemap Developer Guide](docs/SITEMAP_GUIDE.md)
 
 **Complete sitemap system documentation** - Understand how the semi-automatic sitemap works and how to add new pages.
 
