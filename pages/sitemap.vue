@@ -101,7 +101,7 @@ const externalLinks = [
       <div class="mx-auto max-w-5xl">
         <div class="mb-8 md:mb-12">
           <h1
-            class="gradient mb-3 w-fit text-3xl font-bold md:mb-4 md:text-4xl lg:text-5xl"
+            class="gradient w-fit pb-3 text-3xl font-bold md:mb-4 md:text-4xl lg:text-5xl"
           >
             Sitemap
           </h1>
