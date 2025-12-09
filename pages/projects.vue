@@ -366,7 +366,7 @@ const getInitials = (name: string) => {
                 class="mb-3 flex flex-wrap gap-2"
               >
                 <span
-                  v-for="topic in repo.topics.slice(0, 3)"
+                  v-for="topic in repo.topics.slice(0, 6)"
                   :key="topic"
                   class="bg-background-light-2 text-text-secondary rounded-full px-2 py-1 text-[10px] tracking-wide uppercase"
                 >
@@ -407,7 +407,7 @@ const getInitials = (name: string) => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                🔗 Live Demo
+                Live Demo
               </a>
             </div>
           </article>
