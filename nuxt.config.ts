@@ -38,7 +38,7 @@ export default defineNuxtConfig({
 
   colorMode: {
     preference: "system", // default value if no preference is stored
-    fallback: "light", // fallback value if system can't be detected
+    fallback: "dark", // fallback value if system can't be detected
     classSuffix: "", // Important for Tailwind's 'dark' class
     storageKey: "theme", // optional: aligns with your example
   },
