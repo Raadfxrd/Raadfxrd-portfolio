@@ -1,7 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: "2025-12-09",
   devtools: { enabled: true },
 
   app: {
@@ -36,11 +36,18 @@ export default defineNuxtConfig({
 
   modules: ["@nuxtjs/color-mode", "@nuxt/content"],
 
+  content: {
+    experimental: {
+      // @ts-ignore - collections is supported but not in current type definitions
+      collections: true,
+    },
+  },
+
   colorMode: {
     preference: "system", // default value if no preference is stored
     fallback: "dark", // fallback value if system can't be detected
     classSuffix: "", // Important for Tailwind's 'dark' class
-    storageKey: "theme", // optional: aligns with your example
+    storageKey: "theme",
   },
 
   runtimeConfig: {
