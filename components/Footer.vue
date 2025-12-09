@@ -155,7 +155,6 @@ import { DevicePhoneMobileIcon, EnvelopeIcon } from "@heroicons/vue/24/outline";
 
 const { decodeEmail, revealEmail } = useEmailObfuscation();
 
-// Encoded email: borysbabas@pm.me
 const encodedEmail = "Ym9yeXNiYWJhc0BwbS5tZQ==";
 const displayEmail = computed(() => decodeEmail(encodedEmail));
 

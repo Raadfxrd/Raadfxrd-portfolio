@@ -1,83 +1,130 @@
 <template>
   <div class="relative w-full">
-    <section class="container mx-auto min-h-screen px-4 pt-20 md:pt-30 pb-12 md:pb-20 md:px-6">
+    <section
+      class="container mx-auto min-h-screen px-4 pt-20 pb-12 md:px-6 md:pt-30 md:pb-20"
+    >
       <div class="mx-auto max-w-6xl">
         <!-- Header -->
-        <div class="mb-8 md:mb-12 relative">
-          <h1 class="gradient mb-3 pb-1 md:mb-4 text-3xl md:text-4xl lg:text-5xl font-bold w-fit relative z-10">
+        <div class="relative mb-8 md:mb-12">
+          <h1
+            class="gradient relative z-10 mb-3 w-fit pb-1 text-3xl font-bold md:mb-4 md:text-4xl lg:text-5xl"
+          >
             Blog
           </h1>
-          <p class="text-text-secondary text-sm md:text-base lg:text-lg w-fit max-w-2xl relative z-10">
-            My journey through code, design, and everything in between—sharing what I learn along the way
+          <p
+            class="text-text-secondary relative z-10 w-fit max-w-2xl text-sm md:text-base lg:text-lg"
+          >
+            My journey through code, design, and everything in between—sharing
+            what I learn along the way
           </p>
         </div>
 
         <!-- Loading State -->
-        <div v-if="pending" class="flex items-center justify-center py-12 md:py-20">
-          <div class="text-text-secondary text-base md:text-lg">Loading posts...</div>
+        <div
+          v-if="pending"
+          class="flex items-center justify-center py-12 md:py-20"
+        >
+          <div class="text-text-secondary text-base md:text-lg">
+            Loading posts...
+          </div>
         </div>
 
         <!-- Error State -->
-        <div v-else-if="error" class="flex items-center justify-center py-12 md:py-20">
-          <div class="text-red-500 text-base md:text-lg">Failed to load blog posts. Please try again later.</div>
+        <div
+          v-else-if="error"
+          class="flex items-center justify-center py-12 md:py-20"
+        >
+          <div class="text-base text-red-500 md:text-lg">
+            Failed to load blog posts. Please try again later.
+          </div>
         </div>
 
         <!-- Blog Posts Grid -->
-        <div v-else-if="posts && posts.length > 0" class="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-else-if="posts && posts.length > 0"
+          class="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3"
+        >
           <NuxtLink
-              v-for="(post, index) in posts"
-              :key="post.path"
-              :to="post.path"
-              class="bg-background-light hover:bg-background-light-2 border border-transparent hover:border-button-primary group flex flex-col rounded-lg overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1"
+            v-for="(post, index) in posts"
+            :key="post.path"
+            :to="post.path"
+            class="bg-background-light hover:bg-background-light-2 hover:border-button-primary group flex flex-col overflow-hidden rounded-lg border border-transparent shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
             <!-- Header -->
             <div
-                :class="getGradientClass(index)"
-                class="h-32 md:h-40 w-full relative overflow-hidden"
+              :class="getGradientClass(index)"
+              class="relative h-32 w-full overflow-hidden md:h-40"
             >
               <!-- Gradient -->
               <div
-                  class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent group-hover:from-white/20 transition-all duration-500"></div>
+                class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent transition-all duration-500 group-hover:from-white/20"
+              ></div>
 
               <!-- Shapes -->
               <div
-                  class="absolute top-2 right-2 w-16 h-16 rounded-full border-2 border-white/20 group-hover:scale-150 group-hover:rotate-180 transition-all duration-700"></div>
+                class="absolute top-2 right-2 h-16 w-16 rounded-full border-2 border-white/20 transition-all duration-700 group-hover:scale-150 group-hover:rotate-180"
+              ></div>
               <div
-                  class="absolute bottom-3 left-3 w-12 h-12 rounded-full bg-white/10 group-hover:scale-125 transition-all duration-500"></div>
+                class="absolute bottom-3 left-3 h-12 w-12 rounded-full bg-white/10 transition-all duration-500 group-hover:scale-125"
+              ></div>
               <div
-                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 border border-white/10 rotate-45 group-hover:rotate-90 transition-all duration-700"></div>
+                class="absolute top-1/2 left-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-white/10 transition-all duration-700 group-hover:rotate-90"
+              ></div>
             </div>
 
             <!-- Content -->
             <div class="flex flex-1 flex-col p-2 md:p-3">
               <!-- Date -->
-              <div class="flex items-center gap-2 text-text-secondary mb-3 text-xs">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              <div
+                class="text-text-secondary mb-3 flex items-center gap-2 text-xs"
+              >
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
                 </svg>
                 <span>{{ formatDate(post.date) }}</span>
               </div>
 
               <!-- Title -->
-              <h2 class="text-text-secondary group-hover:text-text-primary mb-3 text-lg md:text-xl font-bold transition-colors line-clamp-3">
+              <h2
+                class="text-text-secondary group-hover:text-text-primary mb-3 line-clamp-3 text-lg font-bold transition-colors md:text-xl"
+              >
                 {{ post.title }}
               </h2>
 
               <!-- Description -->
-              <p class="text-text-secondary group-hover:text-text-primary mb-4 text-sm line-clamp-3 transition-colors leading-relaxed">
+              <p
+                class="text-text-secondary group-hover:text-text-primary mb-4 line-clamp-3 text-sm leading-relaxed transition-colors"
+              >
                 {{ post.description }}
               </p>
 
               <!-- Read More -->
               <div
-                  class="mt-auto flex items-center gap-1 text-text-secondary group-hover:text-text-primary text-sm font-semibold transition-all">
-                <span class="relative">
-                  Read More
-                </span>
-                <svg class="w-4 h-4 transition-all group-hover:translate-x-1" fill="none" stroke="currentColor"
-                     viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                class="text-text-secondary group-hover:text-text-primary mt-auto flex items-center gap-1 text-sm font-semibold transition-all"
+              >
+                <span class="relative"> Read More </span>
+                <svg
+                  class="h-4 w-4 transition-all group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
                 </svg>
               </div>
             </div>
@@ -85,9 +132,14 @@
         </div>
 
         <!-- No Posts -->
-        <div v-else class="flex flex-col items-center justify-center py-12 md:py-20">
-          <div class="text-text-secondary text-lg mb-4">No blog posts yet</div>
-          <p class="text-text-secondary text-sm">Check back soon for new content!</p>
+        <div
+          v-else
+          class="flex flex-col items-center justify-center py-12 md:py-20"
+        >
+          <div class="text-text-secondary mb-4 text-lg">No blog posts yet</div>
+          <p class="text-text-secondary text-sm">
+            Check back soon for new content!
+          </p>
         </div>
       </div>
     </section>
@@ -96,37 +148,42 @@
 
 <script lang="ts" setup>
 useSeoMeta({
-  title: 'Blog - Borys',
-  description: 'Read my latest blog posts about software development, design, and technology',
-})
+  title: "Blog - Borys",
+  description:
+    "Read my latest blog posts about software development, design, and technology",
+});
 
 // Fetch all blog posts
-const {data: posts, pending, error} = await useAsyncData('blog-posts', () =>
-    queryCollection('blog').order('date', 'DESC').all()
-)
+const {
+  data: posts,
+  pending,
+  error,
+} = await useAsyncData("blog-posts", () =>
+  queryCollection("blog").order("date", "DESC").all(),
+);
 
 // Format date helper
 const formatDate = (date: string) => {
-  if (!date) return ''
-  return new Intl.DateTimeFormat('en-NL', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(date))
-}
+  if (!date) return "";
+  return new Intl.DateTimeFormat("en-NL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(date));
+};
 
 // Get dynamic gradient class based on index for variety
 const getGradientClass = (index: number) => {
   const gradients = [
-    'bg-gradient-to-br from-blue-400 via-blue-300 to-purple-400',
-    'bg-gradient-to-br from-purple-400 via-pink-300 to-red-400',
-    'bg-gradient-to-br from-green-400 via-teal-300 to-blue-400',
-    'bg-gradient-to-br from-orange-400 via-red-300 to-pink-400',
-    'bg-gradient-to-br from-cyan-400 via-blue-300 to-indigo-400',
-    'bg-gradient-to-br from-rose-400 via-pink-300 to-purple-400',
-  ]
-  return gradients[index % gradients.length]
-}
+    "bg-gradient-to-br from-blue-400 via-blue-300 to-purple-400",
+    "bg-gradient-to-br from-purple-400 via-pink-300 to-red-400",
+    "bg-gradient-to-br from-green-400 via-teal-300 to-blue-400",
+    "bg-gradient-to-br from-orange-400 via-red-300 to-pink-400",
+    "bg-gradient-to-br from-cyan-400 via-blue-300 to-indigo-400",
+    "bg-gradient-to-br from-rose-400 via-pink-300 to-purple-400",
+  ];
+  return gradients[index % gradients.length];
+};
 </script>
 
 <style scoped>
