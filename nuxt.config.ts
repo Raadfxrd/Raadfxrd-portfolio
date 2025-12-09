@@ -36,6 +36,15 @@ export default defineNuxtConfig({
 
   modules: ["@nuxtjs/color-mode", "@nuxt/content"],
 
+  imports: {
+    imports: [
+      {
+        from: "@nuxt/content",
+        name: "queryCollection",
+      },
+    ],
+  },
+
   content: {
     experimental: {
       // @ts-expect-error - collections is experimental but supported
