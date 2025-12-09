@@ -11,7 +11,7 @@
       <div
         v-if="isBlogPage"
         :style="{ width: scrollProgress + '%' }"
-        class="fixed top-0 left-0 z-50 h-1 bg-gradient-to-r from-blue-300 to-red-200 transition-all duration-150"
+        class="fixed top-0 left-0 z-50 h-1 bg-linear-to-r from-blue-300 to-red-200 transition-all duration-150"
       />
       <div
         ref="scrollContainer"

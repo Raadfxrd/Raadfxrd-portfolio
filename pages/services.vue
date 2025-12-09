@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { CommandLineIcon, ComputerDesktopIcon } from "@heroicons/vue/24/outline";
+import {
+  CommandLineIcon,
+  ComputerDesktopIcon,
+} from "@heroicons/vue/24/outline";
 import { computed, ref } from "vue";
 
 useSeoMeta({
@@ -203,7 +206,7 @@ const closeModal = () => {
       <div class="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
         <FadeInSection v-for="(service, index) in services" :key="index">
           <div
-            class="group border-border-light bg-background-light-2 hover:border-accent relative h-full cursor-pointer overflow-hidden rounded-2xl border p-6 shadow-lg transition-all duration-300 hover:shadow-2xl md:p-8"
+            class="group border-border-light bg-background-light-2 relative h-full cursor-pointer overflow-hidden rounded-2xl border p-6 shadow-lg transition-all duration-300 hover:shadow-2xl md:p-8"
             @click="openModal(index)"
           >
             <!-- Icon & Emoji -->
@@ -430,7 +433,7 @@ const closeModal = () => {
               Let's discuss your needs and create something amazing together.
             </p>
             <NuxtLink
-              class="border-text-primary bg-background-light text-text-primary hover:bg-text-primary hover:text-background-light inline-block transform rounded-xl border-2 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              class="border-text-primary bg-background-light text-text-primary hover:bg-text-primary hover:text-background-light inline-block rounded-xl border-2 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:shadow-lg"
               to="/contact"
             >
               Get in Touch
