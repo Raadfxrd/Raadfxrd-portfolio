@@ -72,8 +72,8 @@ jobs:
       - name: Install dependencies
         run: |
           if [ "${{ steps.detect-package-manager.outputs.manager }}" = "npm" ]; then
-            # Clean install from package-lock.json
-            npm ci
+            # Clean install from package-lock.json with legacy peer deps handling
+            npm ci --legacy-peer-deps
           else
             yarn install
           fi

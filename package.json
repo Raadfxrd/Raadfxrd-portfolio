@@ -34,6 +34,10 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "vite": "^6.4.1"
   },
+  "overrides": {
+    "commander": "^13.1.0",
+    "picomatch": "^4.0.3"
+  },
   "prettier": {
     "plugins": [
       "prettier-plugin-tailwindcss"
