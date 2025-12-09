@@ -38,7 +38,7 @@ export default defineNuxtConfig({
 
   content: {
     experimental: {
-      // @ts-ignore - collections is supported but not in current type definitions
+      // @ts-expect-error - collections is experimental but supported
       collections: true,
     },
   },
