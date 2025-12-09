@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ArrowTopRightOnSquareIcon } from "@heroicons/vue/24/outline";
-import { queryCollection } from "#imports";
 
 useSeoMeta({
   title: "Sitemap - Borys",

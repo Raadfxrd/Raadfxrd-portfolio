@@ -152,7 +152,6 @@
 
 <script lang="ts" setup>
 import { DevicePhoneMobileIcon, EnvelopeIcon } from "@heroicons/vue/24/outline";
-import { queryCollection } from "#imports";
 
 const { decodeEmail, revealEmail } = useEmailObfuscation();
 
