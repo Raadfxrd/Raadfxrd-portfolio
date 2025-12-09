@@ -45,7 +45,6 @@
 import NavLinks from "./NavLinks.vue";
 import { useNavbarVisibility } from "~/composables/useNavbarVisibility";
 import { ComputerDesktopIcon, MoonIcon, SunIcon } from "@heroicons/vue/24/outline";
-import { useColorMode } from "@nuxtjs/color-mode/dist/runtime/composables.d.ts";
 import { computed } from "vue";
 
 const { isNavbarVisible, isAnimationComplete } = useNavbarVisibility();
