@@ -64,7 +64,6 @@ jobs:
         with:
           path: |
             .output
-            .nuxt
             node_modules
           key: ${{ runner.os }}-nuxt-build-${{ hashFiles('package-lock.json') }}
           restore-keys: |
@@ -77,6 +76,8 @@ jobs:
           else
             yarn install
           fi
+      - name: Prepare Nuxt
+        run: ${{ steps.detect-package-manager.outputs.manager }} run postinstall
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
         env:
