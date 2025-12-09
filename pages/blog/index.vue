@@ -147,6 +147,8 @@
 </template>
 
 <script lang="ts" setup>
+import { queryCollection } from "#imports";
+
 useSeoMeta({
   title: "Blog - Borys",
   description:

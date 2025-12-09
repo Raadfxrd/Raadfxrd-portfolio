@@ -140,6 +140,7 @@ import EducationTrajectory from "~/components/EducationTrajectory.vue";
 import { useIntroSequence } from "~/composables/useIntroSequence";
 import { useRotatingTitles } from "~/composables/useRotatingTitles";
 import { useGreeting } from "~/composables/useGreeting";
+import { queryCollection } from "#imports";
 
 const { greeting } = useGreeting();
 const { currentTitle, isFadingOut } = useRotatingTitles();

@@ -3,6 +3,7 @@ import { watch } from "vue";
 import { useRoute } from "vue-router";
 import { useAsyncData } from "#app";
 import { ChevronLeftIcon } from "@heroicons/vue/24/outline";
+import { queryCollection } from "#imports";
 
 const route = useRoute();
 const slug = route.params.slug;
