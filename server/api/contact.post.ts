@@ -80,7 +80,7 @@ export default defineEventHandler(async (event) => {
     // In development with Mailpit, use these settings
     // In production, configure real email service
     const transporter = nodemailer.createTransport({
-      host: isDevelopment ? "localhost" : process.env.SMTP_HOST || "localhost",
+      host: isDevelopment ? "127.0.0.1" : process.env.SMTP_HOST || "127.0.0.1",
       port: isDevelopment ? 2525 : parseInt(process.env.SMTP_PORT || "587"),
       secure: isDevelopment ? false : process.env.SMTP_SECURE === "true",
       auth: isDevelopment
