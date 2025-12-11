@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
-import { users } from "../server/database/schema.js";
+import { users } from "~/server/database/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
@@ -9,9 +9,22 @@ async function hashPassword(password: string): Promise<string> {
 }
 
 async function createAdminUser() {
-  const username = "admin";
-  const password = "admin123"; // Change this!
-  const email = "borysbabas@pm.me";
+  const username = process.env.ADMIN_USERNAME || "admin";
+  const password = process.env.ADMIN_PASSWORD || "admin123";
+  const email = process.env.ADMIN_EMAIL || "borysbabas@pm.me";
+
+  if (
+    !process.env.ADMIN_USERNAME ||
+    !process.env.ADMIN_PASSWORD ||
+    !process.env.ADMIN_EMAIL
+  ) {
+    console.warn(
+      "⚠️  Warning: Admin credentials not found in .env file. Using default values.",
+    );
+    console.warn(
+      "⚠️  Please set ADMIN_USERNAME, ADMIN_PASSWORD, and ADMIN_EMAIL in your .env file.",
+    );
+  }
 
   // MySQL Connection
   const connection = await mysql.createConnection({
