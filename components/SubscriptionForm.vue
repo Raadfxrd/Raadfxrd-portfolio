@@ -76,10 +76,22 @@
 import { AnimatePresence, Motion } from "motion-v";
 
 const { subscribed, loading, error, message, subscribe } = useNewsletter();
+const { executeRecaptcha } = useRecaptcha();
 const email = ref("");
 
 const handleSubmit = async () => {
-  const success = await subscribe(email.value);
+  // Try to get reCAPTCHA v3 token
+  let recaptchaToken = "";
+
+  try {
+    recaptchaToken = await executeRecaptcha("subscribe_newsletter");
+  } catch (recaptchaError) {
+    // Log the error but don't block submission in development
+    console.warn("reCAPTCHA verification skipped:", recaptchaError);
+    // The backend will handle missing tokens appropriately based on environment
+  }
+
+  const success = await subscribe(email.value, recaptchaToken);
   if (success) {
     email.value = "";
   }
