@@ -266,6 +266,7 @@ Blog posts written in Markdown with:
 
 - `npm install` - Install project dependencies
 - `./dev-test.sh` - Start development environment with Mailpit for email testing (recommended)
+- `./prod-test.sh` or `npm run dev:prod` - Start with production config (Supabase + Resend)
 - `npm run dev` - Start development server with hot-reload only
 - `npm run build` - Build for production
 - `npm run generate` - Generate static site

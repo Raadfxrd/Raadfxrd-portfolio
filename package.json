@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:prod": "./prod-test.sh",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -18,6 +19,8 @@
     "db:migration:admin": "tsx scripts/create-admin-migration.ts",
     "db:migration:apply": "tsx scripts/apply-admin-migration.ts",
     "db:migration:admin:full": "npm run db:migration:admin && npm run db:migration:apply",
+    "db:fix-sequences": "tsx scripts/fix-sequences.ts",
+    "test:resend": "tsx scripts/test-resend.ts",
     "supabase:init": "tsx scripts/init-supabase.ts"
   },
   "dependencies": {

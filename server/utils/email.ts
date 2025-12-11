@@ -92,29 +92,45 @@ export async function sendEmail(options: {
   subject: string;
   html: string;
   text: string;
+  replyTo?: string;
 }) {
   const useResend = process.env.USE_RESEND === "true";
   const isDevelopment = process.env.NODE_ENV === "development";
   const fromEmail = process.env.SMTP_FROM || "noreply@borysbabas.dev";
 
-  if (useResend && !isDevelopment) {
-    // Use Resend for production
+  // Use Resend if explicitly enabled (even in development for testing)
+  if (useResend) {
+    // Use Resend for production or when explicitly enabled
     const resend = getResendClient();
 
+    console.log("📧 Sending email via Resend...");
+    console.log(`   From: ${fromEmail}`);
+    console.log(`   To: ${options.to}`);
+    console.log(`   Subject: ${options.subject}`);
+    if (options.replyTo) {
+      console.log(`   Reply-To: ${options.replyTo}`);
+    }
+
     try {
-      await resend.emails.send({
+      const result = await resend.emails.send({
         from: fromEmail,
         to: options.to,
         subject: options.subject,
         html: options.html,
         text: options.text,
+        replyTo: options.replyTo,
       });
+
+      console.log("✅ Email sent successfully via Resend!");
+      console.log(`   Response:`, result);
+      return result;
     } catch (error) {
-      console.error("Failed to send email via Resend:", error);
+      console.error("❌ Failed to send email via Resend:", error);
       throw error;
     }
   } else {
     // Use nodemailer for development (Mailpit)
+    console.log("📧 Sending email via Mailpit/SMTP...");
     const transporter = getEmailTransporter();
 
     await transporter.sendMail({
@@ -123,6 +139,9 @@ export async function sendEmail(options: {
       subject: options.subject,
       html: options.html,
       text: options.text,
+      replyTo: options.replyTo,
     });
+
+    console.log("✅ Email sent successfully via SMTP!");
   }
 }
