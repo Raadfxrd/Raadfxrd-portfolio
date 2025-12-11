@@ -84,11 +84,13 @@
 
             <!-- Button -->
             <NuxtLink
-              class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative mx-auto inline-block w-fit overflow-hidden rounded-md px-4 py-2 text-xs font-medium shadow-sm transition-all duration-300 md:mx-0 md:text-sm"
+              class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative mx-auto flex w-fit items-center justify-center gap-4 overflow-hidden rounded-md px-4 py-2 text-xs font-medium shadow-sm transition-all duration-300 md:mx-0 md:text-sm"
               to="/projects"
             >
-              <span class="text-[12px]">View my work</span>
-              <span class="text-base leading-none">→</span>
+              <span>View my work</span>
+              <ArrowRightIcon
+                class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+              />
             </NuxtLink>
           </div>
         </div>
@@ -145,6 +147,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ArrowRightIcon } from "@heroicons/vue/24/outline";
 import TechStack from "~/components/TechStack.vue";
 import PostCard from "~/components/PostCard.vue";
 import SubscriptionForm from "~/components/SubscriptionForm.vue";

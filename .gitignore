@@ -23,5 +23,8 @@ logs
 .env.*
 !.env.example
 
+# Generated admin migration (contains usernames/emails)
+server/database/migrations/0001_admin_user.sql
+
 # Local mail storage (development)
 .local-mails/

@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { sendEmail } from "~/server/utils/email";
 import { verifyRecaptcha } from "~/server/utils/recaptcha";
 
 interface ContactFormBody {
@@ -64,38 +64,17 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    // Configure email transporter
-    // In development with Mailpit, use these settings
-    // In production, configure real email service
-    const transporter = nodemailer.createTransport({
-      host: isDevelopment ? "127.0.0.1" : process.env.SMTP_HOST || "127.0.0.1",
-      port: isDevelopment ? 2525 : parseInt(process.env.SMTP_PORT || "587"),
-      secure: isDevelopment ? false : process.env.SMTP_SECURE === "true",
-      auth: isDevelopment
-        ? undefined
-        : {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-          },
-    });
-
-    // Send email
-    const mailOptions = {
-      from: isDevelopment
-        ? "noreply@localhost"
-        : process.env.SMTP_FROM || email,
-      to: isDevelopment
-        ? "contact@localhost"
-        : process.env.CONTACT_EMAIL || "borysbabas@pm.me",
-      replyTo: email,
-      subject: `Contact request: ${name}`,
-      text: `
+    // Prepare email content
+    const contactEmail = process.env.CONTACT_EMAIL || "borysbabas@pm.me";
+    const subject = `Contact request: ${name}`;
+    const text = `
 Name: ${name}
 Email: ${email}
 Message:
 ${message}
-      `.trim(),
-      html: `
+      `.trim();
+
+    const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -243,28 +222,23 @@ ${message}
   </div>
 </body>
 </html>
-      `.trim(),
-    };
+      `.trim();
 
+    // Send email using utility function (respects USE_RESEND flag)
     try {
-      await transporter.sendMail(mailOptions);
+      await sendEmail({
+        to: contactEmail,
+        subject,
+        html,
+        text,
+        replyTo: email,
+      });
       console.log("✅ Contact email sent");
     } catch (emailError: any) {
-      // Log and don't fail the request — in development it's common for Mailpit/MailHog
-      // to be not running which results in ECONNREFUSED. We still want the API to
-      // respond successfully if verification passed.
-      // If this is a connection refused error in development, avoid printing the
-      // full stack trace. Save the email locally so developers can inspect it.
-      const isConnRefused =
-        emailError &&
-        (emailError.code === "ECONNREFUSED" || emailError.errno === -61);
+      console.error("Failed to send contact email:", emailError);
 
-      if (isDevelopment && isConnRefused) {
-        console.warn(
-          `Mail server not reachable at localhost:2525. Email saved to .local-mails/ folder.`,
-        );
-        console.warn(`Start Mailpit with: npm run mailpit`);
-
+      // In development, save email locally if sending fails
+      if (isDevelopment) {
         try {
           const fs = await import("fs/promises");
           const path = await import("path");
@@ -275,11 +249,11 @@ ${message}
             filename,
             JSON.stringify(
               {
-                from: mailOptions.from,
-                to: mailOptions.to,
-                replyTo: mailOptions.replyTo,
-                subject: mailOptions.subject,
-                text: mailOptions.text,
+                to: contactEmail,
+                replyTo: email,
+                subject,
+                text,
+                html,
                 timestamp: new Date().toISOString(),
               },
               null,
@@ -290,8 +264,6 @@ ${message}
         } catch (persistErr) {
           console.error("Failed to persist unsent email locally:", persistErr);
         }
-      } else {
-        console.error("Failed to send contact email:", emailError);
       }
     }
 
