@@ -4,7 +4,7 @@ export const useNewsletter = () => {
   const error = ref("");
   const message = ref("");
 
-  const subscribe = async (email: string) => {
+  const subscribe = async (email: string, recaptchaToken?: string) => {
     loading.value = true;
     error.value = "";
     message.value = "";
@@ -12,7 +12,10 @@ export const useNewsletter = () => {
     try {
       const response = await $fetch("/api/newsletter/subscribe", {
         method: "POST",
-        body: { email },
+        body: {
+          email,
+          recaptchaToken,
+        },
       });
 
       subscribed.value = true;
