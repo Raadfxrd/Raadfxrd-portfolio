@@ -45,23 +45,11 @@ export default defineEventHandler(async (event) => {
 
     if (recaptchaToken) {
       // Only verify if we have a token
-      try {
-        await verifyRecaptcha({
-          token: recaptchaToken,
-          minScore: 0.5, // Require at least 0.5 score for contact form
-          expectedAction: "submit_contact", // Verify the action matches
-        });
-      } catch (verifyError) {
-        // In development or with SKIP_RECAPTCHA, log but don't fail
-        if (isDevelopment || shouldSkipRecaptcha) {
-          console.warn(
-            "⚠️  reCAPTCHA verification failed, but continuing in development mode",
-          );
-        } else {
-          // In production, rethrow the error
-          throw verifyError;
-        }
-      }
+      await verifyRecaptcha({
+        token: recaptchaToken,
+        minScore: 0.5, // Require at least 0.5 score for contact form
+        expectedAction: "submit_contact", // Verify the action matches
+      });
     } else {
       // No token provided
       if (!isDevelopment && !shouldSkipRecaptcha) {

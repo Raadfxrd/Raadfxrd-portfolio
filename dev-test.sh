@@ -76,7 +76,8 @@ echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━�
 echo
 
 # Set environment variable to skip reCAPTCHA in development (optional)
-export SKIP_RECAPTCHA=true
+# Set to false to test reCAPTCHA validation
+export SKIP_RECAPTCHA=false
 
 # Start Nuxt dev server
 npm run dev
