@@ -62,6 +62,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Private keys (server-side only)
     recaptchaSecretKey: process.env.NUXT_RECAPTCHA_SECRET_KEY || "",
+    jwtSecret:
+      process.env.JWT_SECRET ||
+      "your-super-secret-jwt-key-change-this-in-production",
 
     // Public keys (exposed to client)
     public: {

@@ -37,15 +37,16 @@ const fetchGitHubRepos = async () => {
       loadingTimeout.value = null;
     }
 
+    // Prepare headers with GitHub token
+    const headers: HeadersInit = {};
+    if (config.public.githubToken) {
+      headers.Authorization = `token ${config.public.githubToken}`;
+      headers.Accept = "application/vnd.github.v3+json";
+    }
+
     const reposResponse = await fetch(
       "https://api.github.com/users/raadfxrd/repos?sort=updated&per_page=20",
-      {
-        headers: config.public.githubToken
-          ? {
-              Authorization: `Bearer ${config.public.githubToken}`,
-            }
-          : {},
-      },
+      { headers },
     );
 
     if (!reposResponse.ok) {
@@ -78,18 +79,17 @@ const fetchGitHubRepos = async () => {
     repos.value = await Promise.all(
       publicRepos.map(async (repo: any) => {
         try {
+          // Prepare headers for README request
+          const readmeHeaders: HeadersInit = {
+            Accept: "application/vnd.github.v3.raw",
+          };
+          if (config.public.githubToken) {
+            readmeHeaders.Authorization = `token ${config.public.githubToken}`;
+          }
+
           const readmeResponse = await fetch(
             `https://api.github.com/repos/raadfxrd/${repo.name}/readme`,
-            {
-              headers: config.public.githubToken
-                ? {
-                    Accept: "application/vnd.github.v3.raw",
-                    Authorization: `Bearer ${config.public.githubToken}`,
-                  }
-                : {
-                    Accept: "application/vnd.github.v3.raw",
-                  },
-            },
+            { headers: readmeHeaders },
           );
 
           let readme = "";

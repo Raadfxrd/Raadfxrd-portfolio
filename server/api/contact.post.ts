@@ -1,16 +1,11 @@
 import nodemailer from "nodemailer";
+import { verifyRecaptcha } from "~/server/utils/recaptcha";
 
 interface ContactFormBody {
   name: string;
   email: string;
   message: string;
   recaptchaToken?: string;
-}
-
-interface RecaptchaResponse {
-  success: boolean;
-  score: number;
-  "error-codes"?: string[];
 }
 
 export default defineEventHandler(async (event) => {
@@ -44,80 +39,27 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Get environment variables
-    const config = useRuntimeConfig();
-    const recaptchaSecretKey = config.recaptchaSecretKey;
+    // Verify reCAPTCHA token
     const isDevelopment = process.env.NODE_ENV === "development";
-
-    // Debug logging
-    console.log("🔍 reCAPTCHA Debug Info:");
-    console.log("  - SKIP_RECAPTCHA env:", process.env.SKIP_RECAPTCHA);
-    console.log("  - Has token:", !!recaptchaToken);
-    console.log("  - Has secret key:", !!recaptchaSecretKey);
-    console.log("  - Is development:", isDevelopment);
-
-    // Verify reCAPTCHA token (skip in development if SKIP_RECAPTCHA is set to "true")
     const shouldSkipRecaptcha = process.env.SKIP_RECAPTCHA === "true";
-    console.log("  - Should skip:", shouldSkipRecaptcha);
 
-    if (recaptchaToken && recaptchaSecretKey && !shouldSkipRecaptcha) {
-      try {
-        console.log("🔐 Verifying reCAPTCHA token...");
-        const verifyUrl = "https://www.google.com/recaptcha/api/siteverify";
-        const verifyResponse = await $fetch<RecaptchaResponse>(verifyUrl, {
-          method: "POST",
-          body: new URLSearchParams({
-            secret: recaptchaSecretKey,
-            response: recaptchaToken,
-          }),
-        });
-
-        console.log("reCAPTCHA verification result:", verifyResponse);
-
-        if (!verifyResponse.success) {
-          console.error(
-            "❌ reCAPTCHA verification failed:",
-            verifyResponse["error-codes"],
-          );
-
-          // Provide more helpful error messages
-          const errorCodes = verifyResponse["error-codes"] || [];
-          if (errorCodes.includes("invalid-input-secret")) {
-            console.error(
-              "💡 Your NUXT_RECAPTCHA_SECRET_KEY is invalid. Get the correct key from https://www.google.com/recaptcha/admin",
-            );
-          } else if (errorCodes.includes("invalid-input-response")) {
-            console.error(
-              "💡 The reCAPTCHA token is invalid, expired, or doesn't match your site key",
-            );
-          } else if (errorCodes.includes("missing-input-secret")) {
-            console.error(
-              "💡 NUXT_RECAPTCHA_SECRET_KEY is not set in your .env file",
-            );
-          } else if (errorCodes.includes("missing-input-response")) {
-            console.error("💡 No reCAPTCHA token was provided");
-          }
-
-          throw createError({
-            status: 400,
-            message: "reCAPTCHA verification failed",
-          });
-        }
-      } catch (error) {
-        console.error("❌ reCAPTCHA verification error:", error);
-        throw createError({
-          status: 500,
-          message: "Failed to verify reCAPTCHA",
-        });
-      }
+    if (recaptchaToken) {
+      // Only verify if we have a token
+      await verifyRecaptcha({
+        token: recaptchaToken,
+        minScore: 0.5, // Require at least 0.5 score for contact form
+        expectedAction: "submit_contact", // Verify the action matches
+      });
     } else {
-      if (shouldSkipRecaptcha) {
-        console.log(
-          "⚠️  Skipping reCAPTCHA verification (SKIP_RECAPTCHA=true)",
-        );
+      // No token provided
+      if (!isDevelopment && !shouldSkipRecaptcha) {
+        throw createError({
+          status: 400,
+          message: "reCAPTCHA token is required",
+        });
       } else {
         console.log(
-          "⚠️  Skipping reCAPTCHA verification (no token or secret key)",
+          "ℹ️  reCAPTCHA verification skipped (development mode or SKIP_RECAPTCHA=true)",
         );
       }
     }
@@ -126,7 +68,7 @@ export default defineEventHandler(async (event) => {
     // In development with Mailpit, use these settings
     // In production, configure real email service
     const transporter = nodemailer.createTransport({
-      host: isDevelopment ? "localhost" : process.env.SMTP_HOST || "localhost",
+      host: isDevelopment ? "127.0.0.1" : process.env.SMTP_HOST || "127.0.0.1",
       port: isDevelopment ? 2525 : parseInt(process.env.SMTP_PORT || "587"),
       secure: isDevelopment ? false : process.env.SMTP_SECURE === "true",
       auth: isDevelopment
@@ -304,7 +246,54 @@ ${message}
       `.trim(),
     };
 
-    await transporter.sendMail(mailOptions);
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("✅ Contact email sent");
+    } catch (emailError: any) {
+      // Log and don't fail the request — in development it's common for Mailpit/MailHog
+      // to be not running which results in ECONNREFUSED. We still want the API to
+      // respond successfully if verification passed.
+      // If this is a connection refused error in development, avoid printing the
+      // full stack trace. Save the email locally so developers can inspect it.
+      const isConnRefused =
+        emailError &&
+        (emailError.code === "ECONNREFUSED" || emailError.errno === -61);
+
+      if (isDevelopment && isConnRefused) {
+        console.warn(
+          `Mail server not reachable at localhost:2525. Email saved to .local-mails/ folder.`,
+        );
+        console.warn(`Start Mailpit with: npm run mailpit`);
+
+        try {
+          const fs = await import("fs/promises");
+          const path = await import("path");
+          const outDir = path.resolve(process.cwd(), ".local-mails");
+          await fs.mkdir(outDir, { recursive: true });
+          const filename = path.join(outDir, `${Date.now()}-contact.json`);
+          await fs.writeFile(
+            filename,
+            JSON.stringify(
+              {
+                from: mailOptions.from,
+                to: mailOptions.to,
+                replyTo: mailOptions.replyTo,
+                subject: mailOptions.subject,
+                text: mailOptions.text,
+                timestamp: new Date().toISOString(),
+              },
+              null,
+              2,
+            ),
+          );
+          console.log(`   📧 Saved to: ${path.basename(filename)}`);
+        } catch (persistErr) {
+          console.error("Failed to persist unsent email locally:", persistErr);
+        }
+      } else {
+        console.error("Failed to send contact email:", emailError);
+      }
+    }
 
     return {
       success: true,

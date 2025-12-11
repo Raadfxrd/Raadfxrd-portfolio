@@ -26,24 +26,30 @@
           class="bg-background-light border-border-light rounded-lg border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8"
         >
           <!-- Success Message -->
-          <div
+          <Motion
             v-if="formState.submitted && !formState.error"
+            :animate="{ opacity: 1, y: 0, scale: 1 }"
+            :exit="{ opacity: 0, y: 10, scale: 0.98 }"
+            :initial="{ opacity: 0, y: 10, scale: 0.98 }"
             class="mb-6 rounded-lg border border-green-500/30 bg-green-500/10 p-4"
           >
             <p class="text-sm text-green-600 md:text-base dark:text-green-400">
               ✓ Message sent successfully! I'll get back to you soon.
             </p>
-          </div>
+          </Motion>
 
           <!-- Error Message -->
-          <div
+          <Motion
             v-if="formState.error"
+            :animate="{ opacity: 1, y: 0, scale: 1 }"
+            :exit="{ opacity: 0, y: 10, scale: 0.98 }"
+            :initial="{ opacity: 0, y: 10, scale: 0.98 }"
             class="mb-6 rounded-lg border border-red-500/30 bg-red-500/10 p-4"
           >
             <p class="text-sm text-red-600 md:text-base dark:text-red-400">
               {{ formState.errorMessage }}
             </p>
-          </div>
+          </Motion>
 
           <form class="space-y-5" @submit.prevent="handleSubmit">
             <div class="group">
@@ -103,11 +109,6 @@
               ></textarea>
             </div>
 
-            <!-- reCAPTCHA v2 Checkbox -->
-            <div class="flex justify-center">
-              <div ref="recaptchaContainer" class="g-recaptcha"></div>
-            </div>
-
             <button
               :disabled="formState.submitting"
               class="bg-button-primary text-text-primary hover:bg-background-light-2 hover:border-button-primary group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg border border-transparent py-3 text-sm font-semibold shadow-sm transition-all duration-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 md:py-4 md:text-base"
@@ -115,20 +116,10 @@
             >
               <span v-if="!formState.submitting">Send Message</span>
               <span v-else>Sending...</span>
-              <svg
+              <ArrowRightIcon
                 v-if="!formState.submitting"
                 class="h-4 w-4 transition-transform group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                />
-              </svg>
+              />
             </button>
 
             <!-- reCAPTCHA Badge Notice -->
@@ -222,13 +213,8 @@
 </template>
 
 <script lang="ts" setup>
-// Get reCAPTCHA site key from runtime config
-const config = useRuntimeConfig();
-const siteKey = config.public.recaptchaSiteKey as string;
-
-// Template refs
-const recaptchaContainer = ref<HTMLElement | null>(null);
-let recaptchaWidgetId: number | null = null;
+import { Motion } from "motion-v";
+import { ArrowRightIcon } from "@heroicons/vue/24/outline";
 
 const formData = reactive({
   name: "",
@@ -243,68 +229,8 @@ const formState = reactive({
   errorMessage: "",
 });
 
-// Load reCAPTCHA v2 script
-const loadRecaptcha = () => {
-  return new Promise<void>((resolve, reject) => {
-    if (typeof window === "undefined") {
-      reject(new Error("Window is not defined"));
-      return;
-    }
-
-    // Check if already loaded
-    if (window.grecaptcha) {
-      resolve();
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
-    script.async = true;
-    script.defer = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("Failed to load reCAPTCHA"));
-    document.head.appendChild(script);
-  });
-};
-
-// Initialize reCAPTCHA v2 widget
-const initRecaptcha = async () => {
-  try {
-    await loadRecaptcha();
-
-    if (!recaptchaContainer.value) {
-      console.error("reCAPTCHA container not found");
-      return;
-    }
-
-    // Wait for grecaptcha.render to be available
-    const waitForRender = () => {
-      return new Promise<void>((resolve) => {
-        const check = () => {
-          if (
-            window.grecaptcha &&
-            typeof window.grecaptcha.render === "function"
-          ) {
-            resolve();
-          } else {
-            setTimeout(check, 100);
-          }
-        };
-        check();
-      });
-    };
-
-    await waitForRender();
-
-    recaptchaWidgetId = window.grecaptcha.render(recaptchaContainer.value, {
-      sitekey: siteKey,
-      theme: "light",
-      size: "normal",
-    });
-  } catch (error) {
-    console.error("Failed to initialize reCAPTCHA:", error);
-  }
-};
+// Use the existing reCAPTCHA composable
+const { executeRecaptcha } = useRecaptcha();
 
 // Handle form submission
 const handleSubmit = async () => {
@@ -313,21 +239,19 @@ const handleSubmit = async () => {
     formState.error = false;
     formState.errorMessage = "";
 
-    // Get reCAPTCHA v2 response
+    // Try to get reCAPTCHA v3 token
     let recaptchaToken = "";
-    if (window.grecaptcha && recaptchaWidgetId !== null) {
-      recaptchaToken = window.grecaptcha.getResponse(recaptchaWidgetId);
 
-      if (!recaptchaToken) {
-        formState.error = true;
-        formState.errorMessage = "Please complete the reCAPTCHA verification.";
-        formState.submitting = false;
-        return;
-      }
+    try {
+      recaptchaToken = await executeRecaptcha("submit_contact");
+    } catch (recaptchaError) {
+      // Log the error but don't block submission in development
+      console.warn("reCAPTCHA verification skipped:", recaptchaError);
+      // The backend will handle missing tokens appropriately based on environment
     }
 
     // Send form data to backend API
-    const response = await $fetch("/api/contact", {
+    await $fetch("/api/contact", {
       method: "POST",
       body: {
         ...formData,
@@ -341,11 +265,6 @@ const handleSubmit = async () => {
     formData.email = "";
     formData.message = "";
 
-    // Reset reCAPTCHA
-    if (window.grecaptcha && recaptchaWidgetId !== null) {
-      window.grecaptcha.reset(recaptchaWidgetId);
-    }
-
     // Reset success message after 5 seconds
     setTimeout(() => {
       formState.submitted = false;
@@ -356,18 +275,8 @@ const handleSubmit = async () => {
     formState.errorMessage =
       error.data?.message ||
       "Failed to send message. Please try again or contact me directly via email.";
-
-    // Reset reCAPTCHA on error
-    if (window.grecaptcha && recaptchaWidgetId !== null) {
-      window.grecaptcha.reset(recaptchaWidgetId);
-    }
   } finally {
     formState.submitting = false;
   }
 };
-
-// Initialize reCAPTCHA when component is mounted
-onMounted(() => {
-  initRecaptcha();
-});
 </script>

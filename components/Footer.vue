@@ -69,7 +69,7 @@
                 class="text-text-secondary hover:text-text-primary group flex w-fit items-center justify-start gap-2 text-xs transition-colors md:text-sm"
               >
                 <span
-                  class="bg-text-primary h-[1px] w-0 transition-all duration-300 group-hover:w-4"
+                  class="bg-text-primary h-px w-0 transition-all duration-300 group-hover:w-4"
                 ></span>
                 {{ link.label }}
               </NuxtLink>
@@ -132,8 +132,12 @@
           <p
             class="text-text-secondary text-center text-xs md:text-left md:text-sm"
           >
-            © {{ new Date().getFullYear() }} borysbabas.dev - All rights
-            reserved.
+            © {{ new Date().getFullYear() }} borysbabas<span
+              class="cursor-default select-none"
+              @dblclick="navigateToLogin"
+              >.dev</span
+            >
+            - All rights reserved.
           </p>
           <div class="flex items-center space-x-4 md:space-x-6">
             <NuxtLink
@@ -178,15 +182,32 @@ const legalLinks = [
   { path: "/sitemap", label: "Sitemap" },
 ];
 
-const { data: footerPosts } = await useAsyncData("footer-posts", () =>
-  queryCollection("blog").order("date", "DESC").limit(3).all(),
-);
+const { data: footerPosts } = await useAsyncData("footer-posts", async () => {
+  try {
+    const posts = await $fetch("/api/cms/posts");
+    if (!posts || !Array.isArray(posts)) return [];
+    return posts
+      .filter((post: any) => post.published)
+      .sort(
+        (a: any, b: any) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime(),
+      )
+      .slice(0, 3);
+  } catch (e) {
+    console.error("Failed to load footer posts:", e);
+    return [];
+  }
+});
 
 const latestPosts = computed(
   () =>
-    footerPosts.value?.map((post) => ({
+    footerPosts.value?.map((post: any) => ({
       title: post.title,
-      slug: post.path?.replace("/blog/", "") || "",
+      slug: post.slug,
     })) || [],
 );
+
+const navigateToLogin = () => {
+  navigateTo("/admin/login");
+};
 </script>
