@@ -17,9 +17,11 @@
       </div>
 
       <!-- Hero Section -->
-      <section
+      <FadeInSection
         v-if="showContent"
-        class="animate-contentEnter flex h-screen w-full flex-col items-center justify-center px-4"
+        :distance="36"
+        :duration="1100"
+        class="flex h-screen w-full flex-col items-center justify-center px-4"
       >
         <div
           class="flex w-full max-w-5xl flex-col items-center justify-center gap-8 px-4 md:flex-row md:gap-12 md:px-6"
@@ -85,17 +87,20 @@
               class="bg-button-primary text-text-primary hover:bg-background-light-2 group relative mx-auto inline-block w-fit overflow-hidden rounded-md px-4 py-2 text-xs font-medium shadow-sm transition-all duration-300 md:mx-0 md:text-sm"
               to="/projects"
             >
-              <span class="relative z-10">View My Work</span>
+              <span class="text-[12px]">View my work</span>
+              <span class="text-base leading-none">→</span>
             </NuxtLink>
           </div>
         </div>
         <TechStack v-if="showContent" />
-      </section>
+      </FadeInSection>
 
       <!-- Content Section -->
-      <div
+      <FadeInSection
         v-if="showContent"
-        class="animate-contentEnter container mx-auto mt-8 mb-8 max-w-5xl px-4 md:mt-12 md:mb-12 md:px-6"
+        :delay="200"
+        :distance="32"
+        class="container mx-auto mt-8 mb-8 max-w-5xl px-4 md:mt-12 md:mb-12 md:px-6"
       >
         <div
           class="relative flex flex-col items-start gap-6 md:gap-8 lg:flex-row"
@@ -108,25 +113,33 @@
               Recent Posts
             </h1>
             <div class="space-y-4">
-              <PostCard
+              <FadeInSection
                 v-for="(post, key) in posts?.slice(0, 6)"
                 :key="post.path"
-                :is-big="!key"
-                :post="post"
-              />
+                :delay="key * 80"
+                :distance="18"
+              >
+                <PostCard :is-big="!key" :post="post" />
+              </FadeInSection>
             </div>
           </section>
 
           <!-- Sidebar Section -->
           <aside class="w-full lg:sticky lg:top-25 lg:max-h-screen lg:w-2/5">
             <div class="space-y-4">
-              <SubscriptionForm />
-              <WorkExperience :experiences="experiences" />
-              <EducationTrajectory :educations="educations" />
+              <FadeInSection :delay="120" :distance="18">
+                <SubscriptionForm />
+              </FadeInSection>
+              <FadeInSection :delay="220" :distance="18">
+                <WorkExperience :experiences="experiences" />
+              </FadeInSection>
+              <FadeInSection :delay="300" :distance="18">
+                <EducationTrajectory :educations="educations" />
+              </FadeInSection>
             </div>
           </aside>
         </div>
-      </div>
+      </FadeInSection>
     </section>
   </div>
 </template>
@@ -137,6 +150,7 @@ import PostCard from "~/components/PostCard.vue";
 import SubscriptionForm from "~/components/SubscriptionForm.vue";
 import WorkExperience from "~/components/WorkExperience.vue";
 import EducationTrajectory from "~/components/EducationTrajectory.vue";
+import FadeInSection from "~/components/FadeInSection.vue";
 import { useIntroSequence } from "~/composables/useIntroSequence";
 import { useRotatingTitles } from "~/composables/useRotatingTitles";
 import { useGreeting } from "~/composables/useGreeting";
