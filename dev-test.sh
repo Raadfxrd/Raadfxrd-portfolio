@@ -62,6 +62,7 @@ if [ "$READY" = true ] && ps -p $MAILPIT_PID > /dev/null; then
     echo -e "${GREEN}✓ Web UI ready at http://localhost:8025${NC}"
 else
     echo -e "${YELLOW}⚠️  Mailpit may not have started correctly${NC}"
+    echo -e "${YELLOW}   Contact form emails will be saved to .local-mails/ folder${NC}"
     if [ -f /tmp/mailpit.log ]; then
         echo "Check /tmp/mailpit.log for errors"
         tail -10 /tmp/mailpit.log
@@ -75,7 +76,7 @@ echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━�
 echo
 
 # Set environment variable to skip reCAPTCHA in development (optional)
-export SKIP_RECAPTCHA=false
+export SKIP_RECAPTCHA=true
 
 # Start Nuxt dev server
 npm run dev
@@ -96,6 +97,13 @@ cleanup() {
 
     # Clean up log file
     rm -f /tmp/mailpit.log
+
+    # Show unsent emails if any
+    if [ -d ".local-mails" ] && [ "$(ls -A .local-mails 2>/dev/null)" ]; then
+        MAIL_COUNT=$(find -1 .local-mails | wc -l | tr -d ' ')
+        echo -e "${BLUE}📧 Found ${MAIL_COUNT} unsent email(s) in .local-mails/${NC}"
+        echo -e "${BLUE}   View them with: ls -la .local-mails/${NC}"
+    fi
 
     exit 0
 }

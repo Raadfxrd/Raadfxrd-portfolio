@@ -1,4 +1,4 @@
-# borysbabas.dev, Borys' Next-Gen Portfolio
+# borysbabas.dev, My Next-Gen Portfolio
 
 ![Thumbnail](public/img/portfolio.png)
 
@@ -25,6 +25,7 @@ animations and interactive elements.
 **Dynamic GitHub Integration** - Automatically fetches and displays projects from GitHub with READMEs and images  
 **Dark Mode Support** - Seamless theme switching with system preference detection  
 **Blog System** - Content management powered by Nuxt Content  
+**Built-in CMS** - Secure admin panel with MySQL database for managing blog posts and subscribers  
 **Interactive UI** - Engaging animations and modal interactions  
 **Lightning Fast** - Built with Nuxt 4 and Vite for optimal performance  
 **Modern UI** - Tailwind CSS 4 with custom animations and transitions  
@@ -43,6 +44,29 @@ animations and interactive elements.
 ## Setup Guides
 
 This project includes comprehensive setup and developer guides:
+
+### [CMS Setup Guide](docs/CMS_GUIDE.md)
+
+**Complete CMS documentation** - Learn how to use the built-in Content Management System for blog posts and newsletter
+management.
+
+- Authentication and security
+- Blog post creation and management
+- Newsletter subscription system
+- Database schema and migrations
+- Production deployment guide
+- API endpoints reference
+
+### [MySQL Database Setup](docs/MYSQL_SETUP.md)
+
+**Database configuration guide** - Set up MySQL locally (port 3306) or use SQLite for quick development.
+
+- Local MySQL setup on port 3306
+- Production database options (PlanetScale, AWS RDS, DigitalOcean, Railway)
+- Switching between SQLite and MySQL
+- Connection pooling and performance optimization
+- Security best practices
+- Migration guides
 
 ### [GitHub Token Setup Guide](docs/GITHUB_TOKEN_SETUP.md)
 
@@ -261,6 +285,8 @@ Blog posts written in Markdown with:
 
 ## Scripts
 
+### Development
+
 - `npm install` - Install project dependencies
 - `./dev-test.sh` - Start development environment with Mailpit for email testing (recommended)
 - `npm run dev` - Start development server with hot-reload only
@@ -268,6 +294,28 @@ Blog posts written in Markdown with:
 - `npm run generate` - Generate static site
 - `npm run preview` - Preview production build locally
 - `npm run postinstall` - Prepare Nuxt (runs automatically)
+
+### Database & CMS
+
+- `npm run db:generate` - Generate database migrations from schema
+- `npm run db:push` - Apply database migrations
+- `npm run db:studio` - Open Drizzle Studio (visual database editor)
+- `npm run db:init` - Create initial admin user for CMS
+
+### Quick Start for CMS
+
+```bash
+# One-command setup: Create database, tables, and admin user
+npm run db:setup
+
+# Start development server
+npm run dev
+
+# Access CMS: Double-click ".dev" in footer or visit /admin/login
+# Default credentials: admin / admin123
+```
+
+**Database**: MySQL on localhost:3306 (user: root, password: admin)
 
 ## Credits
 
@@ -283,4 +331,3 @@ Blog posts written in Markdown with:
 
 Check out the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more about the
 framework.
-

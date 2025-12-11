@@ -6,9 +6,25 @@ useSeoMeta({
   description: "Browse all pages and content on borysbabas.dev",
 });
 
-const { data: posts } = await useAsyncData(() =>
-  queryCollection("blog").order("date", "DESC").all(),
-);
+const { data: posts } = await useAsyncData(async () => {
+  try {
+    const data = await $fetch("/api/cms/posts");
+    if (!data || !Array.isArray(data)) return [];
+    return data
+      .filter((post: any) => post.published)
+      .map((post: any) => ({
+        ...post,
+        path: `/blog/${post.slug}`,
+      }))
+      .sort(
+        (a: any, b: any) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime(),
+      );
+  } catch (e) {
+    console.error("Failed to load posts:", e);
+    return [];
+  }
+});
 
 const pageDescriptions: Record<string, string> = {
   "/": "Welcome to my portfolio",
@@ -167,7 +183,7 @@ const externalLinks = [
                       class="text-text-secondary group-hover:text-text-primary mt-0.5 text-xs transition-colors md:mt-1"
                     >
                       {{
-                        new Date(post.date).toLocaleDateString("en-US", {
+                        new Date(post.date).toLocaleDateString("en-NL", {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
@@ -176,7 +192,7 @@ const externalLinks = [
                     </p>
                   </div>
                   <ArrowTopRightOnSquareIcon
-                    class="text-text-secondary group-hover:text-text-primary ml-3 h-4 w-4 flex-shrink-0 transition-colors md:ml-4 md:h-5 md:w-5"
+                    class="text-text-secondary group-hover:text-text-primary ml-3 h-4 w-4 shrink-0 transition-colors md:ml-4 md:h-5 md:w-5"
                   />
                 </NuxtLink>
               </div>
@@ -211,7 +227,7 @@ const externalLinks = [
                   </p>
                 </div>
                 <ArrowTopRightOnSquareIcon
-                  class="text-text-secondary group-hover:text-text-primary ml-2 h-4 w-4 flex-shrink-0 transition-colors md:ml-3 md:h-5 md:w-5"
+                  class="text-text-secondary group-hover:text-text-primary ml-2 h-4 w-4 shrink-0 transition-colors md:ml-3 md:h-5 md:w-5"
                 />
               </a>
             </div>
