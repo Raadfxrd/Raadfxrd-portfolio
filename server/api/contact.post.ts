@@ -296,7 +296,7 @@ ${message}
       </div>
     </div>
     <div class="footer">
-      <p>Sent from raadnerd.com</p>
+      <p>Sent from borysbabas.dev</p>
     </div>
   </div>
 </body>

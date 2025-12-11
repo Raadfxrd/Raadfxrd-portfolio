@@ -1,8 +1,8 @@
-# Raadnerd, Borys' Next-Gen Portfolio
+# borysbabas.dev, Borys' Next-Gen Portfolio
 
 ![Thumbnail](public/img/portfolio.png)
 
-This repository contains the source code for Raadnerd. The portfolio is built using **Nuxt 4**, **Vue 3**, and *
+This repository contains the source code for borysbabas.dev. The portfolio is built using **Nuxt 4**, **Vue 3**, and *
 *Tailwind CSS 4**, showcasing projects fetched from GitHub, blog posts, skills, and personal information with beautiful
 animations and interactive elements.
 

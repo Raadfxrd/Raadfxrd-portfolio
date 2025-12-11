@@ -3,7 +3,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/vue/24/outline";
 
 useSeoMeta({
   title: "Sitemap - Borys",
-  description: "Browse all pages and content on Raadnerd",
+  description: "Browse all pages and content on borysbabas.dev",
 });
 
 const { data: posts } = await useAsyncData(() =>

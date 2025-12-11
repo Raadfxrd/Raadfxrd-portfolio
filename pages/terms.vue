@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 useSeoMeta({
   title: "Terms of Service - Borys",
-  description: "Terms of Service for Raadnerd",
+  description: "Terms of Service for borysbabas.dev",
 });
 </script>
 
@@ -32,10 +32,10 @@ useSeoMeta({
             <p
               class="text-text-secondary w-fit text-sm leading-relaxed md:text-base"
             >
-              Welcome to Raadnerd. By accessing or using this website, you agree
-              to be bound by these Terms of Service and all applicable laws and
-              regulations. If you do not agree with any of these terms, you are
-              prohibited from using or accessing this site.
+              Welcome to borysbabas.dev. By accessing or using this website, you
+              agree to be bound by these Terms of Service and all applicable
+              laws and regulations. If you do not agree with any of these terms,
+              you are prohibited from using or accessing this site.
             </p>
           </section>
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 useSeoMeta({
   title: "Privacy Policy - Borys",
-  description: "Privacy Policy for Raadnerd",
+  description: "Privacy Policy for borysbabas.dev",
 });
 </script>
 
@@ -32,9 +32,9 @@ useSeoMeta({
             <p
               class="text-text-secondary w-fit text-sm leading-relaxed md:text-base"
             >
-              Welcome to Raadnerd. This Privacy Policy explains how I collect,
-              use, and protect your personal information when you visit my
-              website. Your privacy is important to me, and I am committed to
+              Welcome to borysbabas.dev. This Privacy Policy explains how I
+              collect, use, and protect your personal information when you visit
+              my website. Your privacy is important to me, and I am committed to
               protecting your personal data.
             </p>
           </section>
