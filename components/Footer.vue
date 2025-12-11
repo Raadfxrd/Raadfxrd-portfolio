@@ -132,7 +132,8 @@
           <p
             class="text-text-secondary text-center text-xs md:text-left md:text-sm"
           >
-            © {{ new Date().getFullYear() }} Raadnerd - All rights reserved.
+            © {{ new Date().getFullYear() }} borysbabas.dev - All rights
+            reserved.
           </p>
           <div class="flex items-center space-x-4 md:space-x-6">
             <NuxtLink

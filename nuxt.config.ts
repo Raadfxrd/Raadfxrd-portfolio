@@ -10,11 +10,11 @@ export default defineNuxtConfig({
       mode: "out-in",
     },
     head: {
-      title: "Raadnerd",
+      title: "borysbabas.dev",
       meta: [
         {
           name: "description",
-          content: "Raadnerd, Borys' personal portfolio.",
+          content: "borysbabas.dev, Borys' personal portfolio.",
         },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
