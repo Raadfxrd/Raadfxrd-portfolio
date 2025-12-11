@@ -45,29 +45,6 @@ animations and interactive elements.
 
 This project includes comprehensive setup and developer guides:
 
-### [CMS Setup Guide](docs/CMS_GUIDE.md)
-
-**Complete CMS documentation** - Learn how to use the built-in Content Management System for blog posts and newsletter
-management.
-
-- Authentication and security
-- Blog post creation and management
-- Newsletter subscription system
-- Database schema and migrations
-- Production deployment guide
-- API endpoints reference
-
-### [MySQL Database Setup](docs/MYSQL_SETUP.md)
-
-**Database configuration guide** - Set up MySQL locally (port 3306) or use SQLite for quick development.
-
-- Local MySQL setup on port 3306
-- Production database options (PlanetScale, AWS RDS, DigitalOcean, Railway)
-- Switching between SQLite and MySQL
-- Connection pooling and performance optimization
-- Security best practices
-- Migration guides
-
 ### [GitHub Token Setup Guide](docs/GITHUB_TOKEN_SETUP.md)
 
 **Essential for GitHub API integration** - Learn how to create and configure a GitHub Personal Access Token to avoid
@@ -300,22 +277,27 @@ Blog posts written in Markdown with:
 - `npm run db:generate` - Generate database migrations from schema
 - `npm run db:push` - Apply database migrations
 - `npm run db:studio` - Open Drizzle Studio (visual database editor)
-- `npm run db:init` - Create initial admin user for CMS
+- `npm run db:init` - Create/update admin user directly via Drizzle ORM
+- `npm run db:migration:admin` - Generate SQL migration for admin user from .env
+- `npm run db:migration:apply` - Apply admin user migration to Supabase
+- `npm run db:migration:admin:full` - Generate and apply admin migration (one command)
 
 ### Quick Start for CMS
 
 ```bash
-# One-command setup: Create database, tables, and admin user
+# Option 1: One-command migration setup (Recommended for Supabase)
+npm run db:migration:admin:full
+
+# Option 2: Legacy method (Direct insert via ORM)
 npm run db:setup
 
 # Start development server
 npm run dev
 
 # Access CMS: Double-click ".dev" in footer or visit /admin/login
-# Default credentials: admin / admin123
 ```
 
-**Database**: MySQL on localhost:3306 (user: root, password: admin)
+**Database**: PostgreSQL (Supabase) - See `.env` for connection details
 
 ## Credits
 

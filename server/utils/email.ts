@@ -1,8 +1,20 @@
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import crypto from "crypto";
 
 /**
- * Get configured email transporter
+ * Get Resend client for production emails
+ */
+export function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is not set in environment variables");
+  }
+  return new Resend(apiKey);
+}
+
+/**
+ * Get configured email transporter (for development/fallback)
  */
 export function getEmailTransporter() {
   const isDevelopment = process.env.NODE_ENV === "development";
@@ -73,7 +85,7 @@ export function getUnsubscribeUrl(email: string): string {
 }
 
 /**
- * Send email using configured transporter
+ * Send email using Resend (production) or nodemailer (development)
  */
 export async function sendEmail(options: {
   to: string;
@@ -81,16 +93,36 @@ export async function sendEmail(options: {
   html: string;
   text: string;
 }) {
-  const transporter = getEmailTransporter();
+  const useResend = process.env.USE_RESEND === "true";
   const isDevelopment = process.env.NODE_ENV === "development";
+  const fromEmail = process.env.SMTP_FROM || "noreply@borysbabas.dev";
 
-  await transporter.sendMail({
-    from: isDevelopment
-      ? "noreply@localhost"
-      : process.env.SMTP_FROM || "noreply@borysbabas.dev",
-    to: options.to,
-    subject: options.subject,
-    html: options.html,
-    text: options.text,
-  });
+  if (useResend && !isDevelopment) {
+    // Use Resend for production
+    const resend = getResendClient();
+
+    try {
+      await resend.emails.send({
+        from: fromEmail,
+        to: options.to,
+        subject: options.subject,
+        html: options.html,
+        text: options.text,
+      });
+    } catch (error) {
+      console.error("Failed to send email via Resend:", error);
+      throw error;
+    }
+  } else {
+    // Use nodemailer for development (Mailpit)
+    const transporter = getEmailTransporter();
+
+    await transporter.sendMail({
+      from: isDevelopment ? "noreply@localhost" : fromEmail,
+      to: options.to,
+      subject: options.subject,
+      html: options.html,
+      text: options.text,
+    });
+  }
 }
